@@ -19,19 +19,32 @@ frontend :  thymeleaf + layui + js + jquery
 #### 使用说明
 
 1.  新建连接
+
 ![新建并测试连接](https://images.gitee.com/uploads/images/2021/0722/132942_310d8d77_1694096.png "微信截图_20210722132925.png")
+    
 2.  新建模板
+
 ![新建模板](https://images.gitee.com/uploads/images/2021/0722/133030_29f709eb_1694096.png "屏幕截图.png")
+    
 3.  新建配置
+
 在配置记录中,选择需要生成的连接,表清单,以及需要生成的模板清单,按照提示进行配置包名等表单项
+    
 ![新建配置](https://images.gitee.com/uploads/images/2021/0722/133142_2a0cb7a7_1694096.png "屏幕截图.png")
+
 4.  生成代码
+
 点击生成,会按照配置记录中的信息进行生成代码,并打成压缩包,根据配置的一键导入脚本生成.bat文件,也会打进压缩包中
+    
 ![生成代码](https://images.gitee.com/uploads/images/2021/0722/133232_fba3b423_1694096.png "屏幕截图.png")
+
 5.  下载代码
+
 ![下载代码](https://images.gitee.com/uploads/images/2021/0722/133514_c7abed9d_1694096.png "屏幕截图.png")
+
 6.  一键导入
 点击copy.bat,将代码一键导入本地项目下
+    
 ![一键导入本地项目](https://images.gitee.com/uploads/images/2021/0722/133634_91a14bb3_1694096.png "屏幕截图.png")
 
 #### 参与贡献
