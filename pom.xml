@@ -5,9 +5,9 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>top.buukle</groupId>
     <artifactId>buukle-generator</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.0-RELEASE</version>
     <name>buukle-generator</name>
-
+    <description> 布壳儿 脚手架服务,用于按照模板生成代码</description>
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
@@ -301,7 +301,11 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
-
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <optional>true</optional>
+        </dependency>
         <!--service-->
         <dependency>
             <groupId>com.baomidou</groupId>
