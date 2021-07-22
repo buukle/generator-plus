@@ -1,5 +1,8 @@
 # buukle-generator
 
+#### 演示地址 
+[buukle-generator](http://generator.buukle.top/generator/home)
+
 #### 介绍
 
 布壳儿脚手架服务,可自由灵活配置多数据源,自定义模板,并根据模板生成前后端代码,支持一键导入本地项目结构中.
