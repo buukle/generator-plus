@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.buukle.generator.dao.CommonMapper">
+  <resultMap id="FuzzyResultMap" type="top.buukle.generator.commons.call.vo.FuzzyVo">
+    <id column="id" jdbcType="INTEGER" property="identity" />
+    <result column="user_id" jdbcType="VARCHAR" property="userId" />
+
+    <result column="user_id" jdbcType="VARCHAR" property="id" />
+    <result column="user_id" jdbcType="VARCHAR" property="text" />
+
+    <result column="username" jdbcType="VARCHAR" property="id" />
+    <result column="username" jdbcType="VARCHAR" property="text" />
+
+    <result column="name_cn" jdbcType="VARCHAR" property="id" />
+    <result column="name_cn" jdbcType="VARCHAR" property="text" />
+
+    <result column="name" jdbcType="VARCHAR" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="text" />
+
+    <result column="code" jdbcType="VARCHAR" property="id" />
+    <result column="code" jdbcType="VARCHAR" property="text" />
+
+    <result column="role_name" jdbcType="VARCHAR" property="id" />
+    <result column="role_name" jdbcType="VARCHAR" property="text" />
+
+    <result column="submit_title" jdbcType="VARCHAR" property="id" />
+    <result column="submit_title" jdbcType="VARCHAR" property="text" />
+
+    <result column="department_name" jdbcType="VARCHAR" property="id" />
+    <result column="department_name" jdbcType="VARCHAR" property="text" />
+
+    <result column="topic_name" jdbcType="VARCHAR" property="text" />
+
+    <result column="creator" jdbcType="VARCHAR" property="text" />
+
+    <result column="type" jdbcType="VARCHAR" property="text" />
+    <result column="name" jdbcType="VARCHAR" property="text" />
+    <result column="server_type_name" jdbcType="VARCHAR" property="text" />
+    <result column="notice_type_name" jdbcType="VARCHAR" property="text" />
+
+
+    <result column="dept_name" jdbcType="VARCHAR" property="id" />
+    <result column="dept_name" jdbcType="VARCHAR" property="text" />
+
+  </resultMap>
+
+  <!--fuzzySearch-->
+  <select id="fuzzySearch" parameterType="top.buukle.generator.commons.call.vo.FuzzyVo" resultMap="FuzzyResultMap">
+    SELECT ${fieldName}
+    FROM
+      ${tableName}
+    WHERE
+        ${fieldName}
+        like concat('%',#{text},'%')
+      AND STATUS > -1;
+  </select>
+  <!--fuzzySearchNoMulti-->
+  <select id="fuzzySearchNoMulti" parameterType="top.buukle.generator.commons.call.vo.FuzzyVo" resultMap="FuzzyResultMap">
+    SELECT ${fieldName}
+    FROM
+      ${tableName}
+    WHERE
+        ${fieldName}
+        like concat('%',#{text},'%')
+      AND STATUS > -1
+    GROUP BY
+      ${fieldName};
+  </select>
+  <select id="fuzzySearchNoAutomaticCreateObject" parameterType="top.buukle.generator.commons.call.vo.FuzzyVo" resultMap="FuzzyResultMap">
+    select id, ${fieldName} from  ${tableName}
+    where ${fieldName} LIKE concat('%',#{text},'%') and status > -1 and created_way > 0;
+  </select>
+</mapper>

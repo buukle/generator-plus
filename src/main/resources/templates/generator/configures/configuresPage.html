@@ -1,0 +1,78 @@
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<table class="layui-table" lay-even lay-skin="nob">
+	<thead>
+	<tr>
+		<th><input type="checkbox" name="" lay-skin="primary" lay-filter="allChoose"></th>
+		<th class="hidden-xs">名称</th>
+		<th class="hidden-xs">创建者</th>
+		<th class="hidden-xs">创建时间</th>
+		<th class="hidden-xs">状态</th>
+		<th>操作</th>
+	</tr>
+	</thead>
+		<tbody id="tbody-configures">
+		<tr th:each="configuresRecord:${response?.body?.list}">
+			<td><input type="checkbox" name="batchCheckBox" lay-skin="primary" th:attr="data-id = ${configuresRecord?.id}"  /></td>
+			<td th:text="${configuresRecord?.name}" class="hidden-xs"></td>
+			<td th:text="${configuresRecord?.creator}" class="hidden-xs"></td>
+			<td th:text="${#dates.format(configuresRecord?.gmtCreated,'yyyy-MM-dd HH:mm:ss')}" class="hidden-xs"></td>
+			<td th:switch="${configuresRecord?.status}">
+				<button th:case="0" class="layui-btn layui-btn-xs layui-btn-danger" > 创建完成</button>
+				<button th:case="1" class="layui-btn layui-btn-xs layui-btn-normal" > 审核中</button>
+				<button th:case="2" class="layui-btn layui-btn-xs layui-btn-default"> 停用</button>
+				<button th:case="3" class="layui-btn layui-btn-xs layui-btn-default"> 正常</button>
+				<button th:case="*" class="layui-btn layui-btn-xs layui-btn-unknown"> 未知</button>
+			</td>
+			<td>
+				<div class="layui-inline">
+					<hp url="/configures/configuresCrudView">
+						<div class="layui-btn layui-btn-sm layui-btn-normal editBigBtn" th:attr="data-id = ${configuresRecord?.id}" data-url="/configures/configuresCrudView"><i class="layui-icon">&#xe642;</i></div>
+					</hp>
+					<hp url="/configures/configuresCrudJson">
+						<div class="layui-btn layui-btn-sm layui-btn-danger delOneBtn" th:attr="data-id = ${configuresRecord?.id}" data-url="/configures/configuresCrudJson"><i class="layui-icon">&#xe640;</i></div>
+					</hp>
+						<div class="layui-btn layui-btn-sm layui-btn-green genBtn" th:attr="data-id = ${configuresRecord?.id}" data-url="/configures/gen"><i class="layui-icon">生成</i></div>
+				</div>
+			</td>
+		</tr>
+	</tbody>
+	<input type="hidden" id="page" th:attr="value=${response?.body.pageNo}" />
+	<input type="hidden" id="totalPage" th:attr="value=${response?.body.totalPage}" />
+	<input type="hidden" id="total" th:attr="value=${response?.body.total}" />
+</table>
+<script>
+	layui.use(['jquery', 'layer','dialog','tree','form'], function() {
+		bindGen();
+	});
+	/** 绑定生成*/
+	function bindGen() {
+		$('.genBtn').off().on('click',function () {
+			var obj = $(this);
+			document.getElementById("shadow").style.display ="block";
+			banThis(obj,"生成中..");
+			$.ajax({
+				url:getContextPath() + obj.attr("data-url"),
+				method:"post",
+				dataType:"json",
+				data:{"id": $(this).attr('data-id')},
+				success:function (data) {
+					document.getElementById("shadow").style.display ="none";
+					if(data.head.status == 'S'){
+						layer.msg('生成成功,请到日志管理下载源码压缩包~');
+					}else{
+						layer.msg(data.head.msg);
+					}
+					releaseThis(obj,"生成");
+				},
+				error:function (data) {
+					layer.msg('操作失败!' + JSON.stringify(data));
+					releaseThis(obj,"生成");
+					document.getElementById("shadow").style.display ="none";
+				}
+			})
+		})
+	}
+</script>
+
+
+

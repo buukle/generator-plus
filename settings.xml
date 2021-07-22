@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
+    <localRepository>D:\file\maven\repository\buukle</localRepository>
+
+    <pluginGroups>
+        <pluginGroup>com.spotify</pluginGroup>
+    </pluginGroups>
+
+    <mirrors>
+        <mirror>
+            <id>nexus-aliyun</id>
+            <mirrorOf>central</mirrorOf>
+            <name>Nexus aliyun</name>
+            <url>http://maven.aliyun.com/nexus/content/groups/public</url>
+        </mirror>
+    </mirrors>
+    <profiles>
+        <profile>
+            <id>buukle-profile</id>
+            <repositories>
+                <repository>
+                    <releases>
+                        <enabled>true</enabled>
+                    </releases>
+                    <snapshots>
+                        <enabled>true</enabled>
+                        <updatePolicy>always</updatePolicy>
+                    </snapshots>
+                    <id>buukle-server</id>
+                    <name>aliyun maven snapshots</name>
+                    <url>https://maven.aliyun.com/repository/central</url>
+                </repository>
+            </repositories>
+            <pluginRepositories>
+                <pluginRepository>
+                    <releases>
+                        <enabled>true</enabled>
+                    </releases>
+                    <snapshots>
+                        <enabled>false</enabled>
+                    </snapshots>
+                    <id>buukle</id>
+                    <name>aliyun maven releases</name>
+                    <url>https://maven.aliyun.com/repository/central</url>
+                </pluginRepository>
+            </pluginRepositories>
+        </profile>
+    </profiles>
+    <activeProfiles>
+        <activeProfile>buukle-profile</activeProfile>
+    </activeProfiles>
+</settings>

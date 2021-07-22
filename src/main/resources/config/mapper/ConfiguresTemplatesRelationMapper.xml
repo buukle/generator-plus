@@ -1,0 +1,463 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.buukle.generator.dao.ConfiguresTemplatesRelationMapper">
+  <resultMap id="BaseResultMap" type="top.buukle.generator.entity.ConfiguresTemplatesRelation">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="audit_id" jdbcType="INTEGER" property="auditId" />
+    <result column="application_code" jdbcType="VARCHAR" property="applicationCode" />
+    <result column="templates_id" jdbcType="INTEGER" property="templatesId" />
+    <result column="configures_id" jdbcType="INTEGER" property="configuresId" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="gmt_created" jdbcType="TIMESTAMP" property="gmtCreated" />
+    <result column="creator" jdbcType="VARCHAR" property="creator" />
+    <result column="creator_dept_id" jdbcType="INTEGER" property="creatorDeptId" />
+    <result column="creator_code" jdbcType="VARCHAR" property="creatorCode" />
+    <result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified" />
+    <result column="modifier" jdbcType="VARCHAR" property="modifier" />
+    <result column="modifier_code" jdbcType="VARCHAR" property="modifierCode" />
+    <result column="audit_status" jdbcType="INTEGER" property="auditStatus" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="bak01" jdbcType="VARCHAR" property="bak01" />
+    <result column="bak02" jdbcType="VARCHAR" property="bak02" />
+    <result column="bak03" jdbcType="VARCHAR" property="bak03" />
+    <result column="bak04" jdbcType="VARCHAR" property="bak04" />
+    <result column="bak05" jdbcType="VARCHAR" property="bak05" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, audit_id, application_code, templates_id, configures_id, description, remark, 
+    gmt_created, creator, creator_dept_id, creator_code, gmt_modified, modifier, modifier_code, 
+    audit_status, status, bak01, bak02, bak03, bak04, bak05
+  </sql>
+  <select id="selectByExample" parameterType="top.buukle.generator.entity.ConfiguresTemplatesRelationExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from configures_templates_relation
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from configures_templates_relation
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from configures_templates_relation
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="top.buukle.generator.entity.ConfiguresTemplatesRelationExample">
+    delete from configures_templates_relation
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="top.buukle.generator.entity.ConfiguresTemplatesRelation">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into configures_templates_relation (audit_id, application_code, templates_id, 
+      configures_id, description, remark, 
+      gmt_created, creator, creator_dept_id, 
+      creator_code, gmt_modified, modifier, 
+      modifier_code, audit_status, status, 
+      bak01, bak02, bak03, 
+      bak04, bak05)
+    values (#{auditId,jdbcType=INTEGER}, #{applicationCode,jdbcType=VARCHAR}, #{templatesId,jdbcType=INTEGER}, 
+      #{configuresId,jdbcType=INTEGER}, #{description,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
+      #{gmtCreated,jdbcType=TIMESTAMP}, #{creator,jdbcType=VARCHAR}, #{creatorDeptId,jdbcType=INTEGER}, 
+      #{creatorCode,jdbcType=VARCHAR}, #{gmtModified,jdbcType=TIMESTAMP}, #{modifier,jdbcType=VARCHAR}, 
+      #{modifierCode,jdbcType=VARCHAR}, #{auditStatus,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, 
+      #{bak01,jdbcType=VARCHAR}, #{bak02,jdbcType=VARCHAR}, #{bak03,jdbcType=VARCHAR}, 
+      #{bak04,jdbcType=VARCHAR}, #{bak05,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="top.buukle.generator.entity.ConfiguresTemplatesRelation">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into configures_templates_relation
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="auditId != null">
+        audit_id,
+      </if>
+      <if test="applicationCode != null">
+        application_code,
+      </if>
+      <if test="templatesId != null">
+        templates_id,
+      </if>
+      <if test="configuresId != null">
+        configures_id,
+      </if>
+      <if test="description != null">
+        description,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="gmtCreated != null">
+        gmt_created,
+      </if>
+      <if test="creator != null">
+        creator,
+      </if>
+      <if test="creatorDeptId != null">
+        creator_dept_id,
+      </if>
+      <if test="creatorCode != null">
+        creator_code,
+      </if>
+      <if test="gmtModified != null">
+        gmt_modified,
+      </if>
+      <if test="modifier != null">
+        modifier,
+      </if>
+      <if test="modifierCode != null">
+        modifier_code,
+      </if>
+      <if test="auditStatus != null">
+        audit_status,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="bak01 != null">
+        bak01,
+      </if>
+      <if test="bak02 != null">
+        bak02,
+      </if>
+      <if test="bak03 != null">
+        bak03,
+      </if>
+      <if test="bak04 != null">
+        bak04,
+      </if>
+      <if test="bak05 != null">
+        bak05,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="auditId != null">
+        #{auditId,jdbcType=INTEGER},
+      </if>
+      <if test="applicationCode != null">
+        #{applicationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="templatesId != null">
+        #{templatesId,jdbcType=INTEGER},
+      </if>
+      <if test="configuresId != null">
+        #{configuresId,jdbcType=INTEGER},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtCreated != null">
+        #{gmtCreated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creator != null">
+        #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="creatorDeptId != null">
+        #{creatorDeptId,jdbcType=INTEGER},
+      </if>
+      <if test="creatorCode != null">
+        #{creatorCode,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtModified != null">
+        #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifier != null">
+        #{modifier,jdbcType=VARCHAR},
+      </if>
+      <if test="modifierCode != null">
+        #{modifierCode,jdbcType=VARCHAR},
+      </if>
+      <if test="auditStatus != null">
+        #{auditStatus,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="bak01 != null">
+        #{bak01,jdbcType=VARCHAR},
+      </if>
+      <if test="bak02 != null">
+        #{bak02,jdbcType=VARCHAR},
+      </if>
+      <if test="bak03 != null">
+        #{bak03,jdbcType=VARCHAR},
+      </if>
+      <if test="bak04 != null">
+        #{bak04,jdbcType=VARCHAR},
+      </if>
+      <if test="bak05 != null">
+        #{bak05,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="top.buukle.generator.entity.ConfiguresTemplatesRelationExample" resultType="java.lang.Long">
+    select count(*) from configures_templates_relation
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update configures_templates_relation
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.auditId != null">
+        audit_id = #{record.auditId,jdbcType=INTEGER},
+      </if>
+      <if test="record.applicationCode != null">
+        application_code = #{record.applicationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.templatesId != null">
+        templates_id = #{record.templatesId,jdbcType=INTEGER},
+      </if>
+      <if test="record.configuresId != null">
+        configures_id = #{record.configuresId,jdbcType=INTEGER},
+      </if>
+      <if test="record.description != null">
+        description = #{record.description,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark != null">
+        remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gmtCreated != null">
+        gmt_created = #{record.gmtCreated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.creator != null">
+        creator = #{record.creator,jdbcType=VARCHAR},
+      </if>
+      <if test="record.creatorDeptId != null">
+        creator_dept_id = #{record.creatorDeptId,jdbcType=INTEGER},
+      </if>
+      <if test="record.creatorCode != null">
+        creator_code = #{record.creatorCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gmtModified != null">
+        gmt_modified = #{record.gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.modifier != null">
+        modifier = #{record.modifier,jdbcType=VARCHAR},
+      </if>
+      <if test="record.modifierCode != null">
+        modifier_code = #{record.modifierCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.auditStatus != null">
+        audit_status = #{record.auditStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.status != null">
+        status = #{record.status,jdbcType=INTEGER},
+      </if>
+      <if test="record.bak01 != null">
+        bak01 = #{record.bak01,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bak02 != null">
+        bak02 = #{record.bak02,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bak03 != null">
+        bak03 = #{record.bak03,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bak04 != null">
+        bak04 = #{record.bak04,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bak05 != null">
+        bak05 = #{record.bak05,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update configures_templates_relation
+    set id = #{record.id,jdbcType=INTEGER},
+      audit_id = #{record.auditId,jdbcType=INTEGER},
+      application_code = #{record.applicationCode,jdbcType=VARCHAR},
+      templates_id = #{record.templatesId,jdbcType=INTEGER},
+      configures_id = #{record.configuresId,jdbcType=INTEGER},
+      description = #{record.description,jdbcType=VARCHAR},
+      remark = #{record.remark,jdbcType=VARCHAR},
+      gmt_created = #{record.gmtCreated,jdbcType=TIMESTAMP},
+      creator = #{record.creator,jdbcType=VARCHAR},
+      creator_dept_id = #{record.creatorDeptId,jdbcType=INTEGER},
+      creator_code = #{record.creatorCode,jdbcType=VARCHAR},
+      gmt_modified = #{record.gmtModified,jdbcType=TIMESTAMP},
+      modifier = #{record.modifier,jdbcType=VARCHAR},
+      modifier_code = #{record.modifierCode,jdbcType=VARCHAR},
+      audit_status = #{record.auditStatus,jdbcType=INTEGER},
+      status = #{record.status,jdbcType=INTEGER},
+      bak01 = #{record.bak01,jdbcType=VARCHAR},
+      bak02 = #{record.bak02,jdbcType=VARCHAR},
+      bak03 = #{record.bak03,jdbcType=VARCHAR},
+      bak04 = #{record.bak04,jdbcType=VARCHAR},
+      bak05 = #{record.bak05,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="top.buukle.generator.entity.ConfiguresTemplatesRelation">
+    update configures_templates_relation
+    <set>
+      <if test="auditId != null">
+        audit_id = #{auditId,jdbcType=INTEGER},
+      </if>
+      <if test="applicationCode != null">
+        application_code = #{applicationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="templatesId != null">
+        templates_id = #{templatesId,jdbcType=INTEGER},
+      </if>
+      <if test="configuresId != null">
+        configures_id = #{configuresId,jdbcType=INTEGER},
+      </if>
+      <if test="description != null">
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtCreated != null">
+        gmt_created = #{gmtCreated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creator != null">
+        creator = #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="creatorDeptId != null">
+        creator_dept_id = #{creatorDeptId,jdbcType=INTEGER},
+      </if>
+      <if test="creatorCode != null">
+        creator_code = #{creatorCode,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtModified != null">
+        gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifier != null">
+        modifier = #{modifier,jdbcType=VARCHAR},
+      </if>
+      <if test="modifierCode != null">
+        modifier_code = #{modifierCode,jdbcType=VARCHAR},
+      </if>
+      <if test="auditStatus != null">
+        audit_status = #{auditStatus,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="bak01 != null">
+        bak01 = #{bak01,jdbcType=VARCHAR},
+      </if>
+      <if test="bak02 != null">
+        bak02 = #{bak02,jdbcType=VARCHAR},
+      </if>
+      <if test="bak03 != null">
+        bak03 = #{bak03,jdbcType=VARCHAR},
+      </if>
+      <if test="bak04 != null">
+        bak04 = #{bak04,jdbcType=VARCHAR},
+      </if>
+      <if test="bak05 != null">
+        bak05 = #{bak05,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="top.buukle.generator.entity.ConfiguresTemplatesRelation">
+    update configures_templates_relation
+    set audit_id = #{auditId,jdbcType=INTEGER},
+      application_code = #{applicationCode,jdbcType=VARCHAR},
+      templates_id = #{templatesId,jdbcType=INTEGER},
+      configures_id = #{configuresId,jdbcType=INTEGER},
+      description = #{description,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      gmt_created = #{gmtCreated,jdbcType=TIMESTAMP},
+      creator = #{creator,jdbcType=VARCHAR},
+      creator_dept_id = #{creatorDeptId,jdbcType=INTEGER},
+      creator_code = #{creatorCode,jdbcType=VARCHAR},
+      gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      modifier = #{modifier,jdbcType=VARCHAR},
+      modifier_code = #{modifierCode,jdbcType=VARCHAR},
+      audit_status = #{auditStatus,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      bak01 = #{bak01,jdbcType=VARCHAR},
+      bak02 = #{bak02,jdbcType=VARCHAR},
+      bak03 = #{bak03,jdbcType=VARCHAR},
+      bak04 = #{bak04,jdbcType=VARCHAR},
+      bak05 = #{bak05,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
