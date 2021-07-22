@@ -5,6 +5,7 @@
 
 #### 软件架构
 backend : springboot 2.2.0.RELEASE + mybatis + mysql5.7以上 + beetl + mybatis-plus-generator
+
 frontend :  thymeleaf + layui + js + jquery
 
 #### 安装教程
