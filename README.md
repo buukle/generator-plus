@@ -21,7 +21,7 @@ frontend :  thymeleaf + layui + js + jquery
 3.  更改本地maven settings 为 项目根路径下的 settings.xml
 4.  mvn clean
 5.  mvn install
-6.  执行主类 GeneratorApplication main 方法即可成功运行
+6.  执行主类 GeneratorApplication main 方法即可成功运行,启动完成后, **访问 http://127.0.0.1:9999/generator/home 即可进入主界面** 
 7.  表模型中考虑了用户,租户等因素,预留了字段,但无具体实现,开源版本为免登录使用,如有需要,可根据源码进行企业内部认证源体系对接
 
 #### 使用说明
