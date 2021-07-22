@@ -4,20 +4,26 @@
 布壳儿脚手架服务
 
 #### 软件架构
-软件架构说明
-
+backend : springboot 2.2.0.RELEASE + mybatis + mysql5.7以上 + beetl + mybatis-plus-generator
+frontend :  thymeleaf + layui + js + jquery
 
 #### 安装教程
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+1.  git clone https://gitee.com/buukle/buukle-generator.git
+2.  修改数据库配置为本地/测试数据库地址,并在该数据库执行项目根路径下的 gen.sql 脚本,初始化数据库实例,表结构
+3.  更改本地maven settings 为 项目根路径下的 settings.xml
+4.  mvn clean
+5.  mvn install
+6.  执行主类 GeneratorApplication main 方法即可成功运行
 
 #### 使用说明
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+1.  新建连接
+2.  新建模板
+3.  新建配置
+4.  生成代码
+5.  下载代码并一键导入
+
 
 #### 参与贡献
 
@@ -26,12 +32,3 @@
 3.  提交代码
 4.  新建 Pull Request
 
-
-#### 特技
-
-1.  使用 Readme\_XXX.md 来支持不同的语言，例如 Readme\_en.md, Readme\_zh.md
-2.  Gitee 官方博客 [blog.gitee.com](https://blog.gitee.com)
-3.  你可以 [https://gitee.com/explore](https://gitee.com/explore) 这个地址来了解 Gitee 上的优秀开源项目
-4.  [GVP](https://gitee.com/gvp) 全称是 Gitee 最有价值开源项目，是综合评定出的优秀开源项目
-5.  Gitee 官方提供的使用手册 [https://gitee.com/help](https://gitee.com/help)
-6.  Gitee 封面人物是一档用来展示 Gitee 会员风采的栏目 [https://gitee.com/gitee-stars/](https://gitee.com/gitee-stars/)
