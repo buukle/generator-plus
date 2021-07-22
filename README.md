@@ -1,9 +1,15 @@
 # buukle-generator
 
 #### 介绍
-布壳儿脚手架服务
+
+布壳儿脚手架服务,可自由灵活配置多数据源,自定义模板,并根据模板生成前后端代码,支持一键导入本地项目结构中.
+
+#### 环境
+
+java1.8
 
 #### 软件架构
+
 backend : springboot 2.2.0.RELEASE + mybatis + mysql5.7以上 + beetl + mybatis-plus-generator
 
 frontend :  thymeleaf + layui + js + jquery
