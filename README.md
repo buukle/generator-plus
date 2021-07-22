@@ -50,7 +50,8 @@ frontend :  thymeleaf + layui + js + jquery
 ![下载代码](https://images.gitee.com/uploads/images/2021/0722/133514_c7abed9d_1694096.png "屏幕截图.png")
 
 6.  一键导入
-点击copy.bat,将代码一键导入本地项目下
+
+将下载下来的zip源码压缩包解压,双击执行copy.bat脚本,将代码一键导入本地项目下 (暂时只支持windows版本的脚本,mac可以自行修改该脚本内容及文件后缀名)
     
 ![一键导入本地项目](https://images.gitee.com/uploads/images/2021/0722/133634_91a14bb3_1694096.png "屏幕截图.png")
 
