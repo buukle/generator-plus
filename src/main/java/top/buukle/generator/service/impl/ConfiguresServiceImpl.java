@@ -1,5 +1,6 @@
 package top.buukle.generator.service.impl;
 
+import org.springframework.core.env.Environment;
 import top.buukle.generator.commons.call.CommonResponse;
 import top.buukle.generator.commons.call.FuzzyResponse;
 import top.buukle.generator.commons.call.PageResponse;
@@ -23,10 +24,7 @@ import top.buukle.generator.service.engine.BeetlTemplateEngine;
 import top.buukle.generator.service.exception.SystemException;
 import top.buukle.generator.service.util.FileUtil;
 import top.buukle.generator.service.util.ZipUtil;
-import top.buukle.generator.utils.ConvertHumpUtil;
-import top.buukle.generator.utils.DateUtil;
-import top.buukle.generator.utils.JsonUtil;
-import top.buukle.generator.utils.StringUtil;
+import top.buukle.generator.utils.*;
 import com.baomidou.mybatisplus.generator.AutoGenerator;
 import com.baomidou.mybatisplus.generator.InjectionConfig;
 import com.baomidou.mybatisplus.generator.config.*;
@@ -88,6 +86,8 @@ public class ConfiguresServiceImpl implements ConfiguresService{
     private DatasourcesMapper datasourcesMapper;
     @Autowired
     private CommonMapper commonMapper;
+    @Autowired
+    private Environment env;
 
     /**
      * 分页获取列表
@@ -327,13 +327,18 @@ public class ConfiguresServiceImpl implements ConfiguresService{
             configuresExecuteService.updateStatus(ConfiguresExecuteEnums.status.EXECUTING.value(),ConfiguresExecuteEnums.status.EXECUTE_FAILED.value(),configuresExecuteQuery.getId());
             throw new SystemException(SystemReturnEnum.GEN_CONFIGURES_FAILED);
         }
-        // 上传到文件服务器
 
-        // 更新zip包下载位置
-//        ConfiguresExecute configuresExecuteQueryForUpdate = new ConfiguresExecute();
-//        configuresExecuteQueryForUpdate.setId(configuresExecuteQuery.getId());
-//        configuresExecuteQueryForUpdate.setZipDownUrl(fileInfoVoCommonResponse.getBody().getUrl());
-//        configuresExecuteMapper.updateByPrimaryKeySelective(configuresExecuteQueryForUpdate);
+        // 将本地临时的zip文件映射到静态资源路径,并更新日志记录的下载地址
+        ConfiguresExecute configuresExecuteQueryForUpdate = new ConfiguresExecute();
+        configuresExecuteQueryForUpdate.setId(configuresExecuteQuery.getId());
+        String downUrl;
+        if(SystemUtil.isWindows()){
+            downUrl = generatedFileStorePathZip.replaceFirst("D://file",  env.getProperty("server.servlet.context-path") +  "/upload");
+        }else{
+            downUrl = generatedFileStorePathZip.replaceFirst("/opt",  env.getProperty("server.servlet.context-path") +  "/upload");
+        }
+        configuresExecuteQueryForUpdate.setZipDownUrl(downUrl);
+        configuresExecuteMapper.updateByPrimaryKeySelective(configuresExecuteQueryForUpdate);
         // 更新执行记录状态为执行成功
         configuresExecuteService.updateStatus(ConfiguresExecuteEnums.status.EXECUTING.value(),ConfiguresExecuteEnums.status.EXECUTE_SUCCESS.value(),configuresExecuteQuery.getId());
         return new CommonResponse.Builder<>().buildSuccess();
@@ -381,7 +386,7 @@ public class ConfiguresServiceImpl implements ConfiguresService{
             Map<String,String> tempTemplateFileMap = new HashMap<>();
             Map<String,String> templateTypeMap = new HashMap<>();
             // 初始化模板所在文件根路径
-            String tempTemplateFileRootPath = getStoreDir() + StringUtil.BACKSLASH + genBatchUuid + GEN_TEMP_TEMPLATE_FILE;
+            String tempTemplateFileRootPath = SystemUtil.getStoreDir() + StringUtil.BACKSLASH + genBatchUuid + GEN_TEMP_TEMPLATE_FILE;
             // 遍历加载该映射
             Templates templates;
             //不使用默认的配置,所有的文件都改为自定义生成
@@ -401,13 +406,13 @@ public class ConfiguresServiceImpl implements ConfiguresService{
             autoGenerator.setTemplate(templateConfig);
 
             //配置输出目录
-            globalConfig.setOutputDir(getStoreDir() + StringUtil.BACKSLASH + genBatchUuid);
+            globalConfig.setOutputDir(SystemUtil.getStoreDir() + StringUtil.BACKSLASH + genBatchUuid);
             autoGenerator.setGlobalConfig(globalConfig);
             // 初始化自定义模板
             List<FileOutConfig> fileOutConfigList = new ArrayList<>();
 
             // 初始化最终生成文件的服务端存储根路径
-            String generatedFileStoreRootPath = getStoreDir() + StringUtil.BACKSLASH +  genBatchUuid + TARGET_GENERATED_FILE;
+            String generatedFileStoreRootPath = SystemUtil.getStoreDir() + StringUtil.BACKSLASH +  genBatchUuid + TARGET_GENERATED_FILE;
             // 初始化最终生成文件的服务端存储路径集合
             Set<String> generatedFileStorePathSet = new HashSet<>();
             // 处理base包名
@@ -492,7 +497,7 @@ public class ConfiguresServiceImpl implements ConfiguresService{
             }
             tiZipList.add(file);
             // 初始化压缩包文件路径
-            String generatedFileStoreRootPathZip = getStoreDir() + StringUtil.BACKSLASH +  genBatchUuid + StringUtil.BACKSLASH + ZIP_CONSTANT + StringUtil.BACKSLASH ;
+            String generatedFileStoreRootPathZip = SystemUtil.getStoreDir() + StringUtil.BACKSLASH +  genBatchUuid + StringUtil.BACKSLASH + ZIP_CONSTANT + StringUtil.BACKSLASH ;
             generatedFileStorePathZip = generatedFileStoreRootPathZip + query.getName() + StringUtil.DOT + ZIP_CONSTANT;
             File zipFile = new File(generatedFileStorePathZip);
             if (!zipFile.getParentFile().exists()){
@@ -518,16 +523,6 @@ public class ConfiguresServiceImpl implements ConfiguresService{
         return tempFilePath;
     }
 
-    private String getStoreDir() {
-        if(isWindows()){
-            return "D://file/temp";
-        }
-        return "/opt/temp";
-    }
-
-    public boolean isWindows() {
-        return System.getProperties().getProperty("os.name").toUpperCase().indexOf("WINDOWS") != -1;
-    }
 
     private void validateParam(ConfiguresQuery query) {
         if(query.getId() == null){

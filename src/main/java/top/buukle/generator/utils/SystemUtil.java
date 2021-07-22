@@ -48,19 +48,15 @@ public class SystemUtil {
         }
         return ipList;
     }
-//    public static List<String> getIpList() {
-//        List<String> ipList = new ArrayList<>();
-//        try {
-//            Enumeration<NetworkInterface> networkInterfaces = NetworkInterface.getNetworkInterfaces();
-//            while(networkInterfaces.hasMoreElements()){
-//                NetworkInterface networkInterface = networkInterfaces.nextElement();
-//                InetAddress ip= networkInterface.getInetAddresses().nextElement();
-//                ipList.add(ip.getHostAddress());
-//            }
-//            return ipList;
-//        } catch (Exception e) {
-//            ipList.add("127.0.0.1");
-//            return ipList;
-//        }
-//    }
+
+    public static String getStoreDir() {
+        if(isWindows()){
+            return "D://file/temp";
+        }
+        return "/opt/temp";
+    }
+
+    public static boolean isWindows() {
+        return System.getProperties().getProperty("os.name").toUpperCase().indexOf("WINDOWS") != -1;
+    }
 }
