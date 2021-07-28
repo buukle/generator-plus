@@ -4,6 +4,7 @@ import top.buukle.generator.commons.call.CommonResponse;
 import top.buukle.generator.commons.call.PageResponse;
 import top.buukle.generator.commons.mvc.BaseService;
 import top.buukle.generator.entity.vo.DatasourcesQuery;
+import top.buukle.generator.entity.vo.TableVo;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -22,4 +23,7 @@ public interface DatasourcesService extends BaseService{
     PageResponse<DatasourcesQuery> getDatasources(DatasourcesQuery query);
 
     PageResponse<String> getTables(DatasourcesQuery query) throws SQLException;
+
+    PageResponse<TableVo> getTablesList(DatasourcesQuery query) throws SQLException;
+
 }

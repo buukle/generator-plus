@@ -4,6 +4,8 @@ import top.buukle.generator.commons.call.CommonResponse;
 import top.buukle.generator.commons.call.FuzzyResponse;
 import top.buukle.generator.commons.call.PageResponse;
 import top.buukle.generator.entity.ConfiguresExecute;
+import top.buukle.generator.entity.dto.ANTDPPageResponseDTO;
+import top.buukle.generator.entity.dto.ResponseConvert;
 import top.buukle.generator.entity.vo.ConfiguresExecuteQuery;
 import top.buukle.generator.service.ConfiguresExecuteService;
 import io.swagger.annotations.Api;
@@ -102,6 +104,20 @@ public class ConfiguresExecuteController {
     @ApiOperation(value = "获取列表接口", httpMethod = "POST")
     public PageResponse<ConfiguresExecute> configuresExecutePageFront(ConfiguresExecuteQuery query) throws Exception {
         return configuresExecuteService.getPage(query);
+    }
+
+    /**
+    * 获取列表接口
+    * @return
+    * @throws Exception
+    */
+    @RequestMapping("/configuresExecutePageJson")
+    @ResponseBody
+    @ApiOperation(value = "获取列表接口", httpMethod = "POST")
+    public ANTDPPageResponseDTO<ConfiguresExecute> configuresExecutePageJson(ConfiguresExecuteQuery query) throws Exception {
+        PageResponse page = configuresExecuteService.getPage(query);
+        return ResponseConvert.convert(page);
+
     }
 
     /**

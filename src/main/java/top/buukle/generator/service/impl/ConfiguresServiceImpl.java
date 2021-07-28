@@ -182,6 +182,7 @@ public class ConfiguresServiceImpl implements ConfiguresService{
         }
         /*处理表名列表*/
         Datasources datasources = datasourcesMapper.selectByPrimaryKey(configuresQuery.getDatasourcesId());
+        configuresQuery.setDatasourcesName(datasources.getName());
         Connection connection = null;
         // 初始化配置表中记录的表名集合
         List<String> recordTables = StringUtil.parseStringToListComma(configuresQuery.getTables());
@@ -238,15 +239,21 @@ public class ConfiguresServiceImpl implements ConfiguresService{
 
         // 初始化返回结构
         List<Templates> templatesResult = new ArrayList<>();
+        List<Integer> templateIdsResult = new ArrayList<>();
 
         // 加工返回结构
         for(Templates templates : templatesAll){
             TemplatesQuery templatesQuery = new TemplatesQuery();
             BeanUtils.copyProperties(templates,templatesQuery);
-            templatesQuery.setChecked(hasRelationTemplatesIdList.contains(templates.getId()));
+            boolean contains = hasRelationTemplatesIdList.contains(templates.getId());
+            templatesQuery.setChecked(contains);
             templatesResult.add(templatesQuery);
+            if(contains){
+                templateIdsResult.add(templates.getId());
+            }
         }
         configuresQuery.setTemplatesList(templatesResult);
+        configuresQuery.setTemplateIds(StringUtil.IntegerListToString(templateIdsResult));
         return configuresQuery;
     }
 
@@ -655,6 +662,9 @@ public class ConfiguresServiceImpl implements ConfiguresService{
         }
         if(StringUtil.isNotEmpty(query.getEndTime())){
             criteria.andGmtCreatedLessThanOrEqualTo(DateUtil.parse(query.getEndTime()));
+        }
+        if(StringUtil.isNotEmpty(query.getName())){
+            criteria.andNameEqualTo(query.getName());
         }
         if(query.getId() != null){
             criteria.andIdEqualTo(query.getId());

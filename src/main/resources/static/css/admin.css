@@ -2149,11 +2149,11 @@
 .buukle-shadow{
   position: absolute;
   margin-left: 22%;
-  /*top:50%;*/
-  /*left: 50%;*/
+  top:50%;
+  left: 30%;
   /*!*background-color: azure;*!*/
-  /*width: 70px;*/
-  /*transform: translate(-50%,-50%);*/
+  width: 70px;
+  transform: translate(-50%,-50%);
 }
 .file-shadow{
   position: absolute;

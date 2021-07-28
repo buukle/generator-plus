@@ -1,9 +1,12 @@
 package top.buukle.generator.controller;
 
+import org.springframework.web.bind.annotation.RequestBody;
 import top.buukle.generator.commons.call.CommonResponse;
 import top.buukle.generator.commons.call.FuzzyResponse;
 import top.buukle.generator.commons.call.PageResponse;
 import top.buukle.generator.entity.Configures;
+import top.buukle.generator.entity.dto.ANTDPPageResponseDTO;
+import top.buukle.generator.entity.dto.ResponseConvert;
 import top.buukle.generator.entity.vo.ConfiguresQuery;
 import top.buukle.generator.service.ConfiguresService;
 import io.swagger.annotations.Api;
@@ -105,6 +108,19 @@ public class ConfiguresController {
     }
 
     /**
+    * 获取列表接口
+    * @return
+    * @throws Exception
+    */
+    @RequestMapping("/configuresPageJson")
+    @ResponseBody
+    @ApiOperation(value = "获取列表接口", httpMethod = "POST")
+    public ANTDPPageResponseDTO<Configures> configuresPageJson(ConfiguresQuery query) throws Exception {
+        PageResponse page = configuresService.getPage(query);
+        return  ResponseConvert.convert(page);
+    }
+
+    /**
     * @description 删除单条接口接口
     * @param id
     * @param request
@@ -159,7 +175,7 @@ public class ConfiguresController {
     @RequestMapping("/saveOrEdit")
     @ResponseBody
     @ApiOperation(value = "新增或者修改提交接口", httpMethod = "POST")
-    public CommonResponse saveOrEdit(ConfiguresQuery query, HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public CommonResponse saveOrEdit(@RequestBody ConfiguresQuery query, HttpServletRequest request, HttpServletResponse response) throws Exception {
         return configuresService.saveOrEdit(query,request,response);
     }
 
@@ -175,7 +191,7 @@ public class ConfiguresController {
     @RequestMapping("/gen")
     @ResponseBody
     @ApiOperation(value = "生成", httpMethod = "POST")
-    public CommonResponse gen(ConfiguresQuery query, HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public CommonResponse gen(@RequestBody ConfiguresQuery query, HttpServletRequest request, HttpServletResponse response) throws Exception {
         return configuresService.gen(query,request,response);
     }
 }

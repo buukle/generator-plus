@@ -20,6 +20,8 @@ public class ConfiguresExecuteQuery extends ConfiguresExecute implements BaseQue
     private String endTime;
     /** 状态*/
     private String states;
+    /** 兼容vue*/
+    private Integer pageNo;
 
     public String getStates() {
         if("null".equals(states)){
@@ -40,7 +42,17 @@ public class ConfiguresExecuteQuery extends ConfiguresExecute implements BaseQue
     }
 
     public void setPage(Integer page) {
+        this.pageNo = page;
         this.page = page;
+    }
+
+    public Integer getPageNo() {
+        return pageNo;
+    }
+
+    public void setPageNo(Integer pageNo) {
+        this.pageNo = pageNo;
+        this.page = pageNo;
     }
 
     public Integer getPageSize() {

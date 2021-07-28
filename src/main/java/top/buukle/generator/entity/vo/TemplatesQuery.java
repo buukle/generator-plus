@@ -12,6 +12,7 @@ public class TemplatesQuery extends Templates implements BaseQuery{
 
     /** 当前页码*/
     private Integer page;
+    private Integer pageNo;
     /** 页长*/
     private Integer pageSize;
     /** 起始时间*/
@@ -42,7 +43,17 @@ public class TemplatesQuery extends Templates implements BaseQuery{
     }
 
     public void setPage(Integer page) {
+        this.pageNo = page;
         this.page = page;
+    }
+
+    public Integer getPageNo() {
+        return pageNo;
+    }
+
+    public void setPageNo(Integer pageNo) {
+        this.pageNo = pageNo;
+        this.page = pageNo;
     }
 
     public Integer getPageSize() {

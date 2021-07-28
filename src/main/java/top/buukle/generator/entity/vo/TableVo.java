@@ -21,6 +21,13 @@ public class TableVo {
     private String name;
     private boolean checked;
 
+    public TableVo(String name, boolean checked) {
+        this.name = name;
+        this.checked = checked;
+    }
+    public TableVo( ) {
+    }
+
     public String getName() {
         return name;
     }

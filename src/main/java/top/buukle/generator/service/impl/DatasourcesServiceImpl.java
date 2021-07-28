@@ -8,6 +8,7 @@ import top.buukle.generator.commons.mvc.BaseQuery;
 import top.buukle.generator.commons.status.StatusConstants;
 import top.buukle.generator.dao.CommonMapper;
 import top.buukle.generator.dao.DatasourcesMapper;
+import top.buukle.generator.entity.vo.TableVo;
 import top.buukle.generator.invoker.DataBaseUtil;
 import top.buukle.generator.invoker.enums.DatabaseType;
 import top.buukle.generator.entity.Datasources;
@@ -58,7 +59,7 @@ public class DatasourcesServiceImpl implements DatasourcesService{
      * @return PageResponse
      */
     @Override
-    public PageResponse getPage(BaseQuery query) {
+    public PageResponse<Datasources>  getPage(BaseQuery query) {
         PageHelper.startPage(((DatasourcesQuery)query).getPage(),((DatasourcesQuery)query).getPageSize());
         List<Datasources> list = datasourcesMapper.selectByExample(this.assExampleForList(((DatasourcesQuery)query)));
         PageInfo<Datasources> pageInfo = new PageInfo<>(list);
@@ -196,6 +197,19 @@ public class DatasourcesServiceImpl implements DatasourcesService{
         return new PageResponse.Builder().build(tables,0,0,0);
     }
 
+    @Override
+    public PageResponse<TableVo> getTablesList(DatasourcesQuery query) throws SQLException {
+        Datasources datasources = datasourcesMapper.selectByPrimaryKey(query.getId());
+        Connection connection = DataBaseUtil.getConnection(DatabaseType.MySQL, datasources.getUsername(), datasources.getPassword(), datasources.getUrl());
+        List<String> tables = DataBaseUtil.getTables(connection);
+        connection.close();
+        ArrayList<TableVo> tableVos = new ArrayList<>();
+        for (String table : tables) {
+            tableVos.add(new TableVo(table,false));
+        }
+        return new PageResponse.Builder().build(tableVos,0,0,0);
+    }
+
     /**
      * 模糊搜素
      * @param text 模糊的字符
@@ -301,6 +315,9 @@ public class DatasourcesServiceImpl implements DatasourcesService{
         }
         if(StringUtil.isNotEmpty(query.getEndTime())){
             criteria.andGmtCreatedLessThanOrEqualTo(DateUtil.parse(query.getEndTime()));
+        }
+        if(StringUtil.isNotEmpty(query.getName())){
+            criteria.andNameEqualTo(query.getName());
         }
         if(query.getId() != null){
             criteria.andIdEqualTo(query.getId());

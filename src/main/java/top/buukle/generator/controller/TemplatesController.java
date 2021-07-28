@@ -1,9 +1,14 @@
 package top.buukle.generator.controller;
 
+import org.springframework.web.bind.annotation.RequestBody;
 import top.buukle.generator.commons.call.CommonResponse;
 import top.buukle.generator.commons.call.FuzzyResponse;
 import top.buukle.generator.commons.call.PageResponse;
+import top.buukle.generator.entity.Datasources;
 import top.buukle.generator.entity.Templates;
+import top.buukle.generator.entity.dto.ANTDPPageResponseDTO;
+import top.buukle.generator.entity.dto.ResponseConvert;
+import top.buukle.generator.entity.vo.DatasourcesQuery;
 import top.buukle.generator.entity.vo.TemplatesQuery;
 import top.buukle.generator.service.TemplatesService;
 import io.swagger.annotations.Api;
@@ -93,6 +98,19 @@ public class TemplatesController {
     }
 
     /**
+     * 获取列表
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping("/templatesPageJson")
+    @ResponseBody
+    @ApiOperation(value = "获取列表接口", httpMethod = "POST")
+    public ANTDPPageResponseDTO<TemplatesQuery> templatesPageJson(TemplatesQuery query) throws Exception {
+        PageResponse<TemplatesQuery>  page = templatesService.getPage(query);
+        return ResponseConvert.convert(page);
+    }
+
+    /**
     * 获取列表接口
     * @return
     * @throws Exception
@@ -159,7 +177,7 @@ public class TemplatesController {
     @RequestMapping("/saveOrEdit")
     @ResponseBody
     @ApiOperation(value = "新增或者修改提交接口", httpMethod = "POST")
-    public CommonResponse saveOrEdit(TemplatesQuery query, HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public CommonResponse saveOrEdit(@RequestBody TemplatesQuery query, HttpServletRequest request, HttpServletResponse response) throws Exception {
         return templatesService.saveOrEdit(query,request,response);
     }
 }

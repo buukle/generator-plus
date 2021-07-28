@@ -13,6 +13,12 @@ public class WebConfig extends WebMvcConfigurationSupport {
                     .addResourceLocations("classpath:/resources/")
                     .addResourceLocations("classpath:/static/")
                     .addResourceLocations("classpath:/public/");
+            registry.addResourceHandler("swagger-ui.html").addResourceLocations(
+                    "classpath:/META-INF/resources/");
+            registry.addResourceHandler("doc.html").addResourceLocations(
+                    "classpath:/META-INF/resources/");
+            registry.addResourceHandler("/webjars/**").addResourceLocations(
+                    "classpath:/META-INF/resources/webjars/");
 	        if(SystemUtil.isWindows()){
                 registry.addResourceHandler("/upload/**")
                         .addResourceLocations("file:D://file/temp");

@@ -1,10 +1,15 @@
 package top.buukle.generator.controller;
 
+import org.springframework.web.bind.annotation.RequestBody;
 import top.buukle.generator.commons.call.CommonResponse;
 import top.buukle.generator.commons.call.FuzzyResponse;
 import top.buukle.generator.commons.call.PageResponse;
 import top.buukle.generator.entity.Datasources;
+import top.buukle.generator.entity.dto.ANTDPCommonResponseDTO;
+import top.buukle.generator.entity.dto.ANTDPPageResponseDTO;
+import top.buukle.generator.entity.dto.ResponseConvert;
 import top.buukle.generator.entity.vo.DatasourcesQuery;
+import top.buukle.generator.entity.vo.TableVo;
 import top.buukle.generator.service.DatasourcesService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -93,16 +98,18 @@ public class DatasourcesController {
     }
 
     /**
-    * 获取列表接口
+    * 获取列表
     * @return
     * @throws Exception
     */
-    @RequestMapping("/datasourcesPageFront")
+    @RequestMapping("/datasourcesPageJson")
     @ResponseBody
     @ApiOperation(value = "获取列表接口", httpMethod = "POST")
-    public PageResponse<Datasources> datasourcesPageFront(DatasourcesQuery query) throws Exception {
-        return datasourcesService.getPage(query);
+    public ANTDPPageResponseDTO<Datasources> datasourcesPageJson(DatasourcesQuery query) throws Exception {
+        PageResponse<Datasources>  page = datasourcesService.getPage(query);
+        return ResponseConvert.convert(page);
     }
+
 
     /**
     * 获取表名列表
@@ -114,6 +121,13 @@ public class DatasourcesController {
     @ApiOperation(value = "获取表名列表", httpMethod = "POST")
     public PageResponse<String> getTables(DatasourcesQuery query) throws Exception {
         return datasourcesService.getTables(query);
+    }
+
+    @RequestMapping("/getTablesList")
+    @ResponseBody
+    @ApiOperation(value = "获取表名列表", httpMethod = "POST")
+    public PageResponse<TableVo> getTablesList(DatasourcesQuery query) throws Exception {
+        return datasourcesService.getTablesList(query);
     }
 
     /**
@@ -183,7 +197,7 @@ public class DatasourcesController {
     @RequestMapping("/saveOrEdit")
     @ResponseBody
     @ApiOperation(value = "新增或者修改提交接口", httpMethod = "POST")
-    public CommonResponse saveOrEdit(DatasourcesQuery query, HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public CommonResponse saveOrEdit(@RequestBody DatasourcesQuery query, HttpServletRequest request, HttpServletResponse response) throws Exception {
         return datasourcesService.saveOrEdit(query,request,response);
     }
 
@@ -191,6 +205,12 @@ public class DatasourcesController {
     @ResponseBody
     @ApiOperation(value = "测试连接", httpMethod = "POST")
     public CommonResponse testLink(DatasourcesQuery query, HttpServletRequest request, HttpServletResponse response) throws Exception {
+        return datasourcesService.testLink(query,request,response);
+    }
+    @RequestMapping("/testLinkPayload")
+    @ResponseBody
+    @ApiOperation(value = "测试连接", httpMethod = "POST")
+    public CommonResponse testLinkPayload(@RequestBody DatasourcesQuery query, HttpServletRequest request, HttpServletResponse response) throws Exception {
         return datasourcesService.testLink(query,request,response);
     }
 }

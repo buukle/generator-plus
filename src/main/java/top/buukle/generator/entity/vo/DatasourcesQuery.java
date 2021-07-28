@@ -12,6 +12,8 @@ public class DatasourcesQuery extends Datasources implements BaseQuery{
 
     /** 当前页码*/
     private Integer page;
+    /** 当前页码 (兼容)*/
+    private Integer pageNo;
     /** 页长*/
     private Integer pageSize;
     /** 起始时间*/
@@ -45,6 +47,16 @@ public class DatasourcesQuery extends Datasources implements BaseQuery{
 
     public void setPage(Integer page) {
         this.page = page;
+        this.pageNo = page;
+    }
+
+    public Integer getPageNo() {
+        return pageNo;
+    }
+
+    public void setPageNo(Integer pageNo) {
+        this.page = pageNo;
+        this.pageNo = pageNo;
     }
 
     public Integer getPageSize() {
