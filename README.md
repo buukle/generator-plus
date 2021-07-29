@@ -19,7 +19,14 @@ backend : springboot 2.2.0.RELEASE + mybatis + mysql5.7以上 + beetl + mybatis-
 
 frontend :  Antd ( ant-design-vue-pro) 
 
-#### 安装教程
+#### 使用教程
+
+0. 环境 jre 
+1. 到 https://gitee.com/buukle/buukle-generator/releases 版本列表根据特性挑选喜欢的版本,下载压缩包(zip,tar.gz),解压为jar包 
+2. 启动 : nohup java -jar buukle-generator-1.0.0-RELEASE.jar >> /opt/logs/buukle-generator/generator.log 2>&1 &
+3. 访问 : http://{ip}:{port}/buukle-generator/index.html
+
+#### 源码开发
 
 1.  git clone https://gitee.com/buukle/buukle-generator.git
 2.  修改数据库配置为本地/测试数据库地址,并在该数据库执行项目根路径下的 gen.sql 脚本,初始化数据库实例,表结构
