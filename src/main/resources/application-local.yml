@@ -5,7 +5,7 @@ server:
     max-threads: 800
     uri-encoding: utf-8
   servlet:
-    context-path: /generator
+    context-path: /buukle-generator
 ##日志配置
 logging:
   config: classpath:config/spring/springBoot-logbak-dev.xml
