@@ -1,7 +1,7 @@
 # buukle-generator
 
 #### 演示地址 
-[buukle-generator](http://generator.buukle.top/generator/home)
+[buukle-generator](http://generator.buukle.top/buukle-generator/index.html)
 
 #### 介绍
 
