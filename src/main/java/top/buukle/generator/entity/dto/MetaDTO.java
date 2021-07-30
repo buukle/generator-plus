@@ -3,7 +3,8 @@ package top.buukle.generator.entity.dto;
 public class MetaDTO {
 
     private String title ;
-    private boolean  show    ;
+    private boolean  show ;
+    private String  icon ;
 
     public String getTitle() {
         return title;
@@ -19,5 +20,13 @@ public class MetaDTO {
 
     public void setShow(boolean show) {
         this.show = show;
+    }
+
+    public String getIcon() {
+        return icon;
+    }
+
+    public void setIcon(String icon) {
+        this.icon = icon;
     }
 }

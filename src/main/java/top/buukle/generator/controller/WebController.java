@@ -73,7 +73,7 @@ private Environment env;
 
                 antdpUserDTO.setUsername("admin");
                 antdpUserDTO.setPassword("");
-                antdpUserDTO.setAvatar("https://gw.alipayobjects.com/zos/rmsportal/jZUIxmJycoymBprLOUbT.png");
+                antdpUserDTO.setAvatar("");
                 antdpUserDTO.setStatus("1");
                 antdpUserDTO.setTelephone("");
                 antdpUserDTO.setLastLoginIp("27.154.74.117");
@@ -222,6 +222,8 @@ private Environment env;
                 MetaDTO metaDTO = new MetaDTO();
                 metaDTO.setShow(true);
                 metaDTO.setTitle("工作台");
+                metaDTO.setIcon("dashboard");
+
 
                 antdpNavigationDTO.setMeta(metaDTO);
                 antdpNavigationDTOS.add(antdpNavigationDTO);
@@ -238,6 +240,7 @@ private Environment env;
                 MetaDTO metaDTOForFrame = new MetaDTO();
                 metaDTOForFrame.setShow(true);
                 metaDTOForFrame.setTitle("框架管理");
+                metaDTOForFrame.setIcon("build");
 
                 antdpNavigationDTOForFrame.setMeta(metaDTOForFrame);
                 antdpNavigationDTOS.add(antdpNavigationDTOForFrame);
@@ -255,6 +258,7 @@ private Environment env;
                 MetaDTO metaDTOForFrameTemplates = new MetaDTO();
                 metaDTOForFrameTemplates.setShow(true);
                 metaDTOForFrameTemplates.setTitle("框架模板");
+                metaDTOForFrameTemplates.setIcon("snippets");
 
                 antdpNavigationDTOForFrameTemplates.setMeta(metaDTOForFrameTemplates);
                 antdpNavigationDTOS.add(antdpNavigationDTOForFrameTemplates);
@@ -271,6 +275,7 @@ private Environment env;
                 MetaDTO metaDTOForFrameTemplatesRule = new MetaDTO();
                 metaDTOForFrameTemplatesRule.setShow(true);
                 metaDTOForFrameTemplatesRule.setTitle("模板规则");
+                metaDTOForFrameTemplatesRule.setIcon("control");
 
                 antdpNavigationDTOForFrameTemplatesRule.setMeta(metaDTOForFrameTemplatesRule);
                 antdpNavigationDTOS.add(antdpNavigationDTOForFrameTemplatesRule);
@@ -288,6 +293,7 @@ private Environment env;
                 MetaDTO metaDTOForGen = new MetaDTO();
                 metaDTOForGen.setShow(true);
                 metaDTOForGen.setTitle("逆向管理");
+                metaDTOForGen.setIcon("interaction");
 
                 antdpNavigationDTOForGen.setMeta(metaDTOForGen);
                 antdpNavigationDTOS.add(antdpNavigationDTOForGen);
@@ -306,6 +312,7 @@ private Environment env;
                 MetaDTO metaDTO1 = new MetaDTO();
                 metaDTO1.setShow(true);
                 metaDTO1.setTitle("连接管理");
+                metaDTO1.setIcon("database");
 
                 antdpNavigationDTO1.setMeta(metaDTO1);
                 antdpNavigationDTOS.add(antdpNavigationDTO1);
@@ -322,6 +329,7 @@ private Environment env;
                 MetaDTO metaDTO2 = new MetaDTO();
                 metaDTO2.setShow(true);
                 metaDTO2.setTitle("代码模板");
+                metaDTO2.setIcon("code");
 
                 antdpNavigationDTO2.setMeta(metaDTO2);
                 antdpNavigationDTOS.add(antdpNavigationDTO2);
@@ -338,6 +346,7 @@ private Environment env;
                 MetaDTO metaDTO3 = new MetaDTO();
                 metaDTO3.setShow(true);
                 metaDTO3.setTitle("配置管理");
+                metaDTO3.setIcon("setting");
 
                 antdpNavigationDTO3.setMeta(metaDTO3);
                 antdpNavigationDTOS.add(antdpNavigationDTO3);
@@ -354,6 +363,7 @@ private Environment env;
                 MetaDTO metaDTO4 = new MetaDTO();
                 metaDTO4.setShow(true);
                 metaDTO4.setTitle("日志管理");
+                metaDTO4.setIcon("switcher");
 
                 antdpNavigationDTO4.setMeta(metaDTO4);
                 antdpNavigationDTOS.add(antdpNavigationDTO4);
