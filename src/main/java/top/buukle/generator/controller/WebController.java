@@ -226,14 +226,82 @@ private Environment env;
                 antdpNavigationDTO.setMeta(metaDTO);
                 antdpNavigationDTOS.add(antdpNavigationDTO);
 
+               /*----------------------------------------------------------------*/
+                ANTDPNavigationDTO antdpNavigationDTOForFrame = new ANTDPNavigationDTO();
+
+                antdpNavigationDTOForFrame.setId(8);
+                antdpNavigationDTOForFrame.setParentId(0);
+                antdpNavigationDTOForFrame.setName("frame");
+                antdpNavigationDTOForFrame.setRedirect("/workplace");
+                antdpNavigationDTOForFrame.setComponent("PageView");
+
+                MetaDTO metaDTOForFrame = new MetaDTO();
+                metaDTOForFrame.setShow(true);
+                metaDTOForFrame.setTitle("框架管理");
+
+                antdpNavigationDTOForFrame.setMeta(metaDTOForFrame);
+                antdpNavigationDTOS.add(antdpNavigationDTOForFrame);
+
+                /*----------------------------------------------------------------*/
+                ANTDPNavigationDTO antdpNavigationDTOForFrameTemplates = new ANTDPNavigationDTO();
+
+                antdpNavigationDTOForFrameTemplates.setId(9);
+                antdpNavigationDTOForFrameTemplates.setParentId(8);
+                antdpNavigationDTOForFrameTemplates.setName("/frame/templates/TemplatesList");
+                antdpNavigationDTOForFrameTemplates.setPath("/frame/templates/templates-list/:pageNo([1-9]\\d*)?");
+                antdpNavigationDTOForFrameTemplates.setComponent("frame/templates/TemplatesList");
+
+
+                MetaDTO metaDTOForFrameTemplates = new MetaDTO();
+                metaDTOForFrameTemplates.setShow(true);
+                metaDTOForFrameTemplates.setTitle("框架模板");
+
+                antdpNavigationDTOForFrameTemplates.setMeta(metaDTOForFrameTemplates);
+                antdpNavigationDTOS.add(antdpNavigationDTOForFrameTemplates);
+
+                /*----------------------------------------------------------------*/
+                ANTDPNavigationDTO antdpNavigationDTOForFrameTemplatesRule = new ANTDPNavigationDTO();
+
+                antdpNavigationDTOForFrameTemplatesRule.setId(10);
+                antdpNavigationDTOForFrameTemplatesRule.setParentId(8);
+                antdpNavigationDTOForFrameTemplatesRule.setName("/frame/templatesRule/TemplatesRuleList");
+                antdpNavigationDTOForFrameTemplatesRule.setPath("/frame/templates-rule/templates-rule-list/:pageNo([1-9]\\d*)?");
+                antdpNavigationDTOForFrameTemplatesRule.setComponent("frame/templatesRule/TemplatesRuleList");
+
+                MetaDTO metaDTOForFrameTemplatesRule = new MetaDTO();
+                metaDTOForFrameTemplatesRule.setShow(true);
+                metaDTOForFrameTemplatesRule.setTitle("模板规则");
+
+                antdpNavigationDTOForFrameTemplatesRule.setMeta(metaDTOForFrameTemplatesRule);
+                antdpNavigationDTOS.add(antdpNavigationDTOForFrameTemplatesRule);
+
+
+                /*----------------------------------------------------------------*/
+                ANTDPNavigationDTO antdpNavigationDTOForGen = new ANTDPNavigationDTO();
+
+                antdpNavigationDTOForGen.setId(11);
+                antdpNavigationDTOForGen.setParentId(0);
+                antdpNavigationDTOForGen.setName("gen");
+                antdpNavigationDTOForGen.setRedirect("/workplace");
+                antdpNavigationDTOForGen.setComponent("PageView");
+
+                MetaDTO metaDTOForGen = new MetaDTO();
+                metaDTOForGen.setShow(true);
+                metaDTOForGen.setTitle("逆向管理");
+
+                antdpNavigationDTOForGen.setMeta(metaDTOForGen);
+                antdpNavigationDTOS.add(antdpNavigationDTOForGen);
+
+                /*----------------------------------------------------------------*/
+
                 /*----------------------------------------------------------------*/
                 ANTDPNavigationDTO antdpNavigationDTO1 = new ANTDPNavigationDTO();
 
                 antdpNavigationDTO1.setId(10011);
-                antdpNavigationDTO1.setParentId(0);
-                antdpNavigationDTO1.setName("datasources-list");
-                antdpNavigationDTO1.setComponent("datasources/DatasourcesList");
-                antdpNavigationDTO1.setPath("/list/datasources-list/:pageNo([1-9]\\d*)?");
+                antdpNavigationDTO1.setParentId(11);
+                antdpNavigationDTO1.setName("/gen/datasources/DatasourcesList");
+                antdpNavigationDTO1.setPath("/gen/datasources/datasources-list/:pageNo([1-9]\\d*)?");
+                antdpNavigationDTO1.setComponent("gen/datasources/DatasourcesList");
 
                 MetaDTO metaDTO1 = new MetaDTO();
                 metaDTO1.setShow(true);
@@ -246,14 +314,14 @@ private Environment env;
                 ANTDPNavigationDTO antdpNavigationDTO2 = new ANTDPNavigationDTO();
 
                 antdpNavigationDTO2.setId(10012);
-                antdpNavigationDTO2.setParentId(0);
-                antdpNavigationDTO2.setName("templates-list");
-                antdpNavigationDTO2.setComponent("templates/TemplatesList");
-                antdpNavigationDTO2.setPath("/list/templates-list/:pageNo([1-9]\\d*)?");
+                antdpNavigationDTO2.setParentId(11);
+                antdpNavigationDTO2.setName("/gen/templates/TemplatesList");
+                antdpNavigationDTO2.setPath("/gen/templates/templates-list/:pageNo([1-9]\\d*)?");
+                antdpNavigationDTO2.setComponent("gen/templates/TemplatesList");
 
                 MetaDTO metaDTO2 = new MetaDTO();
                 metaDTO2.setShow(true);
-                metaDTO2.setTitle("模板管理");
+                metaDTO2.setTitle("代码模板");
 
                 antdpNavigationDTO2.setMeta(metaDTO2);
                 antdpNavigationDTOS.add(antdpNavigationDTO2);
@@ -262,10 +330,10 @@ private Environment env;
                 ANTDPNavigationDTO antdpNavigationDTO3 = new ANTDPNavigationDTO();
 
                 antdpNavigationDTO3.setId(10013);
-                antdpNavigationDTO3.setParentId(0);
-                antdpNavigationDTO3.setName("configures-list");
-                antdpNavigationDTO3.setComponent("configures/ConfiguresList");
-                antdpNavigationDTO3.setPath("/list/configures-list/:pageNo([1-9]\\d*)?");
+                antdpNavigationDTO3.setParentId(11);
+                antdpNavigationDTO3.setName("/gen/configures/ConfiguresList");
+                antdpNavigationDTO3.setPath("/gen/configures/configures-list/:pageNo([1-9]\\d*)?");
+                antdpNavigationDTO3.setComponent("gen/configures/ConfiguresList");
 
                 MetaDTO metaDTO3 = new MetaDTO();
                 metaDTO3.setShow(true);
@@ -278,10 +346,10 @@ private Environment env;
                 ANTDPNavigationDTO antdpNavigationDTO4 = new ANTDPNavigationDTO();
 
                 antdpNavigationDTO4.setId(10014);
-                antdpNavigationDTO4.setParentId(0);
-                antdpNavigationDTO4.setName("configuresExecute-list");
-                antdpNavigationDTO4.setComponent("configuresExecute/ConfiguresExecuteList");
-                antdpNavigationDTO4.setPath("/list/configuresExecute-list/:pageNo([1-9]\\d*)?");
+                antdpNavigationDTO4.setParentId(11);
+                antdpNavigationDTO4.setName("/gen/configuresExecute/ConfiguresExecuteList");
+                antdpNavigationDTO4.setPath("/gen/configures-execute/configuresExecute-list/:pageNo([1-9]\\d*)?");
+                antdpNavigationDTO4.setComponent("gen/configuresExecute/ConfiguresExecuteList");
 
                 MetaDTO metaDTO4 = new MetaDTO();
                 metaDTO4.setShow(true);

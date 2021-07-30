@@ -22,6 +22,7 @@ public class ANTDPNavigationDTO {
     private Integer parentId  ;
     private String component ;
     private String path ;
+    private String redirect ;
     private Integer id       ;
     private MetaDTO meta;
 
@@ -72,5 +73,13 @@ public class ANTDPNavigationDTO {
 
     public void setComponent(String component) {
         this.component = component;
+    }
+
+    public String getRedirect() {
+        return redirect;
+    }
+
+    public void setRedirect(String redirect) {
+        this.redirect = redirect;
     }
 }
