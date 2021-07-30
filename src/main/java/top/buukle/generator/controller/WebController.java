@@ -348,7 +348,7 @@ private Environment env;
                 antdpNavigationDTO4.setId(10014);
                 antdpNavigationDTO4.setParentId(11);
                 antdpNavigationDTO4.setName("/gen/configuresExecute/ConfiguresExecuteList");
-                antdpNavigationDTO4.setPath("/gen/configures-execute/configuresExecute-list/:pageNo([1-9]\\d*)?");
+                antdpNavigationDTO4.setPath("/gen/configures-execute/configures-execute-list/:pageNo([1-9]\\d*)?");
                 antdpNavigationDTO4.setComponent("gen/configuresExecute/ConfiguresExecuteList");
 
                 MetaDTO metaDTO4 = new MetaDTO();
