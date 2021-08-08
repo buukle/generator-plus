@@ -12,7 +12,7 @@ import java.util.TimeZone;
 /**
  * @Author elvin
  * @Date Created by elvin on 2018/9/23.
- * @Description : AppConfigure Mvc系统配置类
+ * @Description : AppConfigure Mvc 系统配置类
  */
 @Configuration
 public class AppConfigure {
