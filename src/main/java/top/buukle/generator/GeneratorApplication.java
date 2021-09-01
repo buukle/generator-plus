@@ -13,6 +13,6 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 public class GeneratorApplication {
     public static void main(String[] args) {
         SpringApplication.run(GeneratorApplication.class, args);
-        System.out.println("启动成功s");
+        System.out.println("启动成功");
     }
 }
