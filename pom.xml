@@ -262,11 +262,6 @@
                 <version>${jose4j.version}</version>
             </dependency>
             <dependency>
-                <groupId>org.bitbucket.b_c</groupId>
-                <artifactId>jose4j</artifactId>
-                <version>${jose4j.version}</version>
-            </dependency>
-            <dependency>
                 <groupId>com.ibeetl</groupId>
                 <artifactId>beetl</artifactId>
                 <version>${com.ibeetl.version}</version>
