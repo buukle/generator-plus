@@ -3,53 +3,83 @@
 <settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
           xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
-    <localRepository>D:\file\maven\repository\buukle</localRepository>
-
-    <pluginGroups>
-        <pluginGroup>com.spotify</pluginGroup>
-    </pluginGroups>
-
+    <localRepository>D:\file\maven\repository\buukle-rdc</localRepository>
     <mirrors>
         <mirror>
-            <id>nexus-aliyun</id>
+            <id>buukle-rdc-releases</id>
             <mirrorOf>central</mirrorOf>
-            <name>Nexus aliyun</name>
-            <url>http://maven.aliyun.com/nexus/content/groups/public</url>
+            <name>buukle-rdc-releases</name>
+            <url>https://repo.rdc.aliyun.com/repository/130115-release-50cN5d/</url>
+        </mirror>
+        <mirror>
+            <id>buukle-rdc-snapshots</id>
+            <mirrorOf>central</mirrorOf>
+            <name>buukle-rdc-releases</name>
+            <url>https://repo.rdc.aliyun.com/repository/130115-release-50cN5d/</url>
         </mirror>
     </mirrors>
+    <servers>
+        <server>
+            <id>buukle-rdc-releases</id>
+            <username>myaH8b</username>
+            <password>XU1TCB1qSc</password>
+        </server>
+        <server>
+            <id>buukle-rdc-snapshots</id>
+            <username>myaH8b</username>
+            <password>XU1TCB1qSc</password>
+        </server>
+    </servers>
     <profiles>
         <profile>
-            <id>buukle-profile</id>
+            <id>buukle-rdc</id>
             <repositories>
                 <repository>
-                    <releases>
-                        <enabled>true</enabled>
-                    </releases>
-                    <snapshots>
-                        <enabled>true</enabled>
-                        <updatePolicy>always</updatePolicy>
-                    </snapshots>
-                    <id>buukle-server</id>
-                    <name>aliyun maven snapshots</name>
-                    <url>https://maven.aliyun.com/repository/central</url>
-                </repository>
-            </repositories>
-            <pluginRepositories>
-                <pluginRepository>
+                    <id>buukle-rdc-releases</id>
+                    <url>https://repo.rdc.aliyun.com/repository/130115-release-50cN5d/</url>
                     <releases>
                         <enabled>true</enabled>
                     </releases>
                     <snapshots>
                         <enabled>false</enabled>
                     </snapshots>
-                    <id>buukle</id>
-                    <name>aliyun maven releases</name>
-                    <url>https://maven.aliyun.com/repository/central</url>
+                </repository>
+                <repository>
+                    <id>buukle-rdc-snapshots</id>
+                    <url>https://repo.rdc.aliyun.com/repository/130115-snapshot-Ts4Eoc/</url>
+                    <releases>
+                        <enabled>false</enabled>
+                    </releases>
+                    <snapshots>
+                        <enabled>true</enabled>
+                    </snapshots>
+                </repository>
+            </repositories>
+            <pluginRepositories>
+                <pluginRepository>
+                    <id>buukle-rdc-releases</id>
+                    <url>https://repo.rdc.aliyun.com/repository/130115-release-50cN5d/</url>
+                    <releases>
+                        <enabled>true</enabled>
+                    </releases>
+                    <snapshots>
+                        <enabled>false</enabled>
+                    </snapshots>
+                </pluginRepository>
+                <pluginRepository>
+                    <id>buukle-rdc-snapshots</id>
+                    <url>https://repo.rdc.aliyun.com/repository/130115-snapshot-Ts4Eoc/</url>
+                    <releases>
+                        <enabled>false</enabled>
+                    </releases>
+                    <snapshots>
+                        <enabled>true</enabled>
+                    </snapshots>
                 </pluginRepository>
             </pluginRepositories>
         </profile>
     </profiles>
     <activeProfiles>
-        <activeProfile>buukle-profile</activeProfile>
+        <activeProfile>buukle-rdc</activeProfile>
     </activeProfiles>
 </settings>
