@@ -15,7 +15,7 @@
 
     <!-- 按照每天生成日志文件 -->
     <appender name="FILE"  class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>${LOG_HOME}/${SERVER_NAME}.log</file>
+        <file>${LOG_HOME}/${SERVER_NAME}-file.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
             <!--日志文件输出的文件名-->
             <FileNamePattern>${LOG_HOME}/${SERVER_NAME}.log.%d{yyyy-MM-dd}.%i.log</FileNamePattern>
@@ -45,7 +45,7 @@
     <!-- 日志输出级别 -->
     <root level="INFO">
         <!--    <root level="debug">-->
-        <appender-ref ref="STDOUT" />
+<!--        <appender-ref ref="STDOUT" />-->
         <appender-ref ref="FILE" />
     </root>
 </configuration>

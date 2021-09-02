@@ -13,7 +13,7 @@ server:
       enabled: true
 ##日志配置
 logging:
-  config: classpath:config/spring/springBoot-logbak-dev.xml
+  config: classpath:config/spring/springBoot-logbak-local.xml
 ##spring生态配置
 spring:
   ##应用名
