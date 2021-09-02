@@ -11,11 +11,8 @@
 package top.buukle.generator.entity.dto;
 
 import top.buukle.generator.commons.call.PageResponse;
-import top.buukle.generator.entity.Datasources;
+import top.buukle.generator.commons.log.BaseLogger;
 import top.buukle.generator.utils.JsonUtil;
-
-import java.util.HashMap;
-import java.util.List;
 
 /**
  * @description 〈〉
@@ -24,6 +21,9 @@ import java.util.List;
  * @since 1.0.0
  */
 public class ResponseConvert {
+
+    private final static BaseLogger LOGGER = BaseLogger.getLogger(ResponseConvert.class);
+
 
     public static ANTDPPageResponseDTO convert(PageResponse page) {
 
@@ -41,7 +41,7 @@ public class ResponseConvert {
         antdpCommonResponseDTO.setResult(result);
         antdpCommonResponseDTO.setTimestamp(System.currentTimeMillis());
 
-        System.out.println(JsonUtil.toJSONString(antdpCommonResponseDTO));
+        LOGGER.info(JsonUtil.toJSONString(antdpCommonResponseDTO));
         return antdpCommonResponseDTO;
     }
 }
