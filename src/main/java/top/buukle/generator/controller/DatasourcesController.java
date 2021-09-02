@@ -10,12 +10,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import top.buukle.generator.commons.call.CommonRequest;
 import top.buukle.generator.commons.call.CommonResponse;
 import top.buukle.generator.commons.call.PageResponse;
-import top.buukle.generator.entity.Datasources;
+import top.buukle.generator.entity.model.Datasources;
+import top.buukle.generator.entity.dto.datasources.DatasourcesUpdateDTO;
 import top.buukle.generator.entity.vo.antd.ANTDPPageResponseVO;
 import top.buukle.generator.entity.dto.datasources.DatasourcesQueryDTO;
 import top.buukle.generator.entity.vo.antd.TableVo;
 import top.buukle.generator.entity.vo.datasources.DatasourcesQueryVO;
 import top.buukle.generator.service.DatasourcesService;
+import top.buukle.generator.service.util.ResponseConvertUtil;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -31,81 +33,58 @@ import java.io.IOException;
 public class DatasourcesController {
 
     @Autowired
-    private DatasourcesService<Datasources,DatasourcesQueryVO,DatasourcesQueryDTO> datasourcesService;
+    private DatasourcesService<Datasources,DatasourcesQueryVO,DatasourcesQueryDTO, DatasourcesUpdateDTO> datasourcesService;
 
-    @RequestMapping("/datasourcesCrudViewFront")
+    @RequestMapping("/add")
     @ResponseBody
-    @ApiOperation(value = "编辑回显接口", httpMethod = "POST")
-    public CommonResponse<DatasourcesQueryVO> datasourcesCrudViewFront(CommonRequest<DatasourcesQueryDTO> commonRequest) {
-        datasourcesService.getById(commonRequest);
-        return null;
+    @ApiOperation(value = "增", httpMethod = "POST")
+    public CommonResponse<Boolean> add(@RequestBody CommonRequest<DatasourcesUpdateDTO> commonRequest) throws Exception {
+        return datasourcesService.add(commonRequest);
     }
 
-    @RequestMapping("/datasourcesPageJson")
+    @RequestMapping("/deleteById")
     @ResponseBody
-    @ApiOperation(value = "获取列表接口", httpMethod = "POST")
-    public ANTDPPageResponseVO<Datasources> datasourcesPageJson(DatasourcesQueryDTO query) throws Exception {
-        return null;
+    @ApiOperation(value = "删", httpMethod = "POST")
+    public CommonResponse<Boolean> deleteById(@RequestBody CommonRequest<DatasourcesUpdateDTO> commonRequest) throws IOException {
+        return datasourcesService.deleteById(commonRequest);
     }
 
-
-
-    @RequestMapping("/getTables")
+    @RequestMapping("/updateById")
     @ResponseBody
-    @ApiOperation(value = "获取表名列表", httpMethod = "POST")
-    public PageResponse<String> getTables(DatasourcesQueryDTO query) throws Exception {
-        return null;
-    }
-
-    @RequestMapping("/getTablesList")
-    @ResponseBody
-    @ApiOperation(value = "获取表名列表", httpMethod = "POST")
-    public PageResponse<TableVo> getTablesList(DatasourcesQueryDTO query) throws Exception {
-        return null;
+    @ApiOperation(value = "改", httpMethod = "POST")
+    public CommonResponse updateById(@RequestBody CommonRequest<DatasourcesUpdateDTO> commonRequest) throws Exception {
+        return datasourcesService.updateById(commonRequest);
     }
 
 
-    @RequestMapping("/getDatasources")
+    @RequestMapping("/addOrEdit")
     @ResponseBody
-    @ApiOperation(value = "获取下拉框", httpMethod = "POST")
-    public PageResponse<DatasourcesQueryDTO> getDatasources(DatasourcesQueryDTO query) throws Exception {
-        return null;
+    @ApiOperation(value = "增or改", httpMethod = "POST")
+    public CommonResponse<Boolean> addOrEdit(@RequestBody CommonRequest<DatasourcesUpdateDTO> commonRequest) throws Exception {
+        return datasourcesService.addOrEdit(commonRequest);
     }
 
-
-    @RequestMapping("/datasourcesCrudJson")
+    @RequestMapping("/getById")
     @ResponseBody
-    @ApiOperation(value = "删除单条接口", httpMethod = "POST")
-    public CommonResponse datasourcesCrudJson( Integer id, HttpServletRequest request,HttpServletResponse response) throws IOException {
-        return null;
+    @ApiOperation(value = "查 - 单条", httpMethod = "POST")
+    public CommonResponse<DatasourcesQueryVO> getById(@RequestBody CommonRequest<DatasourcesQueryDTO> commonRequest) {
+        return datasourcesService.getById(commonRequest);
     }
 
-    @RequestMapping("/datasourcesBatchDeleteJson")
+    @RequestMapping("/getPage")
     @ResponseBody
-    @ApiOperation(value = "批量删除接口", httpMethod = "POST")
-    public CommonResponse datasourcesBatchDeleteJson( String ids , HttpServletRequest request,HttpServletResponse response) throws IOException {
-        return null;
+    @ApiOperation(value = "查 - 分页", httpMethod = "POST")
+    public ANTDPPageResponseVO<Datasources> getPage(@RequestBody CommonRequest<DatasourcesQueryDTO> commonRequest) throws Exception {
+        return ResponseConvertUtil.convert(datasourcesService.getPage(commonRequest));
     }
 
-
-    @RequestMapping("/saveOrEdit")
-    @ResponseBody
-    @ApiOperation(value = "新增或者修改提交接口", httpMethod = "POST")
-    public CommonResponse saveOrEdit(@RequestBody DatasourcesQueryDTO query, HttpServletRequest request, HttpServletResponse response) throws Exception {
-        return null;
-    }
+    /*------------------------------------------------------↑↑↑↑通用可定制代码↑↑↑↑-------------------------------------------------------------*/
 
     @RequestMapping("/testLink")
     @ResponseBody
-    @ApiOperation(value = "测试连接", httpMethod = "POST")
-    public CommonResponse testLink(DatasourcesQueryDTO query, HttpServletRequest request, HttpServletResponse response) throws Exception {
-        return null;
+    @ApiOperation(value = "测试数据源链接", httpMethod = "POST")
+    public CommonResponse<Boolean> testLink(@RequestBody CommonRequest<DatasourcesUpdateDTO> commonRequest) throws Exception {
+        return datasourcesService.testLink(commonRequest);
     }
 
-    @RequestMapping("/testLinkPayload")
-    @ResponseBody
-    @ApiOperation(value = "测试连接", httpMethod = "POST")
-    public CommonResponse testLinkPayload(@RequestBody DatasourcesQueryDTO query, HttpServletRequest request, HttpServletResponse response) throws Exception {
-        return null;
-    }
 }

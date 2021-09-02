@@ -4,6 +4,7 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import top.buukle.generator.commons.mvc.vo.CommonVO;
+import top.buukle.generator.entity.enums.DatasourcesEnums;
 
 
 /**
@@ -61,5 +62,17 @@ public class DatasourcesQueryVO extends CommonVO {
      */
     @ApiModelProperty(value = "备注")
     private String remark;
+
+    /**
+     * 备注
+     */
+    @ApiModelProperty(value = "状态")
+    private Integer status;
+
+    /**
+     * 状态
+     */
+    @ApiModelProperty(value = "审核状态")
+    private Integer auditStatus;
 
 }

@@ -9,21 +9,26 @@ import org.springframework.stereotype.Service;
 import top.buukle.generator.commons.call.CommonRequest;
 import top.buukle.generator.commons.call.CommonResponse;
 import top.buukle.generator.commons.call.PageResponse;
-import top.buukle.generator.commons.mvc.dto.CommonDTO;
 import top.buukle.generator.commons.session.SessionUtils;
 import top.buukle.generator.commons.session.UserDO;
 import top.buukle.generator.commons.status.StatusConstants;
 import top.buukle.generator.dao.DatasourcesMapper;
-import top.buukle.generator.entity.Datasources;
+import top.buukle.generator.entity.enums.DatasourcesEnums;
+import top.buukle.generator.entity.model.Datasources;
 import top.buukle.generator.entity.dto.datasources.DatasourcesQueryDTO;
 import top.buukle.generator.entity.dto.datasources.DatasourcesUpdateDTO;
 import top.buukle.generator.entity.vo.datasources.DatasourcesQueryVO;
+import top.buukle.generator.invoker.DataBaseUtil;
+import top.buukle.generator.invoker.enums.DatabaseType;
 import top.buukle.generator.service.DatasourcesService;
 import top.buukle.generator.service.constants.SystemReturnEnum;
 import top.buukle.generator.service.exception.SystemException;
 import top.buukle.generator.utils.DateUtil;
+import top.buukle.generator.utils.JsonUtil;
 import top.buukle.generator.utils.StringUtil;
 
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -33,19 +38,19 @@ import java.util.List;
 * @description DatasourcesService实现类
 */
 @Service("datasourcesService")
-public class DatasourcesServiceImpl extends ServiceImpl<DatasourcesMapper<Datasources>, Datasources> implements DatasourcesService<Datasources,DatasourcesQueryVO,DatasourcesQueryDTO,DatasourcesUpdateDTO>{
+public class DatasourcesServiceImpl extends ServiceImpl<DatasourcesMapper, Datasources> implements DatasourcesService<Datasources,DatasourcesQueryVO,DatasourcesQueryDTO,DatasourcesUpdateDTO>{
 
 
     /**
      * @description 增
      * @param commonRequest
      * @return top.buukle.generator.commons.call.CommonResponse<java.lang.Boolean>
-     * @Author zhanglei451
+     * @Author 17600
      * @Date 2021/9/2
      */
     @Override
-    public CommonResponse<Boolean> save(CommonRequest<CommonDTO> commonRequest) {
-        DatasourcesUpdateDTO datasourcesUpdateDTO = (DatasourcesUpdateDTO) commonRequest.getBody();
+    public CommonResponse<Boolean> add(CommonRequest<DatasourcesUpdateDTO> commonRequest) {
+        DatasourcesUpdateDTO datasourcesUpdateDTO = commonRequest.getBody();
         // 转换DTO
         Datasources datasources = new Datasources();
         BeanUtils.copyProperties(datasourcesUpdateDTO,datasources);
@@ -58,16 +63,36 @@ public class DatasourcesServiceImpl extends ServiceImpl<DatasourcesMapper<Dataso
     }
 
     /**
-     * @description 删
+     * @description 增or改
      * @param commonRequest
      * @return top.buukle.generator.commons.call.CommonResponse<java.lang.Boolean>
-     * @Author zhanglei451
+     * @Author 17600
      * @Date 2021/9/2
      */
     @Override
-    public CommonResponse<Boolean> delete(CommonRequest<CommonDTO> commonRequest) {
-        // 校验参数
-        DatasourcesUpdateDTO datasourcesUpdateDTO = (DatasourcesUpdateDTO) commonRequest.getBody();
+    public CommonResponse<Boolean> addOrEdit(CommonRequest<DatasourcesUpdateDTO> commonRequest) {
+        DatasourcesUpdateDTO datasourcesUpdateDTO = commonRequest.getBody();
+        // 增
+        if(datasourcesUpdateDTO.getId() != null){
+            return this.add(commonRequest);
+        }
+        // 改
+        else{
+            return this.updateById(commonRequest);
+        }
+    }
+
+    /**
+     * @description 删
+     * @param commonRequest
+     * @return top.buukle.generator.commons.call.CommonResponse<java.lang.Boolean>
+     * @Author 17600
+     * @Date 2021/9/2
+     */
+    @Override
+    public CommonResponse<Boolean> deleteById(CommonRequest<DatasourcesUpdateDTO> commonRequest) {
+        DatasourcesUpdateDTO datasourcesUpdateDTO = commonRequest.getBody();
+        // 验证参数
         if(datasourcesUpdateDTO.getId() == null){
             throw new SystemException(SystemReturnEnum.RUD_ID_NULL);
         }
@@ -86,15 +111,20 @@ public class DatasourcesServiceImpl extends ServiceImpl<DatasourcesMapper<Dataso
      * @description 改
      * @param commonRequest
      * @return top.buukle.generator.commons.call.CommonResponse<java.lang.Boolean>
-     * @Author zhanglei451
+     * @Author 17600
      * @Date 2021/9/2
      */
     @Override
-    public CommonResponse<Boolean> updateById(CommonRequest<CommonDTO> commonRequest) {
-        DatasourcesUpdateDTO datasourcesUpdateDTO = (DatasourcesUpdateDTO) commonRequest.getBody();
+    public CommonResponse<Boolean> updateById(CommonRequest<DatasourcesUpdateDTO> commonRequest) {
+        DatasourcesUpdateDTO datasourcesUpdateDTO = commonRequest.getBody();
+        // 验证参数
+        if(datasourcesUpdateDTO.getId() == null){
+            throw new SystemException(SystemReturnEnum.RUD_ID_NULL);
+        }
         // 转换DTO
         Datasources datasources = new Datasources();
         BeanUtils.copyProperties(datasourcesUpdateDTO,datasources);
+        // 更新字段
         this.updateInit(datasources);
         // 落库
         boolean success = super.updateById(datasources);
@@ -103,15 +133,15 @@ public class DatasourcesServiceImpl extends ServiceImpl<DatasourcesMapper<Dataso
     }
 
     /**
-     * @description 查 - 单条
+     * @description  查 - 单条
      * @param commonRequest
-     * @return top.buukle.generator.commons.call.CommonResponse<? extends top.buukle.generator.commons.mvc.vo.CommonVO>
-     * @Author zhanglei451
+     * @return top.buukle.generator.commons.call.CommonResponse<top.buukle.generator.entity.vo.datasources.DatasourcesQueryVO>
+     * @Author 17600
      * @Date 2021/9/2
      */
     @Override
-    public CommonResponse<DatasourcesQueryVO> getById(CommonRequest<CommonDTO> commonRequest) {
-        DatasourcesQueryDTO datasourcesQueryDTO = (DatasourcesQueryDTO) commonRequest.getBody();
+    public CommonResponse<DatasourcesQueryVO> getById(CommonRequest<DatasourcesQueryDTO> commonRequest) {
+        DatasourcesQueryDTO datasourcesQueryDTO = commonRequest.getBody();
         // 验证参数
         if(datasourcesQueryDTO.getId() == null){
             throw new SystemException(SystemReturnEnum.RUD_ID_NULL);
@@ -126,25 +156,25 @@ public class DatasourcesServiceImpl extends ServiceImpl<DatasourcesMapper<Dataso
     }
 
     /**
-     * @description 查 - 条件分页
+     * @description 查 - 分页
      * @param commonRequest
-     * @return top.buukle.generator.commons.call.PageResponse<? extends top.buukle.generator.commons.mvc.vo.CommonVO>
-     * @Author zhanglei451
+     * @return top.buukle.generator.commons.call.PageResponse<top.buukle.generator.entity.vo.datasources.DatasourcesQueryVO>
+     * @Author 17600
      * @Date 2021/9/2
      */
     @Override
-    public PageResponse<DatasourcesQueryVO> getPage(CommonRequest<CommonDTO> commonRequest) {
+    public PageResponse<DatasourcesQueryVO> getPage(CommonRequest<DatasourcesQueryDTO> commonRequest) {
         // 转换DTO
-        DatasourcesQueryDTO datasourcesQueryDTO = (DatasourcesQueryDTO) commonRequest.getBody();
+        DatasourcesQueryDTO datasourcesQueryDTO = commonRequest.getBody();
         Datasources datasources = new Datasources();
         BeanUtils.copyProperties(datasourcesQueryDTO,datasources);
-        // 组织条件
+        // 条件
         QueryWrapper<Datasources> queryWrapper = this.assPageParam(datasourcesQueryDTO);
         // 查询
         PageHelper.startPage(datasourcesQueryDTO.getPageNo(),datasourcesQueryDTO.getPageSize());
         List<Datasources> list = super.list(queryWrapper);
         PageInfo<Datasources> pageInfo = new PageInfo<>(list);
-        // 处理分页
+        // 分页
         List<DatasourcesQueryVO> queryVOList = new ArrayList<>();
         for (Datasources datasourcesDB : list) {
             DatasourcesQueryVO datasourcesQueryVO = new DatasourcesQueryVO();
@@ -154,6 +184,13 @@ public class DatasourcesServiceImpl extends ServiceImpl<DatasourcesMapper<Dataso
         return new PageResponse.Builder().build(queryVOList, pageInfo.getPageNum(), pageInfo.getPageSize(), pageInfo.getTotal());
     }
 
+    /**
+     * @description 组装分页条件
+     * @param datasourcesQueryDTO
+     * @return com.baomidou.mybatisplus.core.conditions.query.QueryWrapper<top.buukle.generator.entity.model.Datasources>
+     * @Author 17600
+     * @Date 2021/9/2
+     */
     private QueryWrapper<Datasources> assPageParam( DatasourcesQueryDTO datasourcesQueryDTO) {
         QueryWrapper<Datasources> queryWrapper = new QueryWrapper<>();
         if(StringUtil.isNotEmpty(datasourcesQueryDTO.getStartTime())){
@@ -162,11 +199,19 @@ public class DatasourcesServiceImpl extends ServiceImpl<DatasourcesMapper<Dataso
         if(StringUtil.isNotEmpty(datasourcesQueryDTO.getEndTime())){
             queryWrapper.le("gmt_created", DateUtil.parse(datasourcesQueryDTO.getStartTime()));
         }
+        queryWrapper.gt("status",StatusConstants.DELETED);
         queryWrapper.orderByDesc("gmt_modified");
         // 可按需扩展 ...
         return queryWrapper;
     }
 
+    /**
+     * @description 增 - 初始化
+     * @param datasources
+     * @return void
+     * @Author 17600
+     * @Date 2021/9/2
+     */
     @Override
     public void saveInit(Datasources datasources) {
         Date date = new Date();
@@ -176,13 +221,22 @@ public class DatasourcesServiceImpl extends ServiceImpl<DatasourcesMapper<Dataso
         datasources.setGmtCreated(date);
         datasources.setCreator(operator.getUsername());
         datasources.setCreatorCode(operator.getUserId());
-
+        datasources.setCreatorDeptId(operator.getDeptId());
         datasources.setGmtModified(date);
+
         datasources.setModifier(operator.getUsername());
         datasources.setModifierCode(operator.getUserId());
+        datasources.setStatus(DatasourcesEnums.status.PUBLISHED.value());
 
     }
 
+    /**
+     * @description 改 - 初始化
+     * @param datasources
+     * @return void
+     * @Author 17600
+     * @Date 2021/9/2
+     */
     @Override
     public void updateInit(Datasources datasources) {
 
@@ -196,4 +250,19 @@ public class DatasourcesServiceImpl extends ServiceImpl<DatasourcesMapper<Dataso
 
     }
 
+    /*------------------------------------------------------↑↑↑↑通用可定制代码↑↑↑↑-------------------------------------------------------------*/
+    /**
+     * @description 测试数据源链接
+     * @param commonRequest
+     * @return top.buukle.generator.commons.call.CommonResponse<java.lang.Boolean>
+     * @Author 17600
+     * @Date 2021/9/3
+     */
+    @Override
+    public CommonResponse<Boolean> testLink(CommonRequest<DatasourcesUpdateDTO> commonRequest) throws SQLException {
+        DatasourcesUpdateDTO body = commonRequest.getBody();
+        Connection connection = DataBaseUtil.getConnection(DatabaseType.MySQL, body.getUsername(), body.getPassword(), body.getUrl());
+        connection.close();
+        return new CommonResponse.Builder().buildSuccess();
+    }
 }

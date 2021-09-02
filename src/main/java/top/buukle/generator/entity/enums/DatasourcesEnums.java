@@ -1,4 +1,6 @@
-package top.buukle.generator.entity.constants;
+package top.buukle.generator.entity.enums;
+
+import top.buukle.generator.utils.StringUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,7 +9,7 @@ import java.util.List;
  * @Author: elvin
  * @Date: 2019/7/28/028 3:56
  */
-public class ConfiguresExecuteEnums {
+public class DatasourcesEnums {
 
     public enum status {
 
@@ -16,9 +18,6 @@ public class ConfiguresExecuteEnums {
         AUDITING(1,"审核中"),
         REJECT(2,"停用"),
         PUBLISHED(3,"正常"),
-        EXECUTING(4,"执行中"),
-        EXECUTE_FAILED(5,"执行失败"),
-        EXECUTE_SUCCESS(6,"执行成功"),
         ;
 
         private Integer status;
@@ -33,6 +32,18 @@ public class ConfiguresExecuteEnums {
         }
         public Integer value() {
             return status;
+        }
+
+        public static String getPairs() {
+            DatasourcesEnums.status[] values = DatasourcesEnums.status.values();
+            StringBuffer stringBuffer = new StringBuffer();
+            for (DatasourcesEnums.status status : values) {
+                stringBuffer.append(status.value());
+                stringBuffer.append(StringUtil.COLON);
+                stringBuffer.append(status.getDescription());
+                stringBuffer.append(StringUtil.COMMA);
+            }
+            return stringBuffer.toString();
         }
     }
 
@@ -58,25 +69,17 @@ public class ConfiguresExecuteEnums {
         public Integer value() {
             return status;
         }
-    }
 
-    public enum allowStatus {
-
-    ALLOW_STATUS(status.PUBLISHED.value()),
-    ;
-
-    private List<Integer> list;
-
-        allowStatus(Integer ... allowStatus) {
-            List<Integer> allowList = new ArrayList<>();
-            for (Integer status: allowStatus) {
-                allowList.add(status);
+        public static String getPairs() {
+            DatasourcesEnums.auditStatus[] values = DatasourcesEnums.auditStatus.values();
+            StringBuffer stringBuffer = new StringBuffer();
+            for (DatasourcesEnums.auditStatus status : values) {
+                stringBuffer.append(status.value());
+                stringBuffer.append(StringUtil.COLON);
+                stringBuffer.append(status.getDescription());
+                stringBuffer.append(StringUtil.COMMA);
             }
-            this.list = allowList;
-        }
-
-        public List<Integer> list() {
-            return list;
+            return stringBuffer.toString();
         }
     }
 }

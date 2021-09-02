@@ -34,7 +34,9 @@ public class PageResponse<T>{
     public static class Builder{
 
         public <T> PageResponse <T> build(List<T> list, int pageNo, int pageSize, long total) {
-            return new PageResponse<>(list,pageNo,pageSize,total);
+            PageResponse<T> tPageResponse = new PageResponse<>(list, pageNo, pageSize, total);
+            tPageResponse.getBody().setTotalPage(total % pageSize > 0 ? 1 + (total / pageSize) : (total / pageSize));
+            return tPageResponse;
         }
     }
 
@@ -55,10 +57,6 @@ public class PageResponse<T>{
         }
         public PageBody(List<T> list) {
             this.list =  list;
-        }
-
-        public long getTotalPage() {
-            return  total % pageSize > 0 ? 1 + (total / pageSize) : (total / pageSize);
         }
 
     }

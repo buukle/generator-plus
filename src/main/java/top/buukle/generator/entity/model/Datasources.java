@@ -1,5 +1,6 @@
-package top.buukle.generator.entity;
+package top.buukle.generator.entity.model;
 
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -13,6 +14,7 @@ import java.util.Date;
  * @author  zhaongleiqt@chinamobile.com
  */
 @Data
+@TableName("datasources")
 public class Datasources implements Serializable {
 
     /**

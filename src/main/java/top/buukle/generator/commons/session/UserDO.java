@@ -9,7 +9,7 @@ public class UserDO {
 
     private String username;
     private String userId;
-    private String deptId;
+    private Integer deptId;
     private List<String> subDeptIds;
 
 }

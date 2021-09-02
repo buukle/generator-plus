@@ -24,7 +24,7 @@ public class SessionUtils {
         if(request != null){
             userDO.setUsername(request.getHeader("USERNAME"));
             userDO.setUserId(request.getHeader("UID"));
-            userDO.setDeptId(request.getHeader("DEPT_ID"));
+            userDO.setDeptId(StringUtil.isEmpty(request.getHeader("DEPT_ID")) ? null : Integer.parseInt(request.getHeader("DEPT_ID")));
             String subDeptIdsStr = request.getHeader("SUB_DEPT_IDS");
             if(StringUtil.isNotEmpty(subDeptIdsStr)){
                 userDO.setSubDeptIds(StringUtil.parseStringToListComma(subDeptIdsStr));

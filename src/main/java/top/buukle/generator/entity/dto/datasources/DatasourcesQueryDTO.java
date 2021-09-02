@@ -13,18 +13,17 @@ import top.buukle.generator.commons.mvc.dto.CommonDTO;
 */
 @Data
 @ApiModel(value = "连接 - 查询请求")
-public class DatasourcesQueryDTO implements CommonDTO {
+public class DatasourcesQueryDTO extends CommonDTO {
 
     /**
      * 当前页码
      */
     @ApiModelProperty(value = "当前页码")
-    private Integer pageNo;
+    private Integer pageNo = 1;
     /**
      * 页长
      */
     @ApiModelProperty(value = "页长")
-    @Builder.Default
     private Integer pageSize = 10;
     /**
      * 起始时间
