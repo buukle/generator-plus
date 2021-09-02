@@ -1,11 +1,11 @@
 package top.buukle.generator.web.exception;
 
-import top.buukle.generator.commons.call.CommonResponse;
-import top.buukle.generator.commons.exception.CommonException;
-import top.buukle.generator.commons.log.BaseLogger;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
+import top.buukle.generator.commons.call.CommonResponse;
+import top.buukle.generator.commons.exception.CommonException;
+import top.buukle.generator.commons.log.BaseLogger;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

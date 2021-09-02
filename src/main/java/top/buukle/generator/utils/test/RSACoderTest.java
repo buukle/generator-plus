@@ -1,10 +1,9 @@
 package top.buukle.generator.utils.test;
 
 
-
-import top.buukle.generator.utils.RSA.RSACoder;
 import org.junit.Before;
 import org.junit.Test;
+import top.buukle.generator.utils.RSA.RSACoder;
 
 import java.net.URLEncoder;
 import java.util.Map;

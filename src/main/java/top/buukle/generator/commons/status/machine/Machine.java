@@ -1,5 +1,6 @@
 package top.buukle.generator.commons.status.machine;
 
+import org.springframework.util.CollectionUtils;
 import top.buukle.generator.commons.call.code.BaseReturnEnum;
 import top.buukle.generator.commons.exception.CommonException;
 import top.buukle.generator.commons.status.machine.model.interfac.Actions;
@@ -7,7 +8,6 @@ import top.buukle.generator.commons.status.machine.model.interfac.CirculationLis
 import top.buukle.generator.commons.status.machine.structure.ActionStatus;
 import top.buukle.generator.commons.status.machine.structure.StatusCouple;
 import top.buukle.generator.commons.status.machine.structure.StatusTable;
-import org.springframework.util.CollectionUtils;
 
 import java.util.HashMap;
 import java.util.Map;

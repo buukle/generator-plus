@@ -10,8 +10,6 @@
  */
 package top.buukle.generator.entity.dto;
 
-import java.util.List;
-
 /**
  * @description 〈〉
  * @author elvin

@@ -10,8 +10,6 @@
  */
 package top.buukle.generator.entity.dto;
 
-import java.util.HashMap;
-
 /**
  * @description 〈〉
  * @author elvin

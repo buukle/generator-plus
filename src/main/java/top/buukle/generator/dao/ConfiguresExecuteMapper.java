@@ -1,9 +1,9 @@
 package top.buukle.generator.dao;
 
-import top.buukle.generator.entity.ConfiguresExecute;
-import top.buukle.generator.entity.ConfiguresExecuteExample;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import top.buukle.generator.entity.ConfiguresExecute;
+import top.buukle.generator.entity.ConfiguresExecuteExample;
 
 import java.util.List;
 

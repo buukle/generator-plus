@@ -1,9 +1,9 @@
 package top.buukle.generator.dao;
 
-import top.buukle.generator.entity.Templates;
-import top.buukle.generator.entity.TemplatesExample;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import top.buukle.generator.entity.Templates;
+import top.buukle.generator.entity.TemplatesExample;
 
 import java.util.List;
 

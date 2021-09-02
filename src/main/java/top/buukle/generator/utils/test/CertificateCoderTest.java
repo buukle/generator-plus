@@ -10,8 +10,8 @@
  */
 package top.buukle.generator.utils.test;
 
-import top.buukle.generator.utils.RSA.CertificateCoder;
 import org.junit.Test;
+import top.buukle.generator.utils.RSA.CertificateCoder;
 
 /**
  * @description 〈〉

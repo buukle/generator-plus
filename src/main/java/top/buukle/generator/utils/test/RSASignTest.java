@@ -1,8 +1,8 @@
 package top.buukle.generator.utils.test;
 
+import org.junit.Test;
 import top.buukle.generator.utils.JsonUtil;
 import top.buukle.generator.utils.RSA.RSACoder;
-import org.junit.Test;
 
 import java.util.HashMap;
 import java.util.Map;
