@@ -10,21 +10,19 @@
  */
 package top.buukle.generator.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 import springfox.documentation.annotations.ApiIgnore;
 import top.buukle.generator.commons.log.BaseLogger;
 import top.buukle.generator.entity.dto.*;
-import top.buukle.generator.utils.JsonUtil;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 /**
  * @description 〈〉
@@ -37,31 +35,6 @@ import java.util.*;
 public class WebController {
 
 private static BaseLogger LOGGER = BaseLogger.getLogger(WebController.class);
-
-@Autowired
-private Environment env;
-
-
-        /**
-             * security 主页面控制器
-             * @param modelAndView
-             * @return
-             */
-        @RequestMapping("/home")
-        public ModelAndView home(HttpServletRequest request, HttpServletResponse response, ModelAndView modelAndView) {
-                modelAndView.setViewName("home");
-                return modelAndView;
-        }
-
-        /**
-             *  欢迎页
-             * @return
-             */
-        @RequestMapping("/index/welcome")
-        public ModelAndView indexWelcome(HttpServletRequest request,HttpServletResponse response ,  ModelAndView modelAndView) {
-                modelAndView.setViewName("index/welcome");
-                return modelAndView;
-        }
 
         @RequestMapping("/auth/login")
         @ResponseBody
@@ -372,41 +345,5 @@ private Environment env;
                 ANTDPCommonResponseDTO antdpCommonResponseDTO = new ANTDPCommonResponseDTO();
                 antdpCommonResponseDTO.setResult(antdpNavigationDTOS);
                 return antdpCommonResponseDTO;
-        }
-
-
-        /**
-             * 401页面
-             */
-        @GetMapping(value = "/error/401")
-        public ModelAndView error_401(ModelAndView modelAndView) {
-                modelAndView.setViewName("401");
-                return modelAndView;
-        }
-
-        /**
-             * 404页面
-             */
-        @GetMapping(value = "/error/404")
-        public ModelAndView error_404(ModelAndView modelAndView) {
-                modelAndView.setViewName("404");
-                return modelAndView;
-        }
-
-        /**
-             * 500页面
-             */
-        @GetMapping(value = "/error/500")
-        public ModelAndView error_500(ModelAndView modelAndView) {
-                modelAndView.setViewName("500");
-                return modelAndView;
-        }
-        /**
-             * 500页面
-             */
-        @GetMapping(value = "/error/503")
-        public ModelAndView error_503(ModelAndView modelAndView) {
-                modelAndView.setViewName("503");
-                return modelAndView;
         }
 }

@@ -15,8 +15,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
-import springfox.documentation.annotations.ApiIgnore;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -34,37 +32,6 @@ public class ConfiguresController {
     @Autowired
     private ConfiguresService configuresService;
 
-    /**
-    * @description 二级页面
-    * @param modelAndView
-    * @return org.springframework.web.servlet.ModelAndView
-    * @Author elvin
-    * @Date 2019/12/25
-    */
-    @RequestMapping("/configuresHome")
-    @ApiIgnore
-    public ModelAndView configuresHome(ModelAndView modelAndView) {
-        modelAndView.setViewName("configures/configuresHome");
-        return modelAndView;
-    }
-
-    /**
-    * @description 增改页面
-    * @param id
-    * @param request
-    * @param modelAndView
-    * @return org.springframework.web.servlet.ModelAndView
-    * @Author elvin
-    * @Date 2019/12/25
-    */
-    @RequestMapping("/configuresCrudView")
-    @ApiIgnore
-    public ModelAndView configuresCrudView( Integer id, HttpServletRequest request, ModelAndView modelAndView) {
-        Object o = configuresService.selectByPrimaryKeyForCrud(request, id);
-        modelAndView.addObject("record",o);
-        modelAndView.setViewName("configures/configuresCrudView");
-        return modelAndView;
-    }
 
     /**
     * @description 编辑回显接口
@@ -78,21 +45,6 @@ public class ConfiguresController {
     @ApiOperation(value = "编辑回显接口", httpMethod = "POST")
     public CommonResponse<Configures> configuresCrudViewFront(Integer id, HttpServletRequest request) {
         return new CommonResponse.Builder().buildSuccess(configuresService.selectByPrimaryKeyForCrud(request, id));
-    }
-
-
-
-    /**
-    * 获取列表
-    * @return
-    * @throws Exception
-    */
-    @RequestMapping("/configuresPage")
-    @ApiIgnore
-    public ModelAndView configuresPage( ConfiguresQuery query, ModelAndView modelAndView) throws Exception {
-        modelAndView.addObject("response", configuresService.getPage(query));
-        modelAndView.setViewName("configures/configuresPage");
-        return modelAndView;
     }
 
     /**

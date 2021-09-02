@@ -17,7 +17,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 import springfox.documentation.annotations.ApiIgnore;
 
 import javax.servlet.http.HttpServletRequest;
@@ -37,38 +36,6 @@ public class DatasourcesController {
     private DatasourcesService datasourcesService;
 
     /**
-    * @description 二级页面
-    * @param modelAndView
-    * @return org.springframework.web.servlet.ModelAndView
-    * @Author elvin
-    * @Date 2019/12/25
-    */
-    @RequestMapping("/datasourcesHome")
-    @ApiIgnore
-    public ModelAndView datasourcesHome(ModelAndView modelAndView) {
-        modelAndView.setViewName("datasources/datasourcesHome");
-        return modelAndView;
-    }
-
-    /**
-    * @description 增改页面
-    * @param id
-    * @param request
-    * @param modelAndView
-    * @return org.springframework.web.servlet.ModelAndView
-    * @Author elvin
-    * @Date 2019/12/25
-    */
-    @RequestMapping("/datasourcesCrudView")
-    @ApiIgnore
-    public ModelAndView datasourcesCrudView( Integer id, HttpServletRequest request, ModelAndView modelAndView) {
-        Object o = datasourcesService.selectByPrimaryKeyForCrud(request, id);
-        modelAndView.addObject("record",o);
-        modelAndView.setViewName("datasources/datasourcesCrudView");
-        return modelAndView;
-    }
-
-    /**
     * @description 编辑回显接口
     * @param id
     * @param request
@@ -80,21 +47,6 @@ public class DatasourcesController {
     @ApiOperation(value = "编辑回显接口", httpMethod = "POST")
     public CommonResponse<Datasources> datasourcesCrudViewFront(Integer id, HttpServletRequest request) {
         return new CommonResponse.Builder().buildSuccess(datasourcesService.selectByPrimaryKeyForCrud(request, id));
-    }
-
-
-
-    /**
-    * 获取列表
-    * @return
-    * @throws Exception
-    */
-    @RequestMapping("/datasourcesPage")
-    @ApiIgnore
-    public ModelAndView datasourcesPage( DatasourcesQuery query, ModelAndView modelAndView) throws Exception {
-        modelAndView.addObject("response", datasourcesService.getPage(query));
-        modelAndView.setViewName("datasources/datasourcesPage");
-        return modelAndView;
     }
 
     /**

@@ -1,0 +1,55 @@
+##服务配置
+server:
+  port: 80
+  tomcat:
+    uri-encoding: UTF-8
+    threads:
+      max: 200
+  servlet:
+    context-path: /buukle-generator
+    encoding:
+      charset: UTF-8
+      force: true
+      enabled: true
+##日志配置
+logging:
+  config: classpath:config/spring/springBoot-logbak-prod.xml
+##spring生态配置
+spring:
+  ##应用名
+  application:
+      name: buukle-generator
+  devtools:
+    add-properties: false
+  ##thymeleaf
+  thymeleaf:
+    cache: false
+    prefix: classpath:/templates/generator/
+    suffix: .html
+    encoding: UTF-8
+    mode: HTML5
+  ##datasource
+  datasource:
+    url: jdbc:mysql://mysql.buukle.top:13306/buukle-generator?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=utf-8&useSSL=false
+    username: root
+    password: A987654321b/
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+    # 初始化，最小，最大连接数
+    initialSize: 3
+    minIdle: 3
+    maxActive: 18
+    # 获取数据库连接等待的超时时间
+    maxWait: 60000
+    # 配置监控统计拦截的filters,去掉后，监控界面的sql无法统计
+    filters: stat,wall,log4j
+  #支持multipart file
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 10MB
+      max-request-size: 100MB
+##mybatis
+mybatis:
+  mapper-locations: classpath*:/config/mapper/*.xml
+  type-aliases-package: top.buukle.generator.entity
