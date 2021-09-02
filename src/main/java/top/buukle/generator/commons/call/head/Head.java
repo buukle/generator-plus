@@ -10,12 +10,15 @@
  */
 package top.buukle.generator.commons.call.head;
 
+import lombok.Data;
+
 /**
  * @description 〈来源头部规范〉
  * @author zhanglei1102
  * @create 2019/7/26
  * @since 1.0.0
  */
+@Data
 public class Head {
 
     /** 来源系统code*/
@@ -39,45 +42,5 @@ public class Head {
             head.setOperationTime(System.currentTimeMillis() + "");
             return head;
         }
-    }
-
-    public String getOperationTime() {
-        return operationTime;
-    }
-
-    public void setOperationTime(String operationTime) {
-        this.operationTime = operationTime;
-    }
-
-    public String getApplicationCode() {
-        return applicationCode;
-    }
-
-    public void setApplicationCode(String applicationCode) {
-        this.applicationCode = applicationCode;
-    }
-
-    public String getOperator() {
-        return operator;
-    }
-
-    public void setOperator(String operator) {
-        this.operator = operator;
-    }
-
-    public String getOperatorId() {
-        return operatorId;
-    }
-
-    public void setOperatorId(String operatorId) {
-        this.operatorId = operatorId;
-    }
-
-    public String getSignature() {
-        return signature;
-    }
-
-    public void setSignature(String signature) {
-        this.signature = signature;
     }
 }

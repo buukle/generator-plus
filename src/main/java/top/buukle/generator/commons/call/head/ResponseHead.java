@@ -10,6 +10,7 @@
  */
 package top.buukle.generator.commons.call.head;
 
+import lombok.Data;
 import top.buukle.generator.commons.call.code.BaseReturnEnum;
 import top.buukle.generator.commons.exception.CommonException;
 
@@ -19,6 +20,7 @@ import top.buukle.generator.commons.exception.CommonException;
  * @create 2019/7/26
  * @since 1.0.0
  */
+@Data
 public class ResponseHead extends Head {
 
     /** 接口返回状态码*/
@@ -27,30 +29,6 @@ public class ResponseHead extends Head {
     private String code;
     /** 返回信息*/
     private String msg;
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public String getMsg() {
-        return msg;
-    }
-
-    public void setMsg(String msg) {
-        this.msg = msg;
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
-    }
 
     public static class Builder{
         public ResponseHead buildSuccess() {

@@ -12,7 +12,7 @@ public enum SystemReturnEnum {
 
     SUCCESS(BaseReturnEnum.SUCCESS),
     FAILED(BaseReturnEnum.FAILED),
-    DELETE_INFO_EXCEPTION(BaseReturnEnum.FAILED),
+    RUD_ID_NULL("F","000000","ID为空"),
     DELETE_BATCH_IDS_NULL(BaseReturnEnum.FAILED),
     /**/
     GEN_TEMPLATE_IDS_NULL("F","980000","失败,模板ids为空!"),

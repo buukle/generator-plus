@@ -1,6 +1,7 @@
 package top.buukle.generator.commons.call;
 
 
+import lombok.Data;
 import top.buukle.generator.commons.call.head.Head;
 
 
@@ -9,28 +10,13 @@ import top.buukle.generator.commons.call.head.Head;
  * @Date Created by elvin on 2018/9/19.
  * @Description : buukle 公共请求规范
  */
+@Data
 public class CommonRequest<T>{
 
     /** 请求头*/
     private Head head;
     /** 请求体*/
     private T body;
-
-    public Head getHead() {
-        return head;
-    }
-
-    public void setHead(Head head) {
-        this.head = head;
-    }
-
-    public T getBody() {
-        return body;
-    }
-
-    public void setBody(T body) {
-        this.body = body;
-    }
 
     public static class Builder {
 

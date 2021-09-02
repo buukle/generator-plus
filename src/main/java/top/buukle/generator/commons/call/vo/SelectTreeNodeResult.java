@@ -10,6 +10,8 @@
  */
 package top.buukle.generator.commons.call.vo;
 
+import lombok.Data;
+
 import java.util.List;
 
 /**
@@ -18,6 +20,7 @@ import java.util.List;
  * @create 2019/8/9
  * @since 1.0.0
  */
+@Data
 public class SelectTreeNodeResult {
 
     private String title;
@@ -27,52 +30,4 @@ public class SelectTreeNodeResult {
     private boolean spread;
     private List<SelectTreeNodeResult> children;
 
-    public boolean isDisabled() {
-        return disabled;
-    }
-
-    public void setDisabled(boolean disabled) {
-        this.disabled = disabled;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public boolean isChecked() {
-        return checked;
-    }
-
-    public void setChecked(boolean checked) {
-        this.checked = checked;
-    }
-
-    public boolean isSpread() {
-        return spread;
-    }
-
-    public void setSpread(boolean spread) {
-        this.spread = spread;
-    }
-
-    public List<SelectTreeNodeResult> getChildren() {
-        return children;
-    }
-
-    public void setChildren(List<SelectTreeNodeResult> children) {
-        this.children = children;
-    }
 }

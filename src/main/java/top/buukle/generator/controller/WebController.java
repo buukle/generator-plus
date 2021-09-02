@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import springfox.documentation.annotations.ApiIgnore;
 import top.buukle.generator.commons.log.BaseLogger;
-import top.buukle.generator.entity.dto.*;
+import top.buukle.generator.entity.vo.antd.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -38,312 +38,312 @@ private static BaseLogger LOGGER = BaseLogger.getLogger(WebController.class);
 
         @RequestMapping("/auth/login")
         @ResponseBody
-        public ANTDPCommonResponseDTO<ANTDPUserDTO>  authLogin(HttpServletRequest request,HttpServletResponse response ) {
+        public ANTDPCommonResponseVO<ANTDPUserVO> authLogin(HttpServletRequest request, HttpServletResponse response ) {
                 // 声明返回实体
-                ANTDPCommonResponseDTO antdpCommonResponseDTO = new ANTDPCommonResponseDTO();
+                ANTDPCommonResponseVO antdpCommonResponseVO = new ANTDPCommonResponseVO();
                 // 声明初始化用户实体
-                ANTDPUserDTO antdpUserDTO = new ANTDPUserDTO();
+                ANTDPUserVO antdpUserVO = new ANTDPUserVO();
 
-                antdpUserDTO.setUsername("admin");
-                antdpUserDTO.setPassword("");
-                antdpUserDTO.setAvatar("");
-                antdpUserDTO.setStatus("1");
-                antdpUserDTO.setTelephone("");
-                antdpUserDTO.setLastLoginIp("27.154.74.117");
-                antdpUserDTO.setCreatorId("admin");
-                antdpUserDTO.setRoleId("admin");
-                antdpUserDTO.setLang("zh-CN");
-                antdpUserDTO.setToken("4291d7da9005377ec9aec4a71ea837f");
+                antdpUserVO.setUsername("admin");
+                antdpUserVO.setPassword("");
+                antdpUserVO.setAvatar("");
+                antdpUserVO.setStatus("1");
+                antdpUserVO.setTelephone("");
+                antdpUserVO.setLastLoginIp("27.154.74.117");
+                antdpUserVO.setCreatorId("admin");
+                antdpUserVO.setRoleId("admin");
+                antdpUserVO.setLang("zh-CN");
+                antdpUserVO.setToken("4291d7da9005377ec9aec4a71ea837f");
 
-                antdpCommonResponseDTO.setResult(antdpUserDTO);
-                return antdpCommonResponseDTO;
+                antdpCommonResponseVO.setResult(antdpUserVO);
+                return antdpCommonResponseVO;
         }
 
         @RequestMapping("/role")
         @ResponseBody
-        public ANTDPCommonResponseDTO<ANTDPUserDTO> role(HttpServletRequest request,HttpServletResponse response ) {
-                List<ANTDPRoleDTO> roleDTOList = new ArrayList<>();
-                ANTDPRoleDTO role = this.getRole(request, response);
+        public ANTDPCommonResponseVO<ANTDPUserVO> role(HttpServletRequest request, HttpServletResponse response ) {
+                List<ANTDPRoleVO> roleDTOList = new ArrayList<>();
+                ANTDPRoleVO role = this.getRole(request, response);
                 roleDTOList.add(role);
                 // 声明初始化返回实体
-                ANTDPCommonResponseDTO antdpCommonResponseDTO = new ANTDPCommonResponseDTO();
-                antdpCommonResponseDTO.setResult(roleDTOList);
-                return antdpCommonResponseDTO;
+                ANTDPCommonResponseVO antdpCommonResponseVO = new ANTDPCommonResponseVO();
+                antdpCommonResponseVO.setResult(roleDTOList);
+                return antdpCommonResponseVO;
         }
 
-        private ANTDPRoleDTO getRole(HttpServletRequest request, HttpServletResponse response) {
+        private ANTDPRoleVO getRole(HttpServletRequest request, HttpServletResponse response) {
                 // 声明初始化角色实体
-                ANTDPRoleDTO antdpRoleDTO = new ANTDPRoleDTO();
+                ANTDPRoleVO antdpRoleVO = new ANTDPRoleVO();
 
-                antdpRoleDTO.setId("admin");
-                antdpRoleDTO.setName("管理员");
-                antdpRoleDTO.setDescribe("拥有所有权限");
-                antdpRoleDTO.setStatus("1");
-                antdpRoleDTO.setCreatorId("system");
+                antdpRoleVO.setId("admin");
+                antdpRoleVO.setName("管理员");
+                antdpRoleVO.setDescribe("拥有所有权限");
+                antdpRoleVO.setStatus("1");
+                antdpRoleVO.setCreatorId("system");
 
-                antdpRoleDTO.setCreateTime("1497160610259");
-                antdpRoleDTO.setDeleted("0");
+                antdpRoleVO.setCreateTime("1497160610259");
+                antdpRoleVO.setDeleted("0");
 
                 // 声明初始化权限实体
-                ArrayList<ANTDPPermissionDTO> antdpPermissionDTOArrayList = new ArrayList<>();
-                ANTDPPermissionDTO antdpPermissionDTO = new ANTDPPermissionDTO();
-                antdpPermissionDTO.setPermissionId("datasources");
-                antdpPermissionDTO.setPermissionName("连接管理");
-                antdpPermissionDTO.setRoleId("admin");
+                ArrayList<ANTDPPermissionVO> antdpPermissionVOArrayList = new ArrayList<>();
+                ANTDPPermissionVO antdpPermissionVO = new ANTDPPermissionVO();
+                antdpPermissionVO.setPermissionId("datasources");
+                antdpPermissionVO.setPermissionName("连接管理");
+                antdpPermissionVO.setRoleId("admin");
 
                 // 声明初始化操作list
-                ArrayList<ANTDPActionDTO> antdpActionDTOS = new ArrayList<>();
-                Set <ANTDPActionDTO> antdpActionDTOSet = new HashSet<>();
+                ArrayList<ANTDPActionVO> antdpActionVOS = new ArrayList<>();
+                Set <ANTDPActionVO> antdpActionVOSet = new HashSet<>();
 
-                ANTDPActionDTO antdpActionDTO = new ANTDPActionDTO();
-                antdpActionDTO.setAction("add");
-                antdpActionDTO.setDefaultCheck(false);
-                antdpActionDTO.setDescribe("新增");
+                ANTDPActionVO antdpActionVO = new ANTDPActionVO();
+                antdpActionVO.setAction("add");
+                antdpActionVO.setDefaultCheck(false);
+                antdpActionVO.setDescribe("新增");
 
-                antdpActionDTOS.add(antdpActionDTO);
-                antdpActionDTOSet.add(antdpActionDTO);
+                antdpActionVOS.add(antdpActionVO);
+                antdpActionVOSet.add(antdpActionVO);
 
-                ANTDPActionDTO antdpActionDTO1 = new ANTDPActionDTO();
-                antdpActionDTO1.setAction("query");
-                antdpActionDTO1.setDefaultCheck(false);
-                antdpActionDTO1.setDescribe("查询");
+                ANTDPActionVO antdpActionVO1 = new ANTDPActionVO();
+                antdpActionVO1.setAction("query");
+                antdpActionVO1.setDefaultCheck(false);
+                antdpActionVO1.setDescribe("查询");
 
-                antdpActionDTOS.add(antdpActionDTO1);
-                antdpActionDTOSet.add(antdpActionDTO1);
+                antdpActionVOS.add(antdpActionVO1);
+                antdpActionVOSet.add(antdpActionVO1);
 
-                ANTDPActionDTO antdpActionDTO2 = new ANTDPActionDTO();
-                antdpActionDTO2.setAction("get");
-                antdpActionDTO2.setDefaultCheck(false);
-                antdpActionDTO2.setDescribe("详情");
+                ANTDPActionVO antdpActionVO2 = new ANTDPActionVO();
+                antdpActionVO2.setAction("get");
+                antdpActionVO2.setDefaultCheck(false);
+                antdpActionVO2.setDescribe("详情");
 
-                antdpActionDTOS.add(antdpActionDTO2);
-                antdpActionDTOSet.add(antdpActionDTO2);
+                antdpActionVOS.add(antdpActionVO2);
+                antdpActionVOSet.add(antdpActionVO2);
 
-                ANTDPActionDTO antdpActionDTO3 = new ANTDPActionDTO();
-                antdpActionDTO3.setAction("update");
-                antdpActionDTO3.setDefaultCheck(false);
-                antdpActionDTO3.setDescribe("修改");
+                ANTDPActionVO antdpActionVO3 = new ANTDPActionVO();
+                antdpActionVO3.setAction("update");
+                antdpActionVO3.setDefaultCheck(false);
+                antdpActionVO3.setDescribe("修改");
 
-                antdpActionDTOS.add(antdpActionDTO3);
-                antdpActionDTOSet.add(antdpActionDTO3);
+                antdpActionVOS.add(antdpActionVO3);
+                antdpActionVOSet.add(antdpActionVO3);
 
-                ANTDPActionDTO antdpActionDTO4 = new ANTDPActionDTO();
-                antdpActionDTO4.setAction("delete");
-                antdpActionDTO4.setDefaultCheck(false);
-                antdpActionDTO4.setDescribe("删除");
+                ANTDPActionVO antdpActionVO4 = new ANTDPActionVO();
+                antdpActionVO4.setAction("delete");
+                antdpActionVO4.setDefaultCheck(false);
+                antdpActionVO4.setDescribe("删除");
 
-                antdpActionDTOS.add(antdpActionDTO4);
-                antdpActionDTOSet.add(antdpActionDTO4);
+                antdpActionVOS.add(antdpActionVO4);
+                antdpActionVOSet.add(antdpActionVO4);
 
                 // 为 permission 设置 action
-                antdpPermissionDTO.setActionList(antdpActionDTOS);
-                antdpPermissionDTO.setActionEntitySet(antdpActionDTOSet);
+                antdpPermissionVO.setActionList(antdpActionVOS);
+                antdpPermissionVO.setActionEntitySet(antdpActionVOSet);
                 // 为 role 设置permission
-                antdpPermissionDTOArrayList.add(antdpPermissionDTO);
-                antdpRoleDTO.setPermissions(antdpPermissionDTOArrayList);
-                return antdpRoleDTO;
+                antdpPermissionVOArrayList.add(antdpPermissionVO);
+                antdpRoleVO.setPermissions(antdpPermissionVOArrayList);
+                return antdpRoleVO;
         }
 
         @RequestMapping("/user/info")
         @ResponseBody
-        public ANTDPCommonResponseDTO<ANTDPUserDTO> userInfo(HttpServletRequest request,HttpServletResponse response ) {
+        public ANTDPCommonResponseVO<ANTDPUserVO> userInfo(HttpServletRequest request, HttpServletResponse response ) {
 
                 // 声明初始化返回实体
-                ANTDPCommonResponseDTO antdpCommonResponseDTO = new ANTDPCommonResponseDTO();
+                ANTDPCommonResponseVO antdpCommonResponseVO = new ANTDPCommonResponseVO();
 
                 // 声明初始化用户实体
-                ANTDPUserDTO antdpUserDTO = new ANTDPUserDTO();
+                ANTDPUserVO antdpUserVO = new ANTDPUserVO();
 
-                antdpUserDTO.setId("4291d7da9005377ec9aec4a71ea837f");
-                antdpUserDTO.setName("elvin");
-                antdpUserDTO.setUsername("elvin");
-                antdpUserDTO.setPassword("");
-                antdpUserDTO.setAvatar("/avatar2.jpg");
+                antdpUserVO.setId("4291d7da9005377ec9aec4a71ea837f");
+                antdpUserVO.setName("elvin");
+                antdpUserVO.setUsername("elvin");
+                antdpUserVO.setPassword("");
+                antdpUserVO.setAvatar("/avatar2.jpg");
 
-                antdpUserDTO.setStatus("1");
-                antdpUserDTO.setLastLoginIp("27.154.74.117");
-                antdpUserDTO.setLastLoginTime("1534837621348");
-                antdpUserDTO.setCreatorId("admin");
-                antdpUserDTO.setCreateTime("1497160610259");
+                antdpUserVO.setStatus("1");
+                antdpUserVO.setLastLoginIp("27.154.74.117");
+                antdpUserVO.setLastLoginTime("1534837621348");
+                antdpUserVO.setCreatorId("admin");
+                antdpUserVO.setCreateTime("1497160610259");
 
-                antdpUserDTO.setMerchantCode("TLif2btpzg079h15bk");
-                antdpUserDTO.setDeleted("0");
-                antdpUserDTO.setRoleId("admin");
+                antdpUserVO.setMerchantCode("TLif2btpzg079h15bk");
+                antdpUserVO.setDeleted("0");
+                antdpUserVO.setRoleId("admin");
 
                 // 为 user 设置角色
-                antdpUserDTO.setRole(this.getRole( request, response ));
+                antdpUserVO.setRole(this.getRole( request, response ));
                 // 为返回设置 result
-                antdpCommonResponseDTO.setResult(antdpUserDTO);
-                return antdpCommonResponseDTO;
+                antdpCommonResponseVO.setResult(antdpUserVO);
+                return antdpCommonResponseVO;
         }
 
         @RequestMapping("/user/nav")
         @ResponseBody
-        public ANTDPCommonResponseDTO<ANTDPNavigationDTO>  userNav(HttpServletRequest request,HttpServletResponse response ) {
+        public ANTDPCommonResponseVO<ANTDPNavigationVO> userNav(HttpServletRequest request, HttpServletResponse response ) {
 
                 // 声明导航list
-                List<ANTDPNavigationDTO> antdpNavigationDTOS = new ArrayList<>();
+                List<ANTDPNavigationVO> antdpNavigationVOS = new ArrayList<>();
 
                 /*----------------------------------------------------------------*/
-                ANTDPNavigationDTO antdpNavigationDTO = new ANTDPNavigationDTO();
+                ANTDPNavigationVO antdpNavigationVO = new ANTDPNavigationVO();
 
-                antdpNavigationDTO.setId(7);
-                antdpNavigationDTO.setParentId(0);
-                antdpNavigationDTO.setName("workplace");
-                antdpNavigationDTO.setComponent("Workplace");
+                antdpNavigationVO.setId(7);
+                antdpNavigationVO.setParentId(0);
+                antdpNavigationVO.setName("workplace");
+                antdpNavigationVO.setComponent("Workplace");
 
-                MetaDTO metaDTO = new MetaDTO();
-                metaDTO.setShow(true);
-                metaDTO.setTitle("工作台");
-                metaDTO.setIcon("dashboard");
+                MetaVO metaVO = new MetaVO();
+                metaVO.setShow(true);
+                metaVO.setTitle("工作台");
+                metaVO.setIcon("dashboard");
 
 
-                antdpNavigationDTO.setMeta(metaDTO);
-                antdpNavigationDTOS.add(antdpNavigationDTO);
+                antdpNavigationVO.setMeta(metaVO);
+                antdpNavigationVOS.add(antdpNavigationVO);
 
                /*----------------------------------------------------------------*/
-                ANTDPNavigationDTO antdpNavigationDTOForFrame = new ANTDPNavigationDTO();
+                ANTDPNavigationVO antdpNavigationVOForFrame = new ANTDPNavigationVO();
 
-                antdpNavigationDTOForFrame.setId(8);
-                antdpNavigationDTOForFrame.setParentId(0);
-                antdpNavigationDTOForFrame.setName("frame");
-                antdpNavigationDTOForFrame.setRedirect("/workplace");
-                antdpNavigationDTOForFrame.setComponent("PageView");
+                antdpNavigationVOForFrame.setId(8);
+                antdpNavigationVOForFrame.setParentId(0);
+                antdpNavigationVOForFrame.setName("frame");
+                antdpNavigationVOForFrame.setRedirect("/workplace");
+                antdpNavigationVOForFrame.setComponent("PageView");
 
-                MetaDTO metaDTOForFrame = new MetaDTO();
-                metaDTOForFrame.setShow(true);
-                metaDTOForFrame.setTitle("框架管理");
-                metaDTOForFrame.setIcon("build");
+                MetaVO metaVOForFrame = new MetaVO();
+                metaVOForFrame.setShow(true);
+                metaVOForFrame.setTitle("框架管理");
+                metaVOForFrame.setIcon("build");
 
-                antdpNavigationDTOForFrame.setMeta(metaDTOForFrame);
-                antdpNavigationDTOS.add(antdpNavigationDTOForFrame);
-
-                /*----------------------------------------------------------------*/
-                ANTDPNavigationDTO antdpNavigationDTOForFrameTemplates = new ANTDPNavigationDTO();
-
-                antdpNavigationDTOForFrameTemplates.setId(9);
-                antdpNavigationDTOForFrameTemplates.setParentId(8);
-                antdpNavigationDTOForFrameTemplates.setName("/frame/templates/TemplatesList");
-                antdpNavigationDTOForFrameTemplates.setPath("/frame/templates/templates-list/:pageNo([1-9]\\d*)?");
-                antdpNavigationDTOForFrameTemplates.setComponent("frame/templates/TemplatesList");
-
-
-                MetaDTO metaDTOForFrameTemplates = new MetaDTO();
-                metaDTOForFrameTemplates.setShow(true);
-                metaDTOForFrameTemplates.setTitle("框架模板");
-                metaDTOForFrameTemplates.setIcon("snippets");
-
-                antdpNavigationDTOForFrameTemplates.setMeta(metaDTOForFrameTemplates);
-                antdpNavigationDTOS.add(antdpNavigationDTOForFrameTemplates);
+                antdpNavigationVOForFrame.setMeta(metaVOForFrame);
+                antdpNavigationVOS.add(antdpNavigationVOForFrame);
 
                 /*----------------------------------------------------------------*/
-                ANTDPNavigationDTO antdpNavigationDTOForFrameTemplatesRule = new ANTDPNavigationDTO();
+                ANTDPNavigationVO antdpNavigationVOForFrameTemplates = new ANTDPNavigationVO();
 
-                antdpNavigationDTOForFrameTemplatesRule.setId(10);
-                antdpNavigationDTOForFrameTemplatesRule.setParentId(8);
-                antdpNavigationDTOForFrameTemplatesRule.setName("/frame/templatesRule/TemplatesRuleList");
-                antdpNavigationDTOForFrameTemplatesRule.setPath("/frame/templates-rule/templates-rule-list/:pageNo([1-9]\\d*)?");
-                antdpNavigationDTOForFrameTemplatesRule.setComponent("frame/templatesRule/TemplatesRuleList");
+                antdpNavigationVOForFrameTemplates.setId(9);
+                antdpNavigationVOForFrameTemplates.setParentId(8);
+                antdpNavigationVOForFrameTemplates.setName("/frame/templates/TemplatesList");
+                antdpNavigationVOForFrameTemplates.setPath("/frame/templates/templates-list/:pageNo([1-9]\\d*)?");
+                antdpNavigationVOForFrameTemplates.setComponent("frame/templates/TemplatesList");
 
-                MetaDTO metaDTOForFrameTemplatesRule = new MetaDTO();
-                metaDTOForFrameTemplatesRule.setShow(true);
-                metaDTOForFrameTemplatesRule.setTitle("模板规则");
-                metaDTOForFrameTemplatesRule.setIcon("control");
 
-                antdpNavigationDTOForFrameTemplatesRule.setMeta(metaDTOForFrameTemplatesRule);
-                antdpNavigationDTOS.add(antdpNavigationDTOForFrameTemplatesRule);
+                MetaVO metaVOForFrameTemplates = new MetaVO();
+                metaVOForFrameTemplates.setShow(true);
+                metaVOForFrameTemplates.setTitle("框架模板");
+                metaVOForFrameTemplates.setIcon("snippets");
+
+                antdpNavigationVOForFrameTemplates.setMeta(metaVOForFrameTemplates);
+                antdpNavigationVOS.add(antdpNavigationVOForFrameTemplates);
+
+                /*----------------------------------------------------------------*/
+                ANTDPNavigationVO antdpNavigationVOForFrameTemplatesRule = new ANTDPNavigationVO();
+
+                antdpNavigationVOForFrameTemplatesRule.setId(10);
+                antdpNavigationVOForFrameTemplatesRule.setParentId(8);
+                antdpNavigationVOForFrameTemplatesRule.setName("/frame/templatesRule/TemplatesRuleList");
+                antdpNavigationVOForFrameTemplatesRule.setPath("/frame/templates-rule/templates-rule-list/:pageNo([1-9]\\d*)?");
+                antdpNavigationVOForFrameTemplatesRule.setComponent("frame/templatesRule/TemplatesRuleList");
+
+                MetaVO metaVOForFrameTemplatesRule = new MetaVO();
+                metaVOForFrameTemplatesRule.setShow(true);
+                metaVOForFrameTemplatesRule.setTitle("模板规则");
+                metaVOForFrameTemplatesRule.setIcon("control");
+
+                antdpNavigationVOForFrameTemplatesRule.setMeta(metaVOForFrameTemplatesRule);
+                antdpNavigationVOS.add(antdpNavigationVOForFrameTemplatesRule);
 
 
                 /*----------------------------------------------------------------*/
-                ANTDPNavigationDTO antdpNavigationDTOForGen = new ANTDPNavigationDTO();
+                ANTDPNavigationVO antdpNavigationVOForGen = new ANTDPNavigationVO();
 
-                antdpNavigationDTOForGen.setId(11);
-                antdpNavigationDTOForGen.setParentId(0);
-                antdpNavigationDTOForGen.setName("gen");
-                antdpNavigationDTOForGen.setRedirect("/workplace");
-                antdpNavigationDTOForGen.setComponent("PageView");
+                antdpNavigationVOForGen.setId(11);
+                antdpNavigationVOForGen.setParentId(0);
+                antdpNavigationVOForGen.setName("gen");
+                antdpNavigationVOForGen.setRedirect("/workplace");
+                antdpNavigationVOForGen.setComponent("PageView");
 
-                MetaDTO metaDTOForGen = new MetaDTO();
-                metaDTOForGen.setShow(true);
-                metaDTOForGen.setTitle("逆向管理");
-                metaDTOForGen.setIcon("interaction");
+                MetaVO metaVOForGen = new MetaVO();
+                metaVOForGen.setShow(true);
+                metaVOForGen.setTitle("逆向管理");
+                metaVOForGen.setIcon("interaction");
 
-                antdpNavigationDTOForGen.setMeta(metaDTOForGen);
-                antdpNavigationDTOS.add(antdpNavigationDTOForGen);
-
-                /*----------------------------------------------------------------*/
+                antdpNavigationVOForGen.setMeta(metaVOForGen);
+                antdpNavigationVOS.add(antdpNavigationVOForGen);
 
                 /*----------------------------------------------------------------*/
-                ANTDPNavigationDTO antdpNavigationDTO1 = new ANTDPNavigationDTO();
-
-                antdpNavigationDTO1.setId(10011);
-                antdpNavigationDTO1.setParentId(11);
-                antdpNavigationDTO1.setName("/gen/datasources/DatasourcesList");
-                antdpNavigationDTO1.setPath("/gen/datasources/datasources-list/:pageNo([1-9]\\d*)?");
-                antdpNavigationDTO1.setComponent("gen/datasources/DatasourcesList");
-
-                MetaDTO metaDTO1 = new MetaDTO();
-                metaDTO1.setShow(true);
-                metaDTO1.setTitle("连接管理");
-                metaDTO1.setIcon("database");
-
-                antdpNavigationDTO1.setMeta(metaDTO1);
-                antdpNavigationDTOS.add(antdpNavigationDTO1);
 
                 /*----------------------------------------------------------------*/
-                ANTDPNavigationDTO antdpNavigationDTO2 = new ANTDPNavigationDTO();
+                ANTDPNavigationVO antdpNavigationVO1 = new ANTDPNavigationVO();
 
-                antdpNavigationDTO2.setId(10012);
-                antdpNavigationDTO2.setParentId(11);
-                antdpNavigationDTO2.setName("/gen/templates/TemplatesList");
-                antdpNavigationDTO2.setPath("/gen/templates/templates-list/:pageNo([1-9]\\d*)?");
-                antdpNavigationDTO2.setComponent("gen/templates/TemplatesList");
+                antdpNavigationVO1.setId(10011);
+                antdpNavigationVO1.setParentId(11);
+                antdpNavigationVO1.setName("/gen/datasources/DatasourcesList");
+                antdpNavigationVO1.setPath("/gen/datasources/datasources-list/:pageNo([1-9]\\d*)?");
+                antdpNavigationVO1.setComponent("gen/datasources/DatasourcesList");
 
-                MetaDTO metaDTO2 = new MetaDTO();
-                metaDTO2.setShow(true);
-                metaDTO2.setTitle("代码模板");
-                metaDTO2.setIcon("code");
+                MetaVO metaVO1 = new MetaVO();
+                metaVO1.setShow(true);
+                metaVO1.setTitle("连接管理");
+                metaVO1.setIcon("database");
 
-                antdpNavigationDTO2.setMeta(metaDTO2);
-                antdpNavigationDTOS.add(antdpNavigationDTO2);
-
-                /*----------------------------------------------------------------*/
-                ANTDPNavigationDTO antdpNavigationDTO3 = new ANTDPNavigationDTO();
-
-                antdpNavigationDTO3.setId(10013);
-                antdpNavigationDTO3.setParentId(11);
-                antdpNavigationDTO3.setName("/gen/configures/ConfiguresList");
-                antdpNavigationDTO3.setPath("/gen/configures/configures-list/:pageNo([1-9]\\d*)?");
-                antdpNavigationDTO3.setComponent("gen/configures/ConfiguresList");
-
-                MetaDTO metaDTO3 = new MetaDTO();
-                metaDTO3.setShow(true);
-                metaDTO3.setTitle("配置管理");
-                metaDTO3.setIcon("setting");
-
-                antdpNavigationDTO3.setMeta(metaDTO3);
-                antdpNavigationDTOS.add(antdpNavigationDTO3);
+                antdpNavigationVO1.setMeta(metaVO1);
+                antdpNavigationVOS.add(antdpNavigationVO1);
 
                 /*----------------------------------------------------------------*/
-                ANTDPNavigationDTO antdpNavigationDTO4 = new ANTDPNavigationDTO();
+                ANTDPNavigationVO antdpNavigationVO2 = new ANTDPNavigationVO();
 
-                antdpNavigationDTO4.setId(10014);
-                antdpNavigationDTO4.setParentId(11);
-                antdpNavigationDTO4.setName("/gen/configuresExecute/ConfiguresExecuteList");
-                antdpNavigationDTO4.setPath("/gen/configures-execute/configures-execute-list/:pageNo([1-9]\\d*)?");
-                antdpNavigationDTO4.setComponent("gen/configuresExecute/ConfiguresExecuteList");
+                antdpNavigationVO2.setId(10012);
+                antdpNavigationVO2.setParentId(11);
+                antdpNavigationVO2.setName("/gen/templates/TemplatesList");
+                antdpNavigationVO2.setPath("/gen/templates/templates-list/:pageNo([1-9]\\d*)?");
+                antdpNavigationVO2.setComponent("gen/templates/TemplatesList");
 
-                MetaDTO metaDTO4 = new MetaDTO();
-                metaDTO4.setShow(true);
-                metaDTO4.setTitle("日志管理");
-                metaDTO4.setIcon("switcher");
+                MetaVO metaVO2 = new MetaVO();
+                metaVO2.setShow(true);
+                metaVO2.setTitle("代码模板");
+                metaVO2.setIcon("code");
 
-                antdpNavigationDTO4.setMeta(metaDTO4);
-                antdpNavigationDTOS.add(antdpNavigationDTO4);
+                antdpNavigationVO2.setMeta(metaVO2);
+                antdpNavigationVOS.add(antdpNavigationVO2);
+
+                /*----------------------------------------------------------------*/
+                ANTDPNavigationVO antdpNavigationVO3 = new ANTDPNavigationVO();
+
+                antdpNavigationVO3.setId(10013);
+                antdpNavigationVO3.setParentId(11);
+                antdpNavigationVO3.setName("/gen/configures/ConfiguresList");
+                antdpNavigationVO3.setPath("/gen/configures/configures-list/:pageNo([1-9]\\d*)?");
+                antdpNavigationVO3.setComponent("gen/configures/ConfiguresList");
+
+                MetaVO metaVO3 = new MetaVO();
+                metaVO3.setShow(true);
+                metaVO3.setTitle("配置管理");
+                metaVO3.setIcon("setting");
+
+                antdpNavigationVO3.setMeta(metaVO3);
+                antdpNavigationVOS.add(antdpNavigationVO3);
+
+                /*----------------------------------------------------------------*/
+                ANTDPNavigationVO antdpNavigationVO4 = new ANTDPNavigationVO();
+
+                antdpNavigationVO4.setId(10014);
+                antdpNavigationVO4.setParentId(11);
+                antdpNavigationVO4.setName("/gen/configuresExecute/ConfiguresExecuteList");
+                antdpNavigationVO4.setPath("/gen/configures-execute/configures-execute-list/:pageNo([1-9]\\d*)?");
+                antdpNavigationVO4.setComponent("gen/configuresExecute/ConfiguresExecuteList");
+
+                MetaVO metaVO4 = new MetaVO();
+                metaVO4.setShow(true);
+                metaVO4.setTitle("日志管理");
+                metaVO4.setIcon("switcher");
+
+                antdpNavigationVO4.setMeta(metaVO4);
+                antdpNavigationVOS.add(antdpNavigationVO4);
 
                 // 组织返回
-                ANTDPCommonResponseDTO antdpCommonResponseDTO = new ANTDPCommonResponseDTO();
-                antdpCommonResponseDTO.setResult(antdpNavigationDTOS);
-                return antdpCommonResponseDTO;
+                ANTDPCommonResponseVO antdpCommonResponseVO = new ANTDPCommonResponseVO();
+                antdpCommonResponseVO.setResult(antdpNavigationVOS);
+                return antdpCommonResponseVO;
         }
 }
