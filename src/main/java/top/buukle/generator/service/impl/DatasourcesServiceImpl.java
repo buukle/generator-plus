@@ -24,7 +24,6 @@ import top.buukle.generator.service.DatasourcesService;
 import top.buukle.generator.service.constants.SystemReturnEnum;
 import top.buukle.generator.service.exception.SystemException;
 import top.buukle.generator.utils.DateUtil;
-import top.buukle.generator.utils.JsonUtil;
 import top.buukle.generator.utils.StringUtil;
 
 import java.sql.Connection;
@@ -55,7 +54,8 @@ public class DatasourcesServiceImpl extends ServiceImpl<DatasourcesMapper, Datas
         Datasources datasources = new Datasources();
         BeanUtils.copyProperties(datasourcesUpdateDTO,datasources);
         // 初始字段
-        this.saveInit(datasources);
+        this.savePre(datasources);
+        datasources.setStatus(DatasourcesEnums.status.PUBLISHED.value());
         // 落库
         boolean success = super.save(datasources);
         // 返回
@@ -99,7 +99,7 @@ public class DatasourcesServiceImpl extends ServiceImpl<DatasourcesMapper, Datas
         // 转换DTO
         Datasources datasources = new Datasources();
         BeanUtils.copyProperties(datasourcesUpdateDTO,datasources);
-        this.updateInit(datasources);
+        this.updatePre(datasources);
         datasources.setStatus(StatusConstants.DELETED);
         // 落库
         boolean success = super.updateById(datasources);
@@ -125,7 +125,7 @@ public class DatasourcesServiceImpl extends ServiceImpl<DatasourcesMapper, Datas
         Datasources datasources = new Datasources();
         BeanUtils.copyProperties(datasourcesUpdateDTO,datasources);
         // 更新字段
-        this.updateInit(datasources);
+        this.updatePre(datasources);
         // 落库
         boolean success = super.updateById(datasources);
         // 返回
@@ -213,7 +213,7 @@ public class DatasourcesServiceImpl extends ServiceImpl<DatasourcesMapper, Datas
      * @Date 2021/9/2
      */
     @Override
-    public void saveInit(Datasources datasources) {
+    public void savePre(Datasources datasources) {
         Date date = new Date();
 
         UserDO operator = SessionUtils.getOperator();
@@ -226,7 +226,7 @@ public class DatasourcesServiceImpl extends ServiceImpl<DatasourcesMapper, Datas
 
         datasources.setModifier(operator.getUsername());
         datasources.setModifierCode(operator.getUserId());
-        datasources.setStatus(DatasourcesEnums.status.PUBLISHED.value());
+        datasources.setStatus(DatasourcesEnums.status.INIT.value());
 
     }
 
@@ -238,7 +238,7 @@ public class DatasourcesServiceImpl extends ServiceImpl<DatasourcesMapper, Datas
      * @Date 2021/9/2
      */
     @Override
-    public void updateInit(Datasources datasources) {
+    public void updatePre(Datasources datasources) {
 
         Date date = new Date();
 

@@ -4,6 +4,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -35,21 +36,21 @@ public class DatasourcesController {
     @Autowired
     private DatasourcesService<Datasources,DatasourcesQueryVO,DatasourcesQueryDTO, DatasourcesUpdateDTO> datasourcesService;
 
-    @RequestMapping("/add")
+    @PostMapping("/add")
     @ResponseBody
     @ApiOperation(value = "增", httpMethod = "POST")
     public CommonResponse<Boolean> add(@RequestBody CommonRequest<DatasourcesUpdateDTO> commonRequest) throws Exception {
         return datasourcesService.add(commonRequest);
     }
 
-    @RequestMapping("/deleteById")
+    @PostMapping("/deleteById")
     @ResponseBody
     @ApiOperation(value = "删", httpMethod = "POST")
     public CommonResponse<Boolean> deleteById(@RequestBody CommonRequest<DatasourcesUpdateDTO> commonRequest) throws IOException {
         return datasourcesService.deleteById(commonRequest);
     }
 
-    @RequestMapping("/updateById")
+    @PostMapping("/updateById")
     @ResponseBody
     @ApiOperation(value = "改", httpMethod = "POST")
     public CommonResponse updateById(@RequestBody CommonRequest<DatasourcesUpdateDTO> commonRequest) throws Exception {
@@ -57,21 +58,21 @@ public class DatasourcesController {
     }
 
 
-    @RequestMapping("/addOrEdit")
+    @PostMapping("/addOrEdit")
     @ResponseBody
     @ApiOperation(value = "增or改", httpMethod = "POST")
     public CommonResponse<Boolean> addOrEdit(@RequestBody CommonRequest<DatasourcesUpdateDTO> commonRequest) throws Exception {
         return datasourcesService.addOrEdit(commonRequest);
     }
 
-    @RequestMapping("/getById")
+    @PostMapping("/getById")
     @ResponseBody
     @ApiOperation(value = "查 - 单条", httpMethod = "POST")
     public CommonResponse<DatasourcesQueryVO> getById(@RequestBody CommonRequest<DatasourcesQueryDTO> commonRequest) {
         return datasourcesService.getById(commonRequest);
     }
 
-    @RequestMapping("/getPage")
+    @PostMapping("/getPage")
     @ResponseBody
     @ApiOperation(value = "查 - 分页", httpMethod = "POST")
     public ANTDPPageResponseVO<Datasources> getPage(@RequestBody CommonRequest<DatasourcesQueryDTO> commonRequest) throws Exception {
@@ -80,7 +81,7 @@ public class DatasourcesController {
 
     /*------------------------------------------------------↑↑↑↑通用可定制代码↑↑↑↑-------------------------------------------------------------*/
 
-    @RequestMapping("/testLink")
+    @PostMapping("/testLink")
     @ResponseBody
     @ApiOperation(value = "测试数据源链接", httpMethod = "POST")
     public CommonResponse<Boolean> testLink(@RequestBody CommonRequest<DatasourcesUpdateDTO> commonRequest) throws Exception {
