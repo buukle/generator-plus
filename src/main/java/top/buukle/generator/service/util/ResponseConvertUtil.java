@@ -17,15 +17,12 @@ import top.buukle.generator.entity.vo.antd.ResultVO;
 import top.buukle.generator.utils.JsonUtil;
 
 /**
- * @description 〈〉
+ * @description 〈将分页查询包赚转换为 ant-design 默认的模型〉
  * @author elvin
  * @create 2021/7/26
  * @since 1.0.0
  */
 public class ResponseConvertUtil {
-
-    private final static BaseLogger LOGGER = BaseLogger.getLogger(ResponseConvertUtil.class);
-
 
     public static ANTDPPageResponseVO convert(PageResponse page) {
 
@@ -43,7 +40,6 @@ public class ResponseConvertUtil {
         antdpCommonResponseDTO.setResult(resultVO);
         antdpCommonResponseDTO.setTimestamp(System.currentTimeMillis());
 
-        LOGGER.info(JsonUtil.toJSONString(antdpCommonResponseDTO));
         return antdpCommonResponseDTO;
     }
 }
