@@ -559,12 +559,8 @@ public class ConfiguresServiceImpl extends ServiceImpl<ConfiguresMapper, Configu
             String generatedFileStoreRootPath = SystemUtil.getStoreDir() + StringUtil.BACKSLASH +  genBatchUuid + TARGET_GENERATED_FILE;
             // 初始化最终生成文件的服务端存储路径集合
             Set<String> generatedFileStorePathSet = new HashSet<>();
-            // 处理工程模块路径
-            String projectModuleName = configures.getBak01();
-            projectModuleName = StringUtil.isEmpty(projectModuleName) ? StringUtil.EMPTY : projectModuleName + StringUtil.BACKSLASH;
             // 加载自定义模板
             for (String tempTemplateFilePath : tempTemplateFileMap.keySet()) {
-                String finalProjectModuleName = projectModuleName;
                 fileOutConfigList.add(new FileOutConfig(FILE_PREFIX + tempTemplateFilePath) {
 
                     @Override
@@ -583,7 +579,7 @@ public class ConfiguresServiceImpl extends ServiceImpl<ConfiguresMapper, Configu
                             myTableInfo.setPackageInfo(templatesToGen.getPackageInfo());
                         }
                         // 处理文件path
-                        String generatedFileStorePath = generatedFileStoreRootPath + finalProjectModuleName + projectPath + filename;
+                        String generatedFileStorePath = generatedFileStoreRootPath  + projectPath + filename;
                         generatedFileStorePathSet.add(generatedFileStorePath);
                         return generatedFileStorePath;
                     }
