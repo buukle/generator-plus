@@ -3,31 +3,31 @@
 <settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
           xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
-    <localRepository>D:\file\maven\repository\buukle-rdc</localRepository>
+    <localRepository>D:\file\maven\repository\buukle-rdc.top</localRepository>
     <mirrors>
         <mirror>
             <id>buukle-rdc-releases</id>
             <mirrorOf>central</mirrorOf>
             <name>buukle-rdc-releases</name>
-            <url>https://repo.rdc.aliyun.com/repository/130115-release-50cN5d/</url>
+            <url>https://packages.aliyun.com/maven/repository/2133939-release-DXsbNt/</url>
         </mirror>
         <mirror>
             <id>buukle-rdc-snapshots</id>
             <mirrorOf>central</mirrorOf>
-            <name>buukle-rdc-releases</name>
-            <url>https://repo.rdc.aliyun.com/repository/130115-release-50cN5d/</url>
+            <name>buukle-rdc-snapshots</name>
+            <url>https://packages.aliyun.com/maven/repository/2133939-snapshot-qS3yZf/</url>
         </mirror>
     </mirrors>
     <servers>
         <server>
             <id>buukle-rdc-releases</id>
-            <username>myaH8b</username>
-            <password>XU1TCB1qSc</password>
+            <username>612e2f7c4e5db15d526e1661</username>
+            <password>DY]23U059P0B</password>
         </server>
         <server>
             <id>buukle-rdc-snapshots</id>
-            <username>myaH8b</username>
-            <password>XU1TCB1qSc</password>
+            <username>612e2f7c4e5db15d526e1661</username>
+            <password>DY]23U059P0B</password>
         </server>
     </servers>
     <profiles>
@@ -36,7 +36,7 @@
             <repositories>
                 <repository>
                     <id>buukle-rdc-releases</id>
-                    <url>https://repo.rdc.aliyun.com/repository/130115-release-50cN5d/</url>
+                    <url>https://packages.aliyun.com/maven/repository/2133939-release-DXsbNt/</url>
                     <releases>
                         <enabled>true</enabled>
                     </releases>
@@ -46,7 +46,7 @@
                 </repository>
                 <repository>
                     <id>buukle-rdc-snapshots</id>
-                    <url>https://repo.rdc.aliyun.com/repository/130115-snapshot-Ts4Eoc/</url>
+                    <url>https://packages.aliyun.com/maven/repository/2133939-snapshot-qS3yZf/</url>
                     <releases>
                         <enabled>false</enabled>
                     </releases>
@@ -58,7 +58,7 @@
             <pluginRepositories>
                 <pluginRepository>
                     <id>buukle-rdc-releases</id>
-                    <url>https://repo.rdc.aliyun.com/repository/130115-release-50cN5d/</url>
+                    <url>https://packages.aliyun.com/maven/repository/2133939-release-DXsbNt/</url>
                     <releases>
                         <enabled>true</enabled>
                     </releases>
@@ -68,7 +68,7 @@
                 </pluginRepository>
                 <pluginRepository>
                     <id>buukle-rdc-snapshots</id>
-                    <url>https://repo.rdc.aliyun.com/repository/130115-snapshot-Ts4Eoc/</url>
+                    <url>https://packages.aliyun.com/maven/repository/2133939-snapshot-qS3yZf/</url>
                     <releases>
                         <enabled>false</enabled>
                     </releases>
