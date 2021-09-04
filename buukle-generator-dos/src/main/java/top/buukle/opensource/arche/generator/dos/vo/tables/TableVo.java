@@ -8,9 +8,7 @@
  * <author>          <time>          <version>          <desc>
  * 作者姓名           修改时间           版本号              描述
  */
-package top.buukle.opensource.arche.generator.service.vo.antd;
-
-import lombok.Data;
+package top.buukle.opensource.arche.generator.dos.vo.tables;
 
 /**
  * @description 〈〉
@@ -18,7 +16,6 @@ import lombok.Data;
  * @create 2021/5/13
  * @since 1.0.0
  */
-@Data
 public class TableVo {
 
     private String name;
@@ -29,5 +26,21 @@ public class TableVo {
         this.checked = checked;
     }
     public TableVo( ) {
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public boolean isChecked() {
+        return checked;
+    }
+
+    public void setChecked(boolean checked) {
+        this.checked = checked;
     }
 }

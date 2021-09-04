@@ -12,13 +12,15 @@ import top.buukle.commons.call.CommonRequest;
 import top.buukle.commons.call.CommonResponse;
 import top.buukle.opensource.arche.generator.dos.dto.datasources.DatasourcesQueryDTO;
 import top.buukle.opensource.arche.generator.dos.dto.datasources.DatasourcesUpdateDTO;
-import top.buukle.opensource.arche.generator.dos.vo.datasources.DatasourcesQueryVO;
+import top.buukle.opensource.arche.generator.dos.vo.datasources.DatasourcesVO;
+import top.buukle.opensource.arche.generator.dos.vo.tables.TableVo;
 import top.buukle.opensource.arche.generator.entity.Datasources;
 import top.buukle.opensource.arche.generator.service.DatasourcesService;
 import top.buukle.opensource.arche.generator.service.util.ResponseConvertUtil;
 import top.buukle.opensource.arche.generator.service.vo.antd.ANTDPPageResponseVO;
 
 import java.io.IOException;
+import java.util.List;
 
 /**
  * @author elvin
@@ -30,26 +32,26 @@ import java.io.IOException;
 public class DatasourcesController {
 
     @Autowired
-    private DatasourcesService<Datasources, DatasourcesQueryVO, DatasourcesQueryDTO, DatasourcesUpdateDTO> datasourcesService;
+    private DatasourcesService<Datasources, DatasourcesVO, DatasourcesQueryDTO, DatasourcesUpdateDTO> datasourcesService;
 
     @PostMapping("/add")
     @ResponseBody
     @ApiOperation(value = "增", httpMethod = "POST")
-    public CommonResponse<Boolean> add(@RequestBody CommonRequest<DatasourcesUpdateDTO> commonRequest) throws Exception {
+    public CommonResponse<DatasourcesVO> add(@RequestBody CommonRequest<DatasourcesUpdateDTO> commonRequest) throws Exception {
         return datasourcesService.add(commonRequest);
     }
 
     @PostMapping("/deleteById")
     @ResponseBody
     @ApiOperation(value = "删", httpMethod = "POST")
-    public CommonResponse<Boolean> deleteById(@RequestBody CommonRequest<DatasourcesUpdateDTO> commonRequest) throws IOException {
+    public CommonResponse<DatasourcesVO> deleteById(@RequestBody CommonRequest<DatasourcesUpdateDTO> commonRequest) throws IOException {
         return datasourcesService.deleteById(commonRequest);
     }
 
     @PostMapping("/updateById")
     @ResponseBody
     @ApiOperation(value = "改", httpMethod = "POST")
-    public CommonResponse updateById(@RequestBody CommonRequest<DatasourcesUpdateDTO> commonRequest) throws Exception {
+    public CommonResponse<DatasourcesVO> updateById(@RequestBody CommonRequest<DatasourcesUpdateDTO> commonRequest) throws Exception {
         return datasourcesService.updateById(commonRequest);
     }
 
@@ -57,14 +59,14 @@ public class DatasourcesController {
     @PostMapping("/addOrEdit")
     @ResponseBody
     @ApiOperation(value = "增or改", httpMethod = "POST")
-    public CommonResponse<Boolean> addOrEdit(@RequestBody CommonRequest<DatasourcesUpdateDTO> commonRequest) throws Exception {
+    public CommonResponse<DatasourcesVO> addOrEdit(@RequestBody CommonRequest<DatasourcesUpdateDTO> commonRequest) throws Exception {
         return datasourcesService.addOrEdit(commonRequest);
     }
 
     @PostMapping("/getById")
     @ResponseBody
     @ApiOperation(value = "查 - 单条", httpMethod = "POST")
-    public CommonResponse<DatasourcesQueryVO> getById(@RequestBody CommonRequest<DatasourcesQueryDTO> commonRequest) {
+    public CommonResponse<DatasourcesVO> getById(@RequestBody CommonRequest<DatasourcesQueryDTO> commonRequest) {
         return datasourcesService.getById(commonRequest);
     }
 
@@ -82,6 +84,20 @@ public class DatasourcesController {
     @ApiOperation(value = "测试数据源链接", httpMethod = "POST")
     public CommonResponse<Boolean> testLink(@RequestBody CommonRequest<DatasourcesUpdateDTO> commonRequest) throws Exception {
         return datasourcesService.testLink(commonRequest);
+    }
+
+    @PostMapping("/getDatasourcesForConfigure")
+    @ResponseBody
+    @ApiOperation(value = "为配置详情页获取下拉列表", httpMethod = "POST")
+    public CommonResponse<List<DatasourcesVO>> getDatasourcesForConfigure(@RequestBody CommonRequest<DatasourcesQueryDTO> commonRequest) throws Exception {
+        return datasourcesService.getDatasourcesForConfigure(commonRequest);
+    }
+
+    @PostMapping("/getTablesListById")
+    @ResponseBody
+    @ApiOperation(value = "获取某个id数据源下的表", httpMethod = "POST")
+    public CommonResponse<List<TableVo>> getTablesListById(@RequestBody CommonRequest<DatasourcesQueryDTO> commonRequest) throws Exception {
+        return datasourcesService.getTablesListById(commonRequest);
     }
 
 }

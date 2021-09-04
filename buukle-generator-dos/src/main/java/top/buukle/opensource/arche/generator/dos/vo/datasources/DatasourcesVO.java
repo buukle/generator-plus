@@ -12,7 +12,7 @@ import top.buukle.commons.mvc.vo.CommonVO;
 */
 @Data
 @ApiModel(value = "连接 - 查询响应")
-public class DatasourcesQueryVO extends CommonVO {
+public class DatasourcesVO extends CommonVO {
 
     /**
      * 主键id

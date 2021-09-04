@@ -14,10 +14,11 @@ import top.buukle.commons.session.UserDO;
 import top.buukle.commons.status.StatusConstants;
 import top.buukle.opensource.arche.generator.dao.DatasourcesMapper;
 import top.buukle.opensource.arche.generator.dos.enums.DatasourcesEnums;
+import top.buukle.opensource.arche.generator.dos.vo.tables.TableVo;
 import top.buukle.opensource.arche.generator.entity.Datasources;
 import top.buukle.opensource.arche.generator.dos.dto.datasources.DatasourcesQueryDTO;
 import top.buukle.opensource.arche.generator.dos.dto.datasources.DatasourcesUpdateDTO;
-import top.buukle.opensource.arche.generator.dos.vo.datasources.DatasourcesQueryVO;
+import top.buukle.opensource.arche.generator.dos.vo.datasources.DatasourcesVO;
 import top.buukle.opensource.arche.generator.service.util.DataBaseUtil;
 import top.buukle.opensource.arche.generator.service.util.enums.DatabaseType;
 import top.buukle.opensource.arche.generator.service.DatasourcesService;
@@ -37,7 +38,7 @@ import java.util.List;
 * @description DatasourcesService实现类
 */
 @Service("datasourcesService")
-public class DatasourcesServiceImpl extends ServiceImpl<DatasourcesMapper, Datasources> implements DatasourcesService<Datasources, DatasourcesQueryVO, DatasourcesQueryDTO, DatasourcesUpdateDTO>{
+public class DatasourcesServiceImpl extends ServiceImpl<DatasourcesMapper, Datasources> implements DatasourcesService<Datasources, DatasourcesVO, DatasourcesQueryDTO, DatasourcesUpdateDTO>{
 
 
     /**
@@ -48,7 +49,7 @@ public class DatasourcesServiceImpl extends ServiceImpl<DatasourcesMapper, Datas
      * @Date 2021/9/2
      */
     @Override
-    public CommonResponse<Boolean> add(CommonRequest<DatasourcesUpdateDTO> commonRequest) {
+    public CommonResponse<DatasourcesVO> add(CommonRequest<DatasourcesUpdateDTO> commonRequest) {
         DatasourcesUpdateDTO datasourcesUpdateDTO = commonRequest.getBody();
         // 转换DTO
         Datasources datasources = new Datasources();
@@ -57,9 +58,11 @@ public class DatasourcesServiceImpl extends ServiceImpl<DatasourcesMapper, Datas
         this.savePre(datasources);
         datasources.setStatus(DatasourcesEnums.status.PUBLISHED.value());
         // 落库
-        boolean success = super.save(datasources);
+        super.save(datasources);
         // 返回
-        return new CommonResponse.Builder().buildBoolean(success);
+        DatasourcesVO datasourcesVO = new DatasourcesVO();
+        BeanUtils.copyProperties(datasources, datasourcesVO);
+        return new CommonResponse.Builder().buildSuccess(datasourcesVO);
     }
 
     /**
@@ -70,7 +73,7 @@ public class DatasourcesServiceImpl extends ServiceImpl<DatasourcesMapper, Datas
      * @Date 2021/9/2
      */
     @Override
-    public CommonResponse<Boolean> addOrEdit(CommonRequest<DatasourcesUpdateDTO> commonRequest) {
+    public CommonResponse<DatasourcesVO> addOrEdit(CommonRequest<DatasourcesUpdateDTO> commonRequest) {
         DatasourcesUpdateDTO datasourcesUpdateDTO = commonRequest.getBody();
         // 增
         if(datasourcesUpdateDTO.getId() == null){
@@ -90,7 +93,7 @@ public class DatasourcesServiceImpl extends ServiceImpl<DatasourcesMapper, Datas
      * @Date 2021/9/2
      */
     @Override
-    public CommonResponse<Boolean> deleteById(CommonRequest<DatasourcesUpdateDTO> commonRequest) {
+    public CommonResponse<DatasourcesVO> deleteById(CommonRequest<DatasourcesUpdateDTO> commonRequest) {
         DatasourcesUpdateDTO datasourcesUpdateDTO = commonRequest.getBody();
         // 验证参数
         if(datasourcesUpdateDTO.getId() == null){
@@ -102,9 +105,11 @@ public class DatasourcesServiceImpl extends ServiceImpl<DatasourcesMapper, Datas
         this.updatePre(datasources);
         datasources.setStatus(StatusConstants.DELETED);
         // 落库
-        boolean success = super.updateById(datasources);
+        super.updateById(datasources);
         // 返回
-        return new CommonResponse.Builder().buildBoolean(success);
+        DatasourcesVO datasourcesVO = new DatasourcesVO();
+        BeanUtils.copyProperties(datasources, datasourcesVO);
+        return new CommonResponse.Builder().buildSuccess(datasourcesVO);
     }
 
     /**
@@ -115,7 +120,7 @@ public class DatasourcesServiceImpl extends ServiceImpl<DatasourcesMapper, Datas
      * @Date 2021/9/2
      */
     @Override
-    public CommonResponse<Boolean> updateById(CommonRequest<DatasourcesUpdateDTO> commonRequest) {
+    public CommonResponse<DatasourcesVO> updateById(CommonRequest<DatasourcesUpdateDTO> commonRequest) {
         DatasourcesUpdateDTO datasourcesUpdateDTO = commonRequest.getBody();
         // 验证参数
         if(datasourcesUpdateDTO.getId() == null){
@@ -127,9 +132,11 @@ public class DatasourcesServiceImpl extends ServiceImpl<DatasourcesMapper, Datas
         // 更新字段
         this.updatePre(datasources);
         // 落库
-        boolean success = super.updateById(datasources);
+        super.updateById(datasources);
         // 返回
-        return new CommonResponse.Builder().buildBoolean(success);
+        DatasourcesVO datasourcesVO = new DatasourcesVO();
+        BeanUtils.copyProperties(datasources, datasourcesVO);
+        return new CommonResponse.Builder().buildSuccess(datasourcesVO);
     }
 
     /**
@@ -140,7 +147,7 @@ public class DatasourcesServiceImpl extends ServiceImpl<DatasourcesMapper, Datas
      * @Date 2021/9/2
      */
     @Override
-    public CommonResponse<DatasourcesQueryVO> getById(CommonRequest<DatasourcesQueryDTO> commonRequest) {
+    public CommonResponse<DatasourcesVO> getById(CommonRequest<DatasourcesQueryDTO> commonRequest) {
         DatasourcesQueryDTO datasourcesQueryDTO = commonRequest.getBody();
         // 验证参数
         if(datasourcesQueryDTO.getId() == null){
@@ -149,9 +156,9 @@ public class DatasourcesServiceImpl extends ServiceImpl<DatasourcesMapper, Datas
         // 执行查询
         Datasources one = super.getById(datasourcesQueryDTO.getId());
         // 转换响应
-        DatasourcesQueryVO datasourcesQueryVO = new DatasourcesQueryVO();
-        BeanUtils.copyProperties(one,datasourcesQueryVO);
-        CommonResponse<DatasourcesQueryVO> datasourcesQueryVOCommonResponse = new CommonResponse.Builder().buildSuccess(datasourcesQueryVO);
+        DatasourcesVO datasourcesVO = new DatasourcesVO();
+        BeanUtils.copyProperties(one, datasourcesVO);
+        CommonResponse<DatasourcesVO> datasourcesQueryVOCommonResponse = new CommonResponse.Builder().buildSuccess(datasourcesVO);
         return datasourcesQueryVOCommonResponse;
     }
 
@@ -163,7 +170,7 @@ public class DatasourcesServiceImpl extends ServiceImpl<DatasourcesMapper, Datas
      * @Date 2021/9/2
      */
     @Override
-    public PageResponse<DatasourcesQueryVO> getPage(CommonRequest<DatasourcesQueryDTO> commonRequest) {
+    public PageResponse<DatasourcesVO> getPage(CommonRequest<DatasourcesQueryDTO> commonRequest) {
         // 转换DTO
         DatasourcesQueryDTO datasourcesQueryDTO = commonRequest.getBody();
         Datasources datasources = new Datasources();
@@ -175,11 +182,11 @@ public class DatasourcesServiceImpl extends ServiceImpl<DatasourcesMapper, Datas
         List<Datasources> list = super.list(queryWrapper);
         PageInfo<Datasources> pageInfo = new PageInfo<>(list);
         // 分页
-        List<DatasourcesQueryVO> queryVOList = new ArrayList<>();
+        List<DatasourcesVO> queryVOList = new ArrayList<>();
         for (Datasources datasourcesDB : list) {
-            DatasourcesQueryVO datasourcesQueryVO = new DatasourcesQueryVO();
-            BeanUtils.copyProperties(datasourcesDB, datasourcesQueryVO);
-            queryVOList.add(datasourcesQueryVO);
+            DatasourcesVO datasourcesVO = new DatasourcesVO();
+            BeanUtils.copyProperties(datasourcesDB, datasourcesVO);
+            queryVOList.add(datasourcesVO);
         }
         return new PageResponse.Builder().build(queryVOList, pageInfo.getPageNum(), pageInfo.getPageSize(), pageInfo.getTotal());
     }
@@ -264,5 +271,51 @@ public class DatasourcesServiceImpl extends ServiceImpl<DatasourcesMapper, Datas
         Connection connection = DataBaseUtil.getConnection(DatabaseType.MySQL, body.getUsername(), body.getPassword(), body.getUrl());
         connection.close();
         return new CommonResponse.Builder().buildSuccess();
+    }
+
+    /**
+     * @description 为配置详情页获取下拉列表
+     * @param commonRequest
+     * @return top.buukle.commons.call.CommonResponse<java.util.List<top.buukle.opensource.arche.generator.dos.vo.datasources.DatasourcesQueryVO>>
+     * @Author 17600
+     * @Date 2021/9/4
+     */
+    @Override
+    public CommonResponse<List<DatasourcesVO>> getDatasourcesForConfigure(CommonRequest<DatasourcesQueryDTO> commonRequest) {
+        // 条件
+        QueryWrapper<Datasources> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("status",DatasourcesEnums.status.PUBLISHED.value());
+        // 查询
+        List<Datasources> list = super.list(queryWrapper);
+        List<DatasourcesVO> queryVOList = new ArrayList<>();
+        for (Datasources datasources : list) {
+            DatasourcesVO datasourcesVO = new DatasourcesVO();
+            BeanUtils.copyProperties(datasources, datasourcesVO);
+            datasourcesVO.setName(datasourcesVO.getName() + "(" + datasourcesVO.getId() + ")");
+            queryVOList.add(datasourcesVO);
+        }
+        return new CommonResponse.Builder().buildSuccess(queryVOList);
+    }
+
+    /**
+     * @description 获取某个id数据源下的表
+     * @param commonRequest
+     * @return top.buukle.commons.call.CommonResponse<java.util.List<top.buukle.opensource.arche.generator.dos.vo.tables.TableVo>>
+     * @Author 17600
+     * @Date 2021/9/4
+     */
+    @Override
+    public CommonResponse<List<TableVo>> getTablesListById(CommonRequest<DatasourcesQueryDTO> commonRequest) throws SQLException {
+
+        DatasourcesQueryDTO body = commonRequest.getBody();
+        Datasources datasources = super.getById(body.getId());
+        Connection connection = DataBaseUtil.getConnection(DatabaseType.MySQL, datasources.getUsername(), datasources.getPassword(), datasources.getUrl());
+        List<String> tables = DataBaseUtil.getTables(connection);
+        connection.close();
+        ArrayList<TableVo> tableVos = new ArrayList<>();
+        for (String table : tables) {
+            tableVos.add(new TableVo(table,false));
+        }
+        return new CommonResponse.Builder().buildSuccess(tableVos);
     }
 }

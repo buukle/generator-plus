@@ -1,18 +1,17 @@
-package top.buukle.opensource.arche.generator.dos.dto.datasources;
+package top.buukle.opensource.arche.generator.dos.dto.templates;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import top.buukle.commons.mvc.dto.CommonDTO;
 
-
 /**
 * @author elvin
 * @description  Datasources 查询包装类
 */
 @Data
-@ApiModel(value = "连接 - 查询请求")
-public class DatasourcesQueryDTO extends CommonDTO {
+@ApiModel(value = "模板 - 查询请求")
+public class TemplatesQueryDTO extends CommonDTO {
 
     /**
      * 当前页码
@@ -34,54 +33,57 @@ public class DatasourcesQueryDTO extends CommonDTO {
      */
     @ApiModelProperty(value = "截止时间")
     private String endTime;
-
     /**
      * 主键id
      */
-    @ApiModelProperty(value = "主键")
+    @ApiModelProperty(value = "主键id")
     private Integer id;
-
+    /**
+     * 审批记录id
+     */
+    @ApiModelProperty(value = "审批记录id")
+    private Integer auditId;
+    /**
+     *
+     */
+    @ApiModelProperty(value = "应用编码")
+    private String applicationCode;
     /**
      * 数据源名称
      */
     @ApiModelProperty(value = "数据源名称")
     private String name;
-
     /**
-     * url
+     * 生成路径
      */
-    @ApiModelProperty(value = "url")
+    @ApiModelProperty(value = "生成路径")
+    private String path;
+    /**
+     * 文件地址
+     */
+    @ApiModelProperty(value = "文件地址")
     private String url;
-
     /**
-     * 用户名
+     * 模板类型(entity,dao,xml,service,serviceImpl,controller)
      */
-    @ApiModelProperty(value = "数据源用户名")
-    private String username;
-
+    @ApiModelProperty(value = "模板类型(entity,dao,xml,service,serviceImpl,controller)")
+    private String type;
     /**
-     * 密码
+     * 内容
      */
-    @ApiModelProperty(value = "数据源密码")
-    private String password;
-
-    /**
-     * 数据库名称
-     */
-    @ApiModelProperty(value = "数据库名称")
-    private String databaseName;
-
+    @ApiModelProperty(value = "内容")
+    private String content;
     /**
      * 描述
      */
     @ApiModelProperty(value = "描述")
     private String description;
-
     /**
      * 备注
      */
     @ApiModelProperty(value = "备注")
     private String remark;
+
     /**
      * 审核状态  -1:待提交 0:提交审核  1:审核中 2: 审核不通过 3:审核通过
      */

@@ -28,9 +28,12 @@ public class FileUtil {
         File file = new File(filePath);
         if (!file.getParentFile().exists())
             file.getParentFile().mkdirs();
-        BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(
-                new FileOutputStream(file), "utf-8"));
+        FileOutputStream fileOutputStream = new FileOutputStream(file);
+        OutputStreamWriter outputStreamWriter = new OutputStreamWriter(fileOutputStream, "utf-8");
+        BufferedWriter writer = new BufferedWriter(outputStreamWriter);
         writer.write(content);
         writer.close();
+        outputStreamWriter.close();
+        fileOutputStream.close();
     }
 }

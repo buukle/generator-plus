@@ -1,4 +1,4 @@
-package top.buukle.opensource.arche.generator.dos.dto.datasources;
+package top.buukle.opensource.arche.generator.dos.dto.configuresExecute;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -11,8 +11,8 @@ import top.buukle.commons.mvc.dto.CommonDTO;
 * @description  Datasources 查询包装类
 */
 @Data
-@ApiModel(value = "连接 - 查询请求")
-public class DatasourcesQueryDTO extends CommonDTO {
+@ApiModel(value = "配置执行 - 查询请求")
+public class ConfiguresExecuteQueryDTO extends CommonDTO {
 
     /**
      * 当前页码
@@ -38,45 +38,68 @@ public class DatasourcesQueryDTO extends CommonDTO {
     /**
      * 主键id
      */
-    @ApiModelProperty(value = "主键")
+    @ApiModelProperty(value = "主键id")
     private Integer id;
-
+    /**
+     * 审批记录id
+     */
+    @ApiModelProperty(value = "审批记录id")
+    private Integer auditId;
+    /**
+     * 配置id
+     */
+    @ApiModelProperty(value = "配置id")
+    private Integer configuresId;
+    /**
+     * zip包下载位置
+     */
+    @ApiModelProperty(value = "zip包下载位置")
+    private String zipDownUrl;
+    /**
+     * 应用编码
+     */
+    @ApiModelProperty(value = "应用编码")
+    private String applicationCode;
+    /**
+     * 目录所在位置
+     */
+    @ApiModelProperty(value = "目录所在位置")
+    private String dirLocation;
+    /**
+     * 基础包
+     */
+    @ApiModelProperty(value = "基础包")
+    private String basePackage;
     /**
      * 数据源名称
      */
     @ApiModelProperty(value = "数据源名称")
     private String name;
-
     /**
-     * url
+     * 文件地址
      */
-    @ApiModelProperty(value = "url")
+    @ApiModelProperty(value = "文件地址")
     private String url;
-
     /**
-     * 用户名
+     * 表名(,分割)
      */
-    @ApiModelProperty(value = "数据源用户名")
-    private String username;
-
+    @ApiModelProperty(value = "表名(,分割)")
+    private String tables;
     /**
-     * 密码
+     * 连接信息
      */
-    @ApiModelProperty(value = "数据源密码")
-    private String password;
-
+    @ApiModelProperty(value = "连接信息")
+    private String databasesInfo;
     /**
-     * 数据库名称
+     * 模板信息
      */
-    @ApiModelProperty(value = "数据库名称")
-    private String databaseName;
-
+    @ApiModelProperty(value = "模板信息")
+    private String templatesInfo;
     /**
      * 描述
      */
     @ApiModelProperty(value = "描述")
     private String description;
-
     /**
      * 备注
      */
@@ -92,5 +115,6 @@ public class DatasourcesQueryDTO extends CommonDTO {
      */
     @ApiModelProperty(value = "状态 -1:已删除 0:创建完成 1:审核中 2: 停用 3: 正常")
     private Integer status;
+
 
 }

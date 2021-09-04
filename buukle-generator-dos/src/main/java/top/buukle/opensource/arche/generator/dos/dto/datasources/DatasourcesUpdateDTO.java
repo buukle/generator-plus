@@ -63,7 +63,15 @@ public class DatasourcesUpdateDTO extends CommonDTO {
     private String remark;
 
     /**
+     * 审核状态  -1:待提交 0:提交审核  1:审核中 2: 审核不通过 3:审核通过
      */
-    private static final long serialVersionUID = 1L;
+    @ApiModelProperty(value = "审核状态  -1:待提交 0:提交审核  1:审核中 2: 审核不通过 3:审核通过")
+    private Integer auditStatus;
+    /**
+     *  状态 -1:已删除 0:创建完成 1:审核中 2: 停用 3: 正常
+     */
+    @ApiModelProperty(value = "状态 -1:已删除 0:创建完成 1:审核中 2: 停用 3: 正常")
+    private Integer status;
+
 
 }
