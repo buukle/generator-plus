@@ -24,7 +24,7 @@
         <module>buukle-generator-dao</module>
         <module>buukle-generator-entity</module>
         <module>buukle-generator-controller</module>
-        <module>buukle-generator-do</module>
+        <module>buukle-generator-dos</module>
         <module>buukle-generator-api</module>
         <module>buukle-generator-client</module>
     </modules>

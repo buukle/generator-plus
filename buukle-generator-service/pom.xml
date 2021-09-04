@@ -24,7 +24,7 @@
         </dependency>
         <dependency>
             <groupId>top.buukle</groupId>
-            <artifactId>buukle-generator-do</artifactId>
+            <artifactId>buukle-generator-dos</artifactId>
             <version>1.0.0-RELEASE</version>
         </dependency>
         <!--service-->
