@@ -1,4 +1,4 @@
-package top.buukle.opensource.arche.generator.dos.dto.datasources;
+package top.buukle.opensource.arche.generator.dos.vo.datasources;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;

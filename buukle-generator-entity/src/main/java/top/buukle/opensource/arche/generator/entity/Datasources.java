@@ -1,4 +1,4 @@
-package top.buukle.opensource.arche.generator.entity.model;
+package top.buukle.opensource.arche.generator.entity;
 
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;

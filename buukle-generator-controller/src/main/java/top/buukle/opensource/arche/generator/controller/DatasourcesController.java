@@ -10,13 +10,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import top.buukle.commons.call.CommonRequest;
 import top.buukle.commons.call.CommonResponse;
-import top.buukle.opensource.arche.generator.entity.model.Datasources;
-import top.buukle.opensource.arche.generator.dos.dto.datasources.DatasourcesUpdateDTO;
-import top.buukle.opensource.arche.generator.service.vo.antd.ANTDPPageResponseVO;
 import top.buukle.opensource.arche.generator.dos.dto.datasources.DatasourcesQueryDTO;
-import top.buukle.opensource.arche.generator.dos.dto.datasources.DatasourcesQueryVO;
+import top.buukle.opensource.arche.generator.dos.dto.datasources.DatasourcesUpdateDTO;
+import top.buukle.opensource.arche.generator.dos.vo.datasources.DatasourcesQueryVO;
+import top.buukle.opensource.arche.generator.entity.Datasources;
 import top.buukle.opensource.arche.generator.service.DatasourcesService;
 import top.buukle.opensource.arche.generator.service.util.ResponseConvertUtil;
+import top.buukle.opensource.arche.generator.service.vo.antd.ANTDPPageResponseVO;
 
 import java.io.IOException;
 
