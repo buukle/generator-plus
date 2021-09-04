@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.generator.AutoGenerator;
 import com.baomidou.mybatisplus.generator.InjectionConfig;
 import com.baomidou.mybatisplus.generator.config.*;
 import com.baomidou.mybatisplus.generator.config.po.TableInfo;
+import com.baomidou.mybatisplus.generator.config.rules.DateType;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -501,6 +502,7 @@ public class ConfiguresServiceImpl extends ServiceImpl<ConfiguresMapper, Configu
         globalConfig.setOpen(false);
         // 实体属性 Swagger2 注解
         globalConfig.setSwagger2(true);
+        globalConfig.setDateType(DateType.ONLY_DATE);
         // 数据源配置
         Datasources datasources  = (Datasources) datasourcesService.getById(configures.getDatasourcesId());
         DataSourceConfig dataSourceConfig = new DataSourceConfig();
@@ -509,6 +511,7 @@ public class ConfiguresServiceImpl extends ServiceImpl<ConfiguresMapper, Configu
         dataSourceConfig.setUsername(datasources.getUsername());
         dataSourceConfig.setPassword(datasources.getPassword());
         autoGenerator.setDataSource(dataSourceConfig);
+
         // 包配置
         PackageConfig pc = new PackageConfig();
         pc.setParent(StringUtil.EMPTY);
@@ -577,7 +580,7 @@ public class ConfiguresServiceImpl extends ServiceImpl<ConfiguresMapper, Configu
                         if(tableInfo instanceof MyTableInfo){
                             MyTableInfo myTableInfo = (MyTableInfo) tableInfo;
                             // 处理文件内部的包名
-                            myTableInfo.setPackageInfo(templatesToGen.getPackageName());
+                            myTableInfo.setPackageInfo(templatesToGen.getPackageInfo());
                         }
                         // 处理文件path
                         String generatedFileStorePath = generatedFileStoreRootPath + finalProjectModuleName + projectPath + filename;

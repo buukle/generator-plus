@@ -40,9 +40,9 @@ public class Templates implements Serializable {
      */
     private String path;
     /**
-     * 生成路径
+     * 包名
      */
-    private String packageName;
+    private String packageInfo;
     /**
      * 文件地址
      */
