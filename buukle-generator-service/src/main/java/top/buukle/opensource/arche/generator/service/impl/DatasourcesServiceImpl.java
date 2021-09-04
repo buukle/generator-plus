@@ -73,7 +73,7 @@ public class DatasourcesServiceImpl extends ServiceImpl<DatasourcesMapper, Datas
     public CommonResponse<Boolean> addOrEdit(CommonRequest<DatasourcesUpdateDTO> commonRequest) {
         DatasourcesUpdateDTO datasourcesUpdateDTO = commonRequest.getBody();
         // 增
-        if(datasourcesUpdateDTO.getId() != null){
+        if(datasourcesUpdateDTO.getId() == null){
             return this.add(commonRequest);
         }
         // 改
