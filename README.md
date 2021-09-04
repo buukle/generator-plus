@@ -1,7 +1,7 @@
 # buukle-generator
 
 #### 演示地址 
-[buukle-generator](http://generator.buukle.top/buukle-generator/index.html)
+[buukle-generator](http://generator.buukle.top/opensource-arche-generator/index.html#/workplace)
  
 测试账号 : admin / admin
 
