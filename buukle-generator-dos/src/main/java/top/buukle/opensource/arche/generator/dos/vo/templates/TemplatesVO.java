@@ -5,6 +5,8 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import top.buukle.business.base.commons.mvc.dto.CommonDTO;
 
+import java.util.Date;
+
 /**
 * @author elvin
 * @description  Datasources 查询包装类
@@ -79,5 +81,26 @@ public class TemplatesVO extends CommonDTO {
      */
     @ApiModelProperty(value = "状态 -1:已删除 0:创建完成 1:审核中 2: 停用 3: 正常")
     private Integer status;
+
+    /**
+     * 创建时间
+     */
+    @ApiModelProperty(value = "创建时间")
+    private Date gmtCreated;
+    /**
+     * 创建者
+     */
+    @ApiModelProperty(value = "创建者")
+    private String creator;
+    /**
+     * 更新时间
+     */
+    @ApiModelProperty(value = "更新时间")
+    private Date gmtModified;
+    /**
+     * 更新者
+     */
+    @ApiModelProperty(value = "更新者")
+    private String modifier;
 
 }

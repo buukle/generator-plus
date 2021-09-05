@@ -5,6 +5,8 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import top.buukle.business.base.commons.mvc.vo.CommonVO;
 
+import java.util.Date;
+
 
 /**
 * @author elvin
@@ -73,5 +75,26 @@ public class DatasourcesVO extends CommonVO {
      */
     @ApiModelProperty(value = "审核状态")
     private Integer auditStatus;
+
+    /**
+     * 创建时间
+     */
+    @ApiModelProperty(value = "创建时间")
+    private Date gmtCreated;
+    /**
+     * 创建者
+     */
+    @ApiModelProperty(value = "创建者")
+    private String creator;
+    /**
+     * 更新时间
+     */
+    @ApiModelProperty(value = "更新时间")
+    private Date gmtModified;
+    /**
+     * 更新者
+     */
+    @ApiModelProperty(value = "更新者")
+    private String modifier;
 
 }
