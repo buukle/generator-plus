@@ -46,6 +46,11 @@ public class TemplatesVO extends CommonDTO {
     @ApiModelProperty(value = "开启表名目录 1: 开启,0:不开启")
     private String openTablePath;
     /**
+     * 文件名是否追加模板名前段 1: 追加,0:不追加
+     */
+    @ApiModelProperty(value = "文件名是否追加模板名前段 1: 追加,0:不追加")
+    private String addNameSuffix;
+    /**
      * 包名
      */
     @ApiModelProperty(value = "包名,前端可不填")

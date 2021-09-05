@@ -570,12 +570,19 @@ public class ConfiguresServiceImpl extends ServiceImpl<ConfiguresMapper, Configu
                         // 处理工程内路径
                         String projectPath = templatesToGen.getPath();
                         projectPath = StringUtil.isEmpty(projectPath) ? StringUtil.EMPTY : projectPath + StringUtil.BACKSLASH;
-                        projectPath = TemplatesEnums.openTablePath.OPEN.value().equals(templatesToGen.getOpenTablePath())
-                                ? projectPath + StringUtil.BACKSLASH +tableInfo.getEntityPath()+ StringUtil.BACKSLASH : projectPath;
+                        projectPath = TemplatesEnums.openTablePath.OPEN.value().equals(templatesToGen.getOpenTablePath()) ?
+                                projectPath + StringUtil.BACKSLASH +tableInfo.getEntityPath()+ StringUtil.BACKSLASH
+                                :
+                                projectPath;
                         // 处理文件名
                         String name = templatesToGen.getName();
                         String[] split = name.split("\\.");
-                        String filename = tableInfo.getEntityName() + StringUtil.DOT + split[split.length - 2];
+                        String filename = tableInfo.getEntityName() + (
+                                TemplatesEnums.addNameSuffix.OPEN.value().equals(templatesToGen.getAddNameSuffix()) ?
+                                        split[0] : StringUtil.EMPTY
+                                );
+                        filename = filename + StringUtil.DOT + split[split.length - 2];
+
                         if(tableInfo instanceof MyTableInfo){
                             MyTableInfo myTableInfo = (MyTableInfo) tableInfo;
                             // 处理文件内部的包名

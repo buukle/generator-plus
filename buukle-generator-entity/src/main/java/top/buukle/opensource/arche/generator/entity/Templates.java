@@ -44,6 +44,10 @@ public class Templates implements Serializable {
      */
     private String openTablePath;
     /**
+     * 文件名是否追加模板名前段 1: 追加,0:不追加
+     */
+    private String addNameSuffix;
+    /**
      * 包名
      */
     private String packageInfo;
