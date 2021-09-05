@@ -28,13 +28,14 @@ frontend :  Antd ( ant-design-vue-pro)
 
 #### 源码开发
 
-1.  git clone https://gitee.com/buukle/buukle-generator.git
-2.  修改数据库配置为本地/测试数据库地址,并在该数据库执行项目根路径下的 gen.sql 脚本,初始化数据库实例,表结构
-3.  更改本地maven settings 为 项目根路径下的 settings.xml
-4.  mvn clean
-5.  mvn install
-6.  执行主类 GeneratorApplication main 方法即可成功运行,启动完成后, **访问 http://127.0.0.1/buukle-generator/index.html 即可进入主界面** 
-7.  表模型中考虑了用户,租户等因素,预留了字段,但无具体实现,开源版本为固定静态账号密码 (测试账号 : admin / admin),如有需要,可根据源码进行企业内部认证源体系对接
+1. git clone https://gitee.com/buukle/buukle-generator.git
+2. 更改本地maven settings 为 本项目根路径下的 settings.xml
+3. mvn clean
+4. mvn install
+5. 执行主类 GeneratorApplication main 方法即可成功运行,启动完成后, **访问 http://127.0.0.1/opensource-arche-generator/index.html 即可进入主界面** 
+6. 表模型中预留了用户,租户等字段,开源版本未接入用户中心,认证中心,权限体系和应用体系,使用固定静态账号密码 (测试账号 : admin / admin)登录,如有需要,可根据源码进行企业内部认证源体系对接
+7. 如果想本地化数据源,请连接代码中的数据库,导出数据表信息到本地库,并修改application-dev.yaml application-dev.yaml 下的数据源信息为你本地库,或者公司库地址
+8. **如果想使用本地settings,请下载 buukle-parent,buukle-common库, mvn clean install deploy 将jar发布到本地maven仓库**
 
 #### 使用说明
 
