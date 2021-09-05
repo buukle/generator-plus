@@ -1,8 +1,8 @@
 package top.buukle.opensource.arche.generator.service;
 
-import top.buukle.commons.call.CommonRequest;
-import top.buukle.commons.call.CommonResponse;
-import top.buukle.commons.mvc.service.BaseService;
+import top.buukle.business.base.commons.call.CommonRequest;
+import top.buukle.business.base.commons.call.CommonResponse;
+import top.buukle.business.base.commons.mvc.service.BaseService;
 import top.buukle.opensource.arche.generator.dos.vo.tables.TableVo;
 
 import java.sql.SQLException;

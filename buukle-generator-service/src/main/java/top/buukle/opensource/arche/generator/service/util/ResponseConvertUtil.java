@@ -10,7 +10,7 @@
  */
 package top.buukle.opensource.arche.generator.service.util;
 
-import top.buukle.commons.call.PageResponse;
+import top.buukle.business.base.commons.call.PageResponse;
 import top.buukle.opensource.arche.generator.service.vo.antd.ANTDPPageResponseVO;
 import top.buukle.opensource.arche.generator.service.vo.antd.ResultVO;
 

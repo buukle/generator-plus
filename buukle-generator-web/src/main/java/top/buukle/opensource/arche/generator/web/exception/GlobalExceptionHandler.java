@@ -3,9 +3,9 @@ package top.buukle.opensource.arche.generator.web.exception;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
-import top.buukle.commons.call.CommonResponse;
-import top.buukle.commons.exception.CommonException;
-import top.buukle.commons.log.BaseLogger;
+import top.buukle.business.base.commons.call.CommonResponse;
+import top.buukle.business.base.commons.exception.CommonException;
+import top.buukle.business.base.commons.log.BaseLogger;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

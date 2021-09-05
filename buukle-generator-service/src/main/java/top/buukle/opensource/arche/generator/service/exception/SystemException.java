@@ -1,6 +1,6 @@
 package top.buukle.opensource.arche.generator.service.exception;
 
-import top.buukle.commons.exception.CommonException;
+import top.buukle.business.base.commons.exception.CommonException;
 import top.buukle.opensource.arche.generator.service.constants.SystemReturnEnum;
 
 /**

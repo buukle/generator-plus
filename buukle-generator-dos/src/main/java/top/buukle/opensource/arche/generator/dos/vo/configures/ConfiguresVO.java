@@ -3,7 +3,7 @@ package top.buukle.opensource.arche.generator.dos.vo.configures;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
-import top.buukle.commons.mvc.vo.CommonVO;
+import top.buukle.business.base.commons.mvc.vo.CommonVO;
 import top.buukle.opensource.arche.generator.dos.vo.tables.TableVo;
 import top.buukle.opensource.arche.generator.dos.vo.templates.TemplatesForConfigureEditVO;
 

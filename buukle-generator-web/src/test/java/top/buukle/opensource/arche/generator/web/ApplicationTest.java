@@ -5,13 +5,13 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-import top.buukle.commons.call.CommonRequest;
-import top.buukle.commons.call.CommonResponse;
-import top.buukle.commons.call.PageResponse;
+import top.buukle.business.base.commons.call.CommonRequest;
+import top.buukle.business.base.commons.call.CommonResponse;
+import top.buukle.business.base.commons.call.PageResponse;
 import top.buukle.opensource.arche.generator.dos.dto.datasources.DatasourcesQueryDTO;
 import top.buukle.opensource.arche.generator.dos.dto.datasources.DatasourcesUpdateDTO;
 import top.buukle.opensource.arche.generator.service.DatasourcesService;
-import top.buukle.utils.JsonUtil;
+import top.buukle.business.base.utils.JsonUtil;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest

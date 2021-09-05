@@ -1,7 +1,7 @@
 package top.buukle.opensource.arche.generator.service.constants;
 
 
-import top.buukle.commons.call.code.BaseReturnEnum;
+import top.buukle.business.base.commons.call.code.BaseReturnEnum;
 
 /**
  * @description

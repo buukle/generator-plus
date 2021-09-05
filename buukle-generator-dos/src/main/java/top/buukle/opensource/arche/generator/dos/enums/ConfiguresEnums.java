@@ -1,7 +1,7 @@
 package top.buukle.opensource.arche.generator.dos.enums;
 
 
-import top.buukle.utils.StringUtil;
+import top.buukle.business.base.utils.StringUtil;
 
 /**
  * @Author: elvin

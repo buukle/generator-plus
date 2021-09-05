@@ -1,7 +1,7 @@
 package top.buukle.opensource.arche.generator.service.util;
 
 
-import top.buukle.commons.log.BaseLogger;
+import top.buukle.business.base.commons.log.BaseLogger;
 
 import java.io.BufferedInputStream;
 import java.io.File;

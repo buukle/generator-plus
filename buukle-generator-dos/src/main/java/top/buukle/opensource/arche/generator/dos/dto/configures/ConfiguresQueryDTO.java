@@ -3,7 +3,7 @@ package top.buukle.opensource.arche.generator.dos.dto.configures;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
-import top.buukle.commons.mvc.dto.CommonDTO;
+import top.buukle.business.base.commons.mvc.dto.CommonDTO;
 
 
 /**

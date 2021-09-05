@@ -14,7 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import springfox.documentation.annotations.ApiIgnore;
-import top.buukle.commons.log.BaseLogger;
+import top.buukle.business.base.commons.log.BaseLogger;
 import top.buukle.opensource.arche.generator.service.vo.antd.*;
 
 import javax.servlet.http.HttpServletRequest;

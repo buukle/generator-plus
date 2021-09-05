@@ -3,7 +3,7 @@ package top.buukle.opensource.arche.generator.web.configure;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
-import top.buukle.utils.SystemUtil;
+import top.buukle.business.base.utils.SystemUtil;
 
 @Configuration
 public class WebConfig extends WebMvcConfigurationSupport {

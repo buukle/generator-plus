@@ -1,6 +1,6 @@
 package top.buukle.opensource.arche.generator.service;
 
-import top.buukle.commons.mvc.service.BaseService;
+import top.buukle.business.base.commons.mvc.service.BaseService;
 
 /**
 * @author elvin
