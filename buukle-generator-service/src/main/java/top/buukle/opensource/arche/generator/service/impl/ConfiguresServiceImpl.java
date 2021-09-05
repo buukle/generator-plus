@@ -569,8 +569,9 @@ public class ConfiguresServiceImpl extends ServiceImpl<ConfiguresMapper, Configu
                         Templates templatesToGen = tempTemplateFileMap.get(tempTemplateFilePath);
                         // 处理工程内路径
                         String projectPath = templatesToGen.getPath();
+                        boolean openTablePath = TemplatesEnums.openTablePath.OPEN.value().equals(templatesToGen.getOpenTablePath());
                         projectPath = StringUtil.isEmpty(projectPath) ? StringUtil.EMPTY : projectPath + StringUtil.BACKSLASH;
-                        projectPath = TemplatesEnums.openTablePath.OPEN.value().equals(templatesToGen.getOpenTablePath()) ?
+                        projectPath = openTablePath ?
                                 projectPath + StringUtil.BACKSLASH +tableInfo.getEntityPath()+ StringUtil.BACKSLASH
                                 :
                                 projectPath;
@@ -586,7 +587,9 @@ public class ConfiguresServiceImpl extends ServiceImpl<ConfiguresMapper, Configu
                         if(tableInfo instanceof MyTableInfo){
                             MyTableInfo myTableInfo = (MyTableInfo) tableInfo;
                             // 处理文件内部的包名
-                            myTableInfo.setPackageInfo(templatesToGen.getPackageInfo());
+                            String packageInfo = templatesToGen.getPackageInfo();
+                            packageInfo = packageInfo + (openTablePath ? StringUtil.DOT + tableInfo.getEntityPath() : packageInfo);
+                            myTableInfo.setPackageInfo(packageInfo);
                         }
                         // 处理文件path
                         String generatedFileStorePath = generatedFileStoreRootPath  + projectPath + filename;
