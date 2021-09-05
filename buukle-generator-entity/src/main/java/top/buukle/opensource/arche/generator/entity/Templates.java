@@ -40,6 +40,10 @@ public class Templates implements Serializable {
      */
     private String path;
     /**
+     * 开启表名目录
+     */
+    private String openTablePath;
+    /**
      * 包名
      */
     private String packageInfo;

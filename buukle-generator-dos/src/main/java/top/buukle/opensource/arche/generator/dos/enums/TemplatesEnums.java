@@ -80,4 +80,23 @@ public class TemplatesEnums {
             return stringBuffer.toString();
         }
     }
+    public enum openTablePath {
+
+        OPEN("1","待提交"),
+        ;
+
+        private String code;
+        private String description;
+
+        openTablePath(String code, String description) {
+            this.description = description;
+            this.code = code;
+        }
+        public String getDescription() {
+            return description;
+        }
+        public String value() {
+            return code;
+        }
+    }
 }

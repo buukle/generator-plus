@@ -59,6 +59,11 @@ public class TemplatesQueryDTO extends CommonDTO {
     @ApiModelProperty(value = "生成路径")
     private String path;
     /**
+     * 开启表名目录
+     */
+    @ApiModelProperty(value = "开启表名目录 1: 开启,0:不开启")
+    private String openTablePath;
+    /**
      * 文件地址
      */
     @ApiModelProperty(value = "文件地址")

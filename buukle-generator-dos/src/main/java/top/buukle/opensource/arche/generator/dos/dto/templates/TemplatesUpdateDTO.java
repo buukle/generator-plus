@@ -39,6 +39,11 @@ public class TemplatesUpdateDTO extends CommonDTO {
     @ApiModelProperty(value = "生成路径")
     private String path;
     /**
+     * 开启表名目录
+     */
+    @ApiModelProperty(value = "开启表名目录 1: 开启,0:不开启")
+    private String openTablePath;
+    /**
      * 包名
      */
     @ApiModelProperty(value = "包名,前端可不填")

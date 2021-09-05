@@ -30,6 +30,7 @@ import top.buukle.opensource.arche.generator.dos.dto.configuresExecute.Configure
 import top.buukle.opensource.arche.generator.dos.dto.configuresExecute.ConfiguresExecuteUpdateDTO;
 import top.buukle.opensource.arche.generator.dos.enums.ConfiguresEnums;
 import top.buukle.opensource.arche.generator.dos.enums.ConfiguresExecuteEnums;
+import top.buukle.opensource.arche.generator.dos.enums.TemplatesEnums;
 import top.buukle.opensource.arche.generator.dos.vo.configures.ConfiguresVO;
 import top.buukle.opensource.arche.generator.dos.vo.configuresExecute.ConfiguresExecuteVO;
 import top.buukle.opensource.arche.generator.dos.vo.tables.TableVo;
@@ -569,6 +570,8 @@ public class ConfiguresServiceImpl extends ServiceImpl<ConfiguresMapper, Configu
                         // 处理工程内路径
                         String projectPath = templatesToGen.getPath();
                         projectPath = StringUtil.isEmpty(projectPath) ? StringUtil.EMPTY : projectPath + StringUtil.BACKSLASH;
+                        projectPath = TemplatesEnums.openTablePath.OPEN.value().equals(templatesToGen.getOpenTablePath())
+                                ? projectPath + StringUtil.BACKSLASH +tableInfo.getEntityPath()+ StringUtil.BACKSLASH : projectPath;
                         // 处理文件名
                         String name = templatesToGen.getName();
                         String[] split = name.split("\\.");
