@@ -447,11 +447,15 @@ public class ConfiguresServiceImpl extends ServiceImpl<ConfiguresMapper, Configu
         QueryWrapper<ConfiguresTemplatesRelation> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("configures_id",configures.getId());
         List<ConfiguresTemplatesRelation> configuresTemplatesRelations = configuresTemplatesRelationMapper.selectList(queryWrapper);
-        List<Templates> templatesList = new ArrayList<>();
+        List<Integer> ids = new ArrayList<>();
+
         for (ConfiguresTemplatesRelation configuresTemplatesRelation: configuresTemplatesRelations) {
-            Templates templates = (Templates) templatesService.getById(configuresTemplatesRelation.getTemplatesId());
-            templatesList.add(templates);
+            ids.add(configuresTemplatesRelation.getTemplatesId());
         }
+        QueryWrapper<Templates> templatesQueryWrapper = new QueryWrapper<>();
+        templatesQueryWrapper.in("id",ids);
+        templatesQueryWrapper.eq("status",TemplatesEnums.status.PUBLISHED.value());
+        List<Templates> templatesList = templatesService.list();
         // 插入日志记录
         configuresExecuteUpdateDTO.setTemplatesInfo(JsonUtil.toJSONString(templatesList));
         CommonRequest<ConfiguresExecuteUpdateDTO> configuresExecuteUpdateDTOCommonRequest = new CommonRequest<>();
