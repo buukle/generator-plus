@@ -455,7 +455,7 @@ public class ConfiguresServiceImpl extends ServiceImpl<ConfiguresMapper, Configu
         QueryWrapper<Templates> templatesQueryWrapper = new QueryWrapper<>();
         templatesQueryWrapper.in("id",ids);
         templatesQueryWrapper.eq("status",TemplatesEnums.status.PUBLISHED.value());
-        List<Templates> templatesList = templatesService.list();
+        List<Templates> templatesList = templatesService.list(templatesQueryWrapper);
         // 插入日志记录
         configuresExecuteUpdateDTO.setTemplatesInfo(JsonUtil.toJSONString(templatesList));
         CommonRequest<ConfiguresExecuteUpdateDTO> configuresExecuteUpdateDTOCommonRequest = new CommonRequest<>();
@@ -592,7 +592,7 @@ public class ConfiguresServiceImpl extends ServiceImpl<ConfiguresMapper, Configu
                             MyTableInfo myTableInfo = (MyTableInfo) tableInfo;
                             // 处理文件内部的包名
                             String packageInfo = templatesToGen.getPackageInfo();
-                            packageInfo = packageInfo + (openTablePath ? StringUtil.DOT + tableInfo.getEntityPath() : packageInfo);
+                            packageInfo = packageInfo + (openTablePath ? StringUtil.DOT + tableInfo.getEntityPath() : StringUtil.EMPTY);
                             myTableInfo.setPackageInfo(packageInfo);
                         }
                         // 处理文件path

@@ -12,7 +12,9 @@ public class WebConfig extends WebMvcConfigurationSupport {
             registry.addResourceHandler("/**")
                     .addResourceLocations("classpath:/resources/")
                     .addResourceLocations("classpath:/static/")
-                    .addResourceLocations("classpath:/public/");
+                    .addResourceLocations("classpath:/public/")
+                    .addResourceLocations("file:C:/Users/17600/Desktop/elvin/buukle-generator.all/buukle-generator-front/dist/")
+                    .addResourceLocations("file:/root/webrun/front/buukle-generator/dist/");
             registry.addResourceHandler("swagger-ui.html").addResourceLocations(
                     "classpath:/META-INF/resources/");
             registry.addResourceHandler("doc.html").addResourceLocations(

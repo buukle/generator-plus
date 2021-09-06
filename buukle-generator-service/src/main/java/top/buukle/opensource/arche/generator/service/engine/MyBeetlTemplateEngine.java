@@ -72,6 +72,7 @@ public class MyBeetlTemplateEngine extends AbstractTemplateEngine {
                                 BeanUtils.copyProperties(tableInfo,myTableInfo);
                                 String outputFile = foc.outputFile(myTableInfo);
                                 objectMap.put("packageInfo",myTableInfo.getPackageInfo());
+                                objectMap.put("entityNameLowerCamelCase",myTableInfo.getEntityPath());
                                 writerFile(objectMap, foc.getTemplatePath(), outputFile);
                             }
                         }
