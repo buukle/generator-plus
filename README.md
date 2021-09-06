@@ -15,19 +15,24 @@ java1.8
 
 #### 软件架构
 
-backend : springboot 2.2.0.RELEASE + mybatis + mysql5.7以上 + beetl + mybatis-plus-generator
+backend : springboot 2.5.4.RELEASE + mysql5.7以上 + beetl + mybatis-plus
 
 frontend :  Antd ( ant-design-vue-pro)
 
 #### 使用教程
 
 0. 环境 jre
-1. 到 https://gitee.com/buukle/buukle-generator/releases 版本列表根据特性挑选喜欢的版本,下载压缩包(zip,tar.gz),解压为jar包
+1. 到 https://gitee.com/buukle/buukle-generator/*-all-releases 前后端聚合版本列表根据特性挑选一个,下载压缩包(zip,tar.gz),解压为jar包
 2. 启动 : nohup java -jar buukle-generator-1.0.0-RELEASE.jar >> /opt/logs/buukle-generator/generator.log 2>&1 &
 3. 访问 : http://{ip}:{port}/buukle-generator/index.html
+4. 本地化 
+① 到 jdbc:mysql://mysql.buukle.top:13306/opensource-arche-generator?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=utf-8&useSSL=false
+数据库 (username / password ==> guest / Buuk1e,. ) 导出表结构并转储到你的目标数据源(mysql)
+② 通过配置java启动命令,将配置挂载到宿主机目录,修改 buukle-generator-web/src/main/resources/application-prod.yml 中的配置为你的数据源,③ java -jar 启动即可使用
+
 
 #### 源码开发
-
+##### (1) 后端
 1. git clone https://gitee.com/buukle/buukle-generator.git
 2. 更改本地maven settings 为 本项目根路径下的 settings.xml
 3. mvn clean
@@ -36,6 +41,9 @@ frontend :  Antd ( ant-design-vue-pro)
 6. 表模型中预留了用户,租户等字段,开源版本未接入用户中心,认证中心,权限体系和应用体系,使用固定静态账号密码 (测试账号 : admin / admin)登录,如有需要,可根据源码进行企业内部认证源体系对接
 7. 如果想本地化数据源,请连接代码中的数据库,导出数据表信息到本地库,并修改application-dev.yaml application-dev.yaml 下的数据源信息为你本地库,或者公司库地址
 8. **如果想使用本地settings,请下载 buukle-parent,buukle-common库, mvn clean install deploy 将jar发布到本地maven仓库**
+##### (2) 前端
+1. 请clone buukle-generator-front 仓库并切换到buukle-generator相同的分支进行开发;
+
 
 #### 使用说明
 
