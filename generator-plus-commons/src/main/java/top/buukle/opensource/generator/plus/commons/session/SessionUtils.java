@@ -21,7 +21,8 @@ public class SessionUtils {
         UserDO userDO = new UserDO();
 
         if(request != null){
-            userDO.setUsername(request.getHeader("USERNAME"));
+            String authorization = request.getHeader("Authorization");
+            userDO.setUsername(request.getHeader("Authorization"));
             userDO.setUserId(request.getHeader("UID"));
             userDO.setDeptId(request.getHeader("DEPT_ID"));
             String subDeptIdsStr = request.getHeader("SUB_DEPT_IDS");
