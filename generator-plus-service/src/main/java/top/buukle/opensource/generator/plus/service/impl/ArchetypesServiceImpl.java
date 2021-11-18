@@ -183,7 +183,7 @@ public class ArchetypesServiceImpl extends ServiceImpl<ArchetypesMapper, Archety
      * @description 查 - 分页
      * @param commonRequest
      * @return top.buukle.opensource.generator.plus.commons.call.PageResponse<top.buukle.opensource.generator.plus.dos.vo.archetypes.ArchetypesVO>
-     * @Author zhanglei451
+     * @Author zhanglei001
      * @Date 2021/9/17
      */
     @Override
@@ -281,7 +281,7 @@ public class ArchetypesServiceImpl extends ServiceImpl<ArchetypesMapper, Archety
      * @description 生成
      * @param commonRequest
      * @return top.buukle.opensource.generator.plus.commons.call.CommonResponse<top.buukle.opensource.generator.plus.dos.vo.archetypesExecute.ArchetypesExecuteVO>
-     * @Author zhanglei451
+     * @Author zhanglei001
      * @Date 2021/9/17
      */
     @Override
@@ -362,7 +362,7 @@ public class ArchetypesServiceImpl extends ServiceImpl<ArchetypesMapper, Archety
      * @description 获取最近一次的执行日志
      * @param commonRequest
      * @return top.buukle.opensource.generator.plus.commons.call.CommonResponse<top.buukle.opensource.generator.plus.dos.vo.archetypesExecute.ArchetypesExecuteVO>
-     * @Author zhanglei451
+     * @Author zhanglei001
      * @Date 2021/9/17
      */
     @Override

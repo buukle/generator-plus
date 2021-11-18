@@ -24,7 +24,7 @@ public class SpringbootTest {
      * @description 根据archetypes的jar直接生成代码
      * @param
      * @return void
-     * @Author zhanglei451
+     * @Author zhanglei001
      * @Date 2021/9/15
      */
     @Test
@@ -38,7 +38,7 @@ public class SpringbootTest {
         archetypeGenerationRequest.setPackage("one.two.three");
         archetypeGenerationRequest.setVersion("1.0.0");
 
-        archetypeGenerationRequest.setOutputDirectory("D:\\zhanglei451\\Desktop\\t\\");
+        archetypeGenerationRequest.setOutputDirectory("D:\\zhanglei001\\Desktop\\t\\");
 
         MyVelocityComponent myVelocityComponent = new MyVelocityComponent();
         Properties properties = new Properties();

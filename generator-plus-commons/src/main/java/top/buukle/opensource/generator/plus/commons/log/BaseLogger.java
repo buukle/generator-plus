@@ -91,7 +91,7 @@ public class BaseLogger {
             ServletRequestAttributes servletRequestAttributes = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes());
             if(servletRequestAttributes!=null){
                 HttpServletRequest request = servletRequestAttributes.getRequest();
-                traceId = request.getHeader("HEADERS_TRACE_ID_KEY");
+                traceId = request.getHeader("trace-id");
             }
         } catch (Exception e) {
 
