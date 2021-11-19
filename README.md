@@ -11,7 +11,7 @@
 #### 演示地址
 [generator-plus](http://generator-plus.buukle.top/generator-plus/index.html#/gen/configures/configures-list)
 
-测试账号 : admin / admin
+测试账号 : admin / admin 
 
 #### 使用说明
 
@@ -21,7 +21,7 @@
 
 一. 原型管理
 
-主要根据项目(服务)骨架文件,生成基础的项目代码
+主要根据项目(服务)骨架文件, 生成基础的项目代码
 
 1. 新建archetype
 
