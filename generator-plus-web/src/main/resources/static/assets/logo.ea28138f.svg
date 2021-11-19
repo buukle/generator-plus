@@ -1,0 +1,23 @@
+<svg width="128" height="128" xmlns="http://www.w3.org/2000/svg">
+ <!-- Generator: Sketch 52.6 (67491) - http://www.bohemiancoding.com/sketch -->
+ <title>Vue</title>
+ <desc>Created with Sketch.</desc>
+
+ <g>
+  <title>background</title>
+  <rect fill="none" id="canvas_background" height="402" width="582" y="-1" x="-1"/>
+ </g>
+ <g>
+  <title>Layer 1</title>
+  <g fill-rule="evenodd" fill="none" id="Vue">
+   <g stroke="null" id="Group">
+    <polyline stroke-linecap="round" id="svg_2" points="16.5,39.109375 17.5,39.109375 18.5,39.109375 22.5,39.109375 24.5,39.109375 27.5,37.109375 30.5,37.109375 32.5,37.109375 31.5,37.109375 31.5,38.109375 29.5,40.109375 29.5,45.109375 29.5,48.109375 29.5,52.109375 29.5,53.109375 29.5,56.109375 29.5,57.109375 30.5,58.109375 30.5,59.109375 31.5,63.109375 33.5,66.109375 34.5,70.109375 35.5,72.109375 37.5,74.109375 37.5,75.109375 " opacity="0.5" fill-opacity="null" stroke-opacity="null" stroke-width="null" stroke="null" fill="none"/>
+    <polyline stroke-linecap="round" id="svg_3" points="40.5,44.109375 41.5,44.109375 46.5,46.109375 51.5,50.109375 65.5,61.109375 73.5,64.109375 " opacity="0.5" fill-opacity="null" stroke-opacity="null" stroke-width="null" stroke="null" fill="none"/>
+    <polyline stroke-linecap="round" id="svg_4" points="58.5,35.109375 57.5,35.109375 57.5,37.109375 57.5,42.109375 57.5,46.109375 57.5,50.109375 57.5,52.109375 57.5,53.109375 57.5,54.109375 " opacity="0.5" fill-opacity="null" stroke-opacity="null" stroke-width="null" stroke="null" fill="none"/>
+    <polyline stroke="null" stroke-linecap="round" id="svg_5" points="37.5,46.109375 39.5,46.109375 " fill-opacity="null" stroke-opacity="null" stroke-width="null" fill="none"/>
+    <line stroke="null" stroke-linecap="round" stroke-linejoin="null" id="svg_6" y2="99.109373" x2="107.499999" y1="34.109375" x1="25.5" fill-opacity="null" stroke-opacity="null" stroke-width="null" fill="none"/>
+   </g>
+  </g>
+  <text style="cursor: move;" stroke="null" transform="matrix(1.0668925385800565,0,0,1.5966285311830615,-85.39749302157637,-53.698288680822) " xml:space="preserve" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="24" id="svg_7" y="80.109375" x="92.5" stroke-opacity="null" stroke-width="0" fill="#729C62">BUUKLE</text>
+ </g>
+</svg>
