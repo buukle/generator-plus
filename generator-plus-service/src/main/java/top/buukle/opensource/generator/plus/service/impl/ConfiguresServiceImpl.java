@@ -20,7 +20,7 @@ import top.buukle.opensource.generator.plus.commons.call.CommonResponse;
 import top.buukle.opensource.generator.plus.commons.call.PageResponse;
 import top.buukle.opensource.generator.plus.commons.log.BaseLogger;
 import top.buukle.opensource.generator.plus.commons.session.SessionUtils;
-import top.buukle.opensource.generator.plus.commons.session.UserDO;
+import top.buukle.opensource.generator.plus.commons.session.UserDTO;
 import top.buukle.opensource.generator.plus.commons.status.StatusConstants;
 import top.buukle.opensource.generator.plus.dtvo.vo.templatesGroup.TemplatesGroupVO;
 import top.buukle.opensource.generator.plus.entity.*;
@@ -381,12 +381,12 @@ public class ConfiguresServiceImpl extends ServiceImpl<ConfiguresMapper, Configu
     public void savePre(Configures Configures) {
         Date date = new Date();
 
-        UserDO operator = SessionUtils.getOperator();
+        UserDTO operator = SessionUtils.getOperator();
 
         Configures.setGmtCreated(date);
         Configures.setCreator(operator.getUsername());
         Configures.setCreatorCode(operator.getUserId());
-        Configures.setCreatorDeptId(Integer.parseInt(StringUtil.isEmpty(operator.getDeptId())?"-1":operator.getDeptId()));
+        Configures.setCreatorTenantId(Integer.parseInt(StringUtil.isEmpty(operator.getTenantId())?"-1":operator.getTenantId()));
         Configures.setGmtModified(date);
 
         Configures.setModifier(operator.getUsername());
@@ -407,7 +407,7 @@ public class ConfiguresServiceImpl extends ServiceImpl<ConfiguresMapper, Configu
 
         Date date = new Date();
 
-        UserDO operator = SessionUtils.getOperator();
+        UserDTO operator = SessionUtils.getOperator();
 
         Configures.setGmtModified(date);
         Configures.setModifier(operator.getUsername());

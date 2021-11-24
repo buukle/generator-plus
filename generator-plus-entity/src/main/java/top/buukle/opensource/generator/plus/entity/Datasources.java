@@ -88,7 +88,7 @@ public class Datasources implements Serializable {
      * 创建者部门id
      *
      */
-    private Integer creatorDeptId;
+    private Integer creatorTenantId;
 
     /**
      * 创建者UID

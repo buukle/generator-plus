@@ -12,7 +12,7 @@ import top.buukle.opensource.generator.plus.commons.call.CommonResponse;
 import top.buukle.opensource.generator.plus.commons.call.CommonResponse.Builder;
 import top.buukle.opensource.generator.plus.commons.call.PageResponse;
 import top.buukle.opensource.generator.plus.commons.session.SessionUtils;
-import top.buukle.opensource.generator.plus.commons.session.UserDO;
+import top.buukle.opensource.generator.plus.commons.session.UserDTO;
 import top.buukle.opensource.generator.plus.commons.status.StatusConstants;
 import top.buukle.opensource.generator.plus.dao.TemplatesGroupMapper;
 import top.buukle.opensource.generator.plus.dtvo.enums.TemplatesGroupEnums;
@@ -232,12 +232,12 @@ public class TemplatesGroupServiceImpl extends ServiceImpl<TemplatesGroupMapper,
     public void savePre(TemplatesGroup templatesGroup) {
         Date date = new Date();
 
-        UserDO operator = SessionUtils.getOperator();
+        UserDTO operator = SessionUtils.getOperator();
 
         templatesGroup.setGmtCreated(date);
         templatesGroup.setCreator(operator.getUsername());
         templatesGroup.setCreatorCode(operator.getUserId());
-        templatesGroup.setCreatorDeptId(Integer.parseInt(StringUtil.isEmpty(operator.getDeptId())?"-1":operator.getDeptId()));
+        templatesGroup.setCreatorTenantId(Integer.parseInt(StringUtil.isEmpty(operator.getTenantId())?"-1":operator.getTenantId()));
         templatesGroup.setGmtModified(date);
 
         templatesGroup.setModifier(operator.getUsername());
@@ -258,7 +258,7 @@ public class TemplatesGroupServiceImpl extends ServiceImpl<TemplatesGroupMapper,
 
         Date date = new Date();
 
-        UserDO operator = SessionUtils.getOperator();
+        UserDTO operator = SessionUtils.getOperator();
 
         templatesGroup.setGmtModified(date);
         templatesGroup.setModifier(operator.getUsername());

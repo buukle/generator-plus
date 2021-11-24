@@ -11,11 +11,9 @@ import top.buukle.opensource.generator.plus.commons.call.CommonRequest;
 import top.buukle.opensource.generator.plus.commons.call.CommonResponse;
 import top.buukle.opensource.generator.plus.commons.call.PageResponse;
 import top.buukle.opensource.generator.plus.commons.session.SessionUtils;
-import top.buukle.opensource.generator.plus.commons.session.UserDO;
+import top.buukle.opensource.generator.plus.commons.session.UserDTO;
 import top.buukle.opensource.generator.plus.commons.status.StatusConstants;
-import top.buukle.opensource.generator.plus.dtvo.enums.TemplatesGroupEnums;
 import top.buukle.opensource.generator.plus.dtvo.enums.TemplatesGroupEnums.status;
-import top.buukle.opensource.generator.plus.dtvo.vo.templatesGroup.TemplatesGroupVO;
 import top.buukle.opensource.generator.plus.entity.TemplatesGroup;
 import top.buukle.opensource.generator.plus.service.TemplatesGroupService;
 import top.buukle.opensource.generator.plus.utils.DateUtil;
@@ -242,12 +240,12 @@ public class TemplatesServiceImpl extends ServiceImpl<TemplatesMapper, Templates
     public void savePre(Templates Templates) {
         Date date = new Date();
 
-        UserDO operator = SessionUtils.getOperator();
+        UserDTO operator = SessionUtils.getOperator();
 
         Templates.setGmtCreated(date);
         Templates.setCreator(operator.getUsername());
         Templates.setCreatorCode(operator.getUserId());
-        Templates.setCreatorDeptId(Integer.parseInt(StringUtil.isEmpty(operator.getDeptId())?"-1":operator.getDeptId()));
+        Templates.setCreatorTenantId(Integer.parseInt(StringUtil.isEmpty(operator.getTenantId())?"-1":operator.getTenantId()));
         Templates.setGmtModified(date);
 
         Templates.setModifier(operator.getUsername());
@@ -268,7 +266,7 @@ public class TemplatesServiceImpl extends ServiceImpl<TemplatesMapper, Templates
 
         Date date = new Date();
 
-        UserDO operator = SessionUtils.getOperator();
+        UserDTO operator = SessionUtils.getOperator();
 
         Templates.setGmtModified(date);
         Templates.setModifier(operator.getUsername());

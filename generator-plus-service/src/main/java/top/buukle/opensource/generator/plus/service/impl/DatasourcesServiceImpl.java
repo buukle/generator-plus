@@ -10,7 +10,7 @@ import top.buukle.opensource.generator.plus.commons.call.CommonRequest;
 import top.buukle.opensource.generator.plus.commons.call.CommonResponse;
 import top.buukle.opensource.generator.plus.commons.call.PageResponse;
 import top.buukle.opensource.generator.plus.commons.session.SessionUtils;
-import top.buukle.opensource.generator.plus.commons.session.UserDO;
+import top.buukle.opensource.generator.plus.commons.session.UserDTO;
 import top.buukle.opensource.generator.plus.commons.status.StatusConstants;
 import top.buukle.opensource.generator.plus.utils.DateUtil;
 import top.buukle.opensource.generator.plus.utils.StringUtil;
@@ -223,12 +223,12 @@ public class DatasourcesServiceImpl extends ServiceImpl<DatasourcesMapper, Datas
     public void savePre(Datasources datasources) {
         Date date = new Date();
 
-        UserDO operator = SessionUtils.getOperator();
+        UserDTO operator = SessionUtils.getOperator();
 
         datasources.setGmtCreated(date);
         datasources.setCreator(operator.getUsername());
         datasources.setCreatorCode(operator.getUserId());
-        datasources.setCreatorDeptId(Integer.parseInt(StringUtil.isEmpty(operator.getDeptId())?"-1":operator.getDeptId()));
+        datasources.setCreatorTenantId(Integer.parseInt(StringUtil.isEmpty(operator.getTenantId())?"-1":operator.getTenantId()));
         datasources.setGmtModified(date);
 
         datasources.setModifier(operator.getUsername());
@@ -249,7 +249,7 @@ public class DatasourcesServiceImpl extends ServiceImpl<DatasourcesMapper, Datas
 
         Date date = new Date();
 
-        UserDO operator = SessionUtils.getOperator();
+        UserDTO operator = SessionUtils.getOperator();
 
         datasources.setGmtModified(date);
         datasources.setModifier(operator.getUsername());
