@@ -6,7 +6,6 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 /**
  * @Author elvin
@@ -32,35 +31,13 @@ public class BaseLogger {
         return new BaseLogger(logger);
     }
 
-    /**
-     * 获取sessionid
-     * @return
-     */
-    public String getSessionId(){
-        long currentId=-1;
-        try {
-            ServletRequestAttributes servletRequestAttributes = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes());
-            if(servletRequestAttributes!=null){
-                HttpServletRequest request = servletRequestAttributes.getRequest();
-                HttpSession session=request.getSession(false);
-                return session.getId();
-            }
-
-            Thread current = Thread.currentThread();
-            currentId = current.getId();
-        } catch (Exception e) {
-
-        }
-        return "[currentId="+currentId+"]";
-    }
-
     public Logger getLogger() {
         return logger;
     }
     public void setLogger(Logger logger) {
         this.logger = logger;
     }
-    public String getSidStr(String msg) {
+    public String getTraceIdStr(String msg) {
         StackTraceElement[] stacks = Thread.currentThread().getStackTrace();
         StringBuffer sb = new StringBuffer();
         for(int i=0;i<stacks.length;i++){
@@ -76,9 +53,7 @@ public class BaseLogger {
                 break;
             }
         }
-        sb.append("[sid:");
-        sb.append(getSessionId());
-        sb.append(",traceId:");
+        sb.append("[traceId:");
         sb.append(getTraceId());
         sb.append("] ");
         sb.append(msg);
@@ -100,7 +75,7 @@ public class BaseLogger {
     }
 
     public void debug(String msg,Object... args){
-        logger.debug(getSidStr(msg),args);
+        logger.debug(getTraceIdStr(msg),args);
     }
 
     /**
@@ -110,15 +85,15 @@ public class BaseLogger {
      * @param args
      */
     public void info(String msg,Object... args){
-        logger.info(getSidStr(msg),args);
+        logger.info(getTraceIdStr(msg),args);
     }
 
     public void warn(String msg,Object... args){
-        logger.warn(getSidStr(msg),args);
+        logger.warn(getTraceIdStr(msg),args);
     }
 
     public void error(String msg,Object... args){
-        logger.error(getSidStr(msg),args);
+        logger.error(getTraceIdStr(msg),args);
     }
 
     /**
@@ -127,6 +102,6 @@ public class BaseLogger {
      * @param t
      */
     public void error(String msg,Throwable t){
-        logger.error(getSidStr(msg),t);
+        logger.error(getTraceIdStr(msg),t);
     }
 }

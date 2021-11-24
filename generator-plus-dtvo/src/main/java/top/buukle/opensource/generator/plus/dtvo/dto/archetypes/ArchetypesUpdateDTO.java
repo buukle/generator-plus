@@ -68,7 +68,7 @@ public class ArchetypesUpdateDTO {
      * 创建者部门id
      */
     @ApiModelProperty(value = "创建者部门id")
-    private Integer creatorDeptId;
+    private Integer creatorTenantId;
     /**
      * 创建者UID
      */

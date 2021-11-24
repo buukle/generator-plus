@@ -11,7 +11,7 @@ import top.buukle.opensource.generator.plus.commons.call.CommonRequest;
 import top.buukle.opensource.generator.plus.commons.call.CommonResponse;
 import top.buukle.opensource.generator.plus.commons.call.PageResponse;
 import top.buukle.opensource.generator.plus.commons.session.SessionUtils;
-import top.buukle.opensource.generator.plus.commons.session.UserDO;
+import top.buukle.opensource.generator.plus.commons.session.UserDTO;
 import top.buukle.opensource.generator.plus.commons.status.StatusConstants;
 import top.buukle.opensource.generator.plus.utils.DateUtil;
 import top.buukle.opensource.generator.plus.utils.StringUtil;
@@ -219,12 +219,12 @@ public class ConfiguresExecuteServiceImpl extends ServiceImpl<ConfiguresExecuteM
     public void savePre(ConfiguresExecute ConfiguresExecute) {
         Date date = new Date();
 
-        UserDO operator = SessionUtils.getOperator();
+        UserDTO operator = SessionUtils.getOperator();
 
         ConfiguresExecute.setGmtCreated(date);
         ConfiguresExecute.setCreator(operator.getUsername());
         ConfiguresExecute.setCreatorCode(operator.getUserId());
-        ConfiguresExecute.setCreatorDeptId(Integer.parseInt(StringUtil.isEmpty(operator.getDeptId())?"-1":operator.getDeptId()));
+        ConfiguresExecute.setCreatorTenantId(Integer.parseInt(StringUtil.isEmpty(operator.getTenantId())?"-1":operator.getTenantId()));
         ConfiguresExecute.setGmtModified(date);
 
         ConfiguresExecute.setModifier(operator.getUsername());
@@ -245,7 +245,7 @@ public class ConfiguresExecuteServiceImpl extends ServiceImpl<ConfiguresExecuteM
 
         Date date = new Date();
 
-        UserDO operator = SessionUtils.getOperator();
+        UserDTO operator = SessionUtils.getOperator();
 
         ConfiguresExecute.setGmtModified(date);
         ConfiguresExecute.setModifier(operator.getUsername());

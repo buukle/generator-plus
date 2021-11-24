@@ -12,7 +12,7 @@ import top.buukle.opensource.generator.plus.commons.call.CommonRequest;
 import top.buukle.opensource.generator.plus.commons.call.CommonResponse;
 import top.buukle.opensource.generator.plus.commons.call.PageResponse;
 import top.buukle.opensource.generator.plus.commons.session.SessionUtils;
-import top.buukle.opensource.generator.plus.commons.session.UserDO;
+import top.buukle.opensource.generator.plus.commons.session.UserDTO;
 import top.buukle.opensource.generator.plus.commons.status.StatusConstants;
 import top.buukle.opensource.generator.plus.utils.DateUtil;
 import top.buukle.opensource.generator.plus.utils.StringUtil;
@@ -240,12 +240,12 @@ public class ArchetypesServiceImpl extends ServiceImpl<ArchetypesMapper, Archety
     public void savePre(Archetypes archetypes) {
         Date date = new Date();
 
-        UserDO operator = SessionUtils.getOperator();
+        UserDTO operator = SessionUtils.getOperator();
 
         archetypes.setGmtCreated(date);
         archetypes.setCreator(operator.getUsername());
         archetypes.setCreatorCode(operator.getUserId());
-        archetypes.setCreatorDeptId(Integer.parseInt(StringUtil.isEmpty(operator.getDeptId())?"-1":operator.getDeptId()));
+        archetypes.setCreatorTenantId(Integer.parseInt(StringUtil.isEmpty(operator.getTenantId())?"-1":operator.getTenantId()));
         archetypes.setGmtModified(date);
 
         archetypes.setModifier(operator.getUsername());
@@ -266,7 +266,7 @@ public class ArchetypesServiceImpl extends ServiceImpl<ArchetypesMapper, Archety
 
         Date date = new Date();
 
-        UserDO operator = SessionUtils.getOperator();
+        UserDTO operator = SessionUtils.getOperator();
 
         archetypes.setGmtModified(date);
         archetypes.setModifier(operator.getUsername());

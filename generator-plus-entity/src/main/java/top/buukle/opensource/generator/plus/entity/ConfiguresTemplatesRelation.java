@@ -58,7 +58,7 @@ public class ConfiguresTemplatesRelation implements Serializable {
     /**
      * 创建者部门id
      */
-    private Integer creatorDeptId;
+    private Integer creatorTenantId;
     /**
      * 
      */
