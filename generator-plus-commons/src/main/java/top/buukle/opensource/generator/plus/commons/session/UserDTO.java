@@ -8,6 +8,6 @@ public class UserDTO {
     private String username;
     private String userId;
     private String tenantId;
-    private String subtenantIds;
+    private String subTenantIds;
 
 }
