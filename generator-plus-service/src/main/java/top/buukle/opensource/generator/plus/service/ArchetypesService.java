@@ -3,8 +3,8 @@ package top.buukle.opensource.generator.plus.service;
 import top.buukle.opensource.generator.plus.commons.call.CommonRequest;
 import top.buukle.opensource.generator.plus.commons.call.CommonResponse;
 import top.buukle.opensource.generator.plus.commons.mvc.service.BaseService;
-import top.buukle.opensource.generator.plus.dos.dto.archetypesExecute.ArchetypesExecuteUpdateDTO;
-import top.buukle.opensource.generator.plus.dos.vo.archetypesExecute.ArchetypesExecuteVO;
+import top.buukle.opensource.generator.plus.dtvo.dto.archetypesExecute.ArchetypesExecuteUpdateDTO;
+import top.buukle.opensource.generator.plus.dtvo.vo.archetypesExecute.ArchetypesExecuteVO;
 
 /**
 * @author elvin

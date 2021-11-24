@@ -3,7 +3,7 @@ package top.buukle.opensource.generator.plus.service;
 import top.buukle.opensource.generator.plus.commons.call.CommonRequest;
 import top.buukle.opensource.generator.plus.commons.call.CommonResponse;
 import top.buukle.opensource.generator.plus.commons.mvc.service.BaseService;
-import top.buukle.opensource.generator.plus.dos.vo.tables.TableVo;
+import top.buukle.opensource.generator.plus.dtvo.vo.tables.TableVo;
 
 import java.sql.SQLException;
 import java.util.List;
