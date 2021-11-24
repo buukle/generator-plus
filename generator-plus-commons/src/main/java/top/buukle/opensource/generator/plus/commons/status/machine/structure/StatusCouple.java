@@ -11,6 +11,7 @@
 package top.buukle.opensource.generator.plus.commons.status.machine.structure;
 
 
+import lombok.Data;
 import top.buukle.opensource.generator.plus.commons.status.machine.model.interfac.AuditStatus;
 import top.buukle.opensource.generator.plus.commons.status.machine.model.interfac.MasterStatus;
 
@@ -22,6 +23,7 @@ import java.util.Objects;
  * @create 2021/2/25
  * @since 1.0.0
  */
+@Data
 public class StatusCouple {
 
     private Integer masterStatusValue;
@@ -34,22 +36,6 @@ public class StatusCouple {
         this.auditStatusValue = auditStatus.value();
         this.masterStatusDescription = masterStatus.getDescription();
         this.auditStatusDescription = auditStatus.getDescription();
-    }
-
-    public Integer getMasterStatusValue() {
-        return masterStatusValue;
-    }
-
-    public void setMasterStatusValue(Integer masterStatusValue) {
-        this.masterStatusValue = masterStatusValue;
-    }
-
-    public Integer getAuditStatusValue() {
-        return auditStatusValue;
-    }
-
-    public void setAuditStatusValue(Integer auditStatusValue) {
-        this.auditStatusValue = auditStatusValue;
     }
 
     @Override

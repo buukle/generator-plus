@@ -11,6 +11,7 @@
 package top.buukle.opensource.generator.plus.commons.status.machine.structure;
 
 
+import lombok.Data;
 import top.buukle.opensource.generator.plus.commons.status.machine.model.interfac.Actions;
 
 /**
@@ -19,6 +20,7 @@ import top.buukle.opensource.generator.plus.commons.status.machine.model.interfa
  * @create 2021/2/25
  * @since 1.0.0
  */
+@Data
 public class StatusTable {
 
     private Integer currentMasterStatus;
@@ -38,46 +40,6 @@ public class StatusTable {
         this.allowAction = allowAction;
         this.targetAuditStatus = targetAuditStatus;
         this.targetMasterStatus = targetMasterStatus;
-    }
-
-    public Integer getCurrentMasterStatus() {
-        return currentMasterStatus;
-    }
-
-    public void setCurrentMasterStatus(Integer currentMasterStatus) {
-        this.currentMasterStatus = currentMasterStatus;
-    }
-
-    public Integer getCurrentAuditStatus() {
-        return currentAuditStatus;
-    }
-
-    public void setCurrentAuditStatus(Integer currentAuditStatus) {
-        this.currentAuditStatus = currentAuditStatus;
-    }
-
-    public Actions getAllowAction() {
-        return allowAction;
-    }
-
-    public void setAllowAction(Actions allowAction) {
-        this.allowAction = allowAction;
-    }
-
-    public Integer getTargetMasterStatus() {
-        return targetMasterStatus;
-    }
-
-    public void setTargetMasterStatus(Integer targetMasterStatus) {
-        this.targetMasterStatus = targetMasterStatus;
-    }
-
-    public Integer getTargetAuditStatus() {
-        return targetAuditStatus;
-    }
-
-    public void setTargetAuditStatus(Integer targetAuditStatus) {
-        this.targetAuditStatus = targetAuditStatus;
     }
 
     @Override
