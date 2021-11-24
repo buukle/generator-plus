@@ -11,6 +11,7 @@
 package top.buukle.opensource.generator.plus.commons.status.machine.structure;
 
 
+import lombok.Data;
 import top.buukle.opensource.generator.plus.commons.status.machine.model.interfac.Actions;
 import top.buukle.opensource.generator.plus.commons.status.machine.model.interfac.AuditStatus;
 import top.buukle.opensource.generator.plus.commons.status.machine.model.interfac.MasterStatus;
@@ -23,6 +24,7 @@ import java.util.Objects;
  * @create 2021/2/25
  * @since 1.0.0
  */
+@Data
 public class ActionStatus {
 
     private MasterStatus masterStatus;
@@ -33,30 +35,6 @@ public class ActionStatus {
         this.action = action;
         this.masterStatus = masterStatus;
         this.auditStatus = auditStatus;
-    }
-
-    public MasterStatus getMasterStatus() {
-        return masterStatus;
-    }
-
-    public void setMasterStatus(MasterStatus masterStatus) {
-        this.masterStatus = masterStatus;
-    }
-
-    public AuditStatus getAuditStatus() {
-        return auditStatus;
-    }
-
-    public void setAuditStatus(AuditStatus auditStatus) {
-        this.auditStatus = auditStatus;
-    }
-
-    public Actions getAction() {
-        return action;
-    }
-
-    public void setAction(Actions action) {
-        this.action = action;
     }
 
     @Override
