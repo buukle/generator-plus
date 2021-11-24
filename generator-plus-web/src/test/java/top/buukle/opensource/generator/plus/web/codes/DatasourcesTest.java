@@ -9,8 +9,8 @@ import top.buukle.opensource.generator.plus.commons.call.CommonRequest;
 import top.buukle.opensource.generator.plus.commons.call.CommonResponse;
 import top.buukle.opensource.generator.plus.commons.call.PageResponse;
 import top.buukle.opensource.generator.plus.utils.JsonUtil;
-import top.buukle.opensource.generator.plus.dos.dto.datasources.DatasourcesQueryDTO;
-import top.buukle.opensource.generator.plus.dos.dto.datasources.DatasourcesUpdateDTO;
+import top.buukle.opensource.generator.plus.dtvo.dto.datasources.DatasourcesQueryDTO;
+import top.buukle.opensource.generator.plus.dtvo.dto.datasources.DatasourcesUpdateDTO;
 import top.buukle.opensource.generator.plus.service.DatasourcesService;
 
 @RunWith(SpringRunner.class)
