@@ -2,6 +2,7 @@ package top.buukle.opensource.generator.plus.commons.session;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.util.StringUtils;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import top.buukle.opensource.generator.plus.commons.log.BaseLogger;
@@ -27,8 +28,10 @@ public class SessionUtils {
         if(request != null){
             String authorization = request.getHeader(Constants.AUTHORIZATION);
             try {
-                userDO = mapper.readValue(authorization, UserDO.class);
-            } catch (JsonProcessingException e) {
+                if(authorization != null && !"".equals(authorization)){
+                    userDO = mapper.readValue(authorization, UserDO.class);
+                }
+            } catch (Exception e) {
                 e.printStackTrace();
                 LOGGER.error("获取用户会话信息失败,原因:{}",e.getCause() + e.getMessage());
             }
