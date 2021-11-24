@@ -21,7 +21,7 @@
     <dependencies>
         <dependency>
             <groupId>top.buukle.opensource</groupId>
-            <artifactId>generator-plus-dos</artifactId>
+            <artifactId>generator-plus-dtvo</artifactId>
             <version>1.0.0-RELEASE</version>
         </dependency>
     </dependencies>
