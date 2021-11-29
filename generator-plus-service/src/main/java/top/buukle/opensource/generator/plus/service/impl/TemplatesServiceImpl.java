@@ -13,6 +13,7 @@ import top.buukle.opensource.generator.plus.commons.call.PageResponse;
 import top.buukle.opensource.generator.plus.commons.session.SessionUtils;
 import top.buukle.opensource.generator.plus.commons.session.UserDTO;
 import top.buukle.opensource.generator.plus.commons.status.StatusConstants;
+import top.buukle.opensource.generator.plus.dtvo.dto.templatesGroup.TemplatesGroupUpdateDTO;
 import top.buukle.opensource.generator.plus.dtvo.enums.TemplatesGroupEnums.status;
 import top.buukle.opensource.generator.plus.entity.TemplatesGroup;
 import top.buukle.opensource.generator.plus.service.TemplatesGroupService;
@@ -294,5 +295,37 @@ public class TemplatesServiceImpl extends ServiceImpl<TemplatesMapper, Templates
             queryVOList.add(TemplatesVO);
         }
         return new CommonResponse.Builder().buildSuccess(queryVOList);
+    }
+
+    /**
+     * @description 根据分组复制模板
+     * @param templatesGroupIdSource
+     * @param templatesGroupIdTarget
+     * @param templatesGroupUpdateDTO
+     * @return void
+     * @Author zhanglei451
+     * @Date 2021/11/29
+     */
+    @Override
+    public void copyByGroupId(Integer templatesGroupIdSource, Integer templatesGroupIdTarget, TemplatesGroupUpdateDTO templatesGroupUpdateDTO) {
+        QueryWrapper<Templates> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("templates_group_id",templatesGroupIdSource);
+        queryWrapper.gt("status",StatusConstants.DELETED);
+        List<Templates> list = super.list(queryWrapper);
+        for (Templates templates : list) {
+            templates.setId(null);
+            templates.setTemplatesGroupId(templatesGroupIdTarget);
+            Integer status = templates.getStatus();
+            savePre(templates);
+            templates.setStatus(status);
+            if(StringUtil.isNotEmpty(templates.getPath())){
+                templates.setPath(templates.getPath().replace(templatesGroupUpdateDTO.getPathToReplace1(),templatesGroupUpdateDTO.getPathReplaced1()));
+                templates.setPath(templates.getPath().replace(templatesGroupUpdateDTO.getPathToReplace2(),templatesGroupUpdateDTO.getPathReplaced2()));
+            }
+            if(StringUtil.isNotEmpty(templates.getPackageInfo())){
+                templates.setPackageInfo(templates.getPackageInfo().replace(templatesGroupUpdateDTO.getPackageInfoToReplace(),templatesGroupUpdateDTO.getPackageInfoReplaced()));
+            }
+        }
+        super.saveBatch(list);
     }
 }

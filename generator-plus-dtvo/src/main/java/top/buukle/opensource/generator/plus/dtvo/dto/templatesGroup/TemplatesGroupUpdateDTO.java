@@ -20,6 +20,17 @@ import java.util.List;
 public class TemplatesGroupUpdateDTO  {
 
 
+    private String pathToReplace1;
+
+    private String pathReplaced1;
+
+    private String pathToReplace2;
+
+    private String pathReplaced2;
+
+    private String packageInfoToReplace;
+
+    private String packageInfoReplaced;
     /**
      * 主键id
      */

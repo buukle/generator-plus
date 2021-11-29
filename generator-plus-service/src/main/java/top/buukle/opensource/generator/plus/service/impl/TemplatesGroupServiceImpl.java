@@ -5,7 +5,10 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 import top.buukle.opensource.generator.plus.commons.call.CommonRequest;
 import top.buukle.opensource.generator.plus.commons.call.CommonResponse;
@@ -21,6 +24,7 @@ import top.buukle.opensource.generator.plus.dtvo.dto.templatesGroup.TemplatesGro
 import top.buukle.opensource.generator.plus.dtvo.dto.templatesGroup.TemplatesGroupUpdateDTO;
 import top.buukle.opensource.generator.plus.dtvo.vo.templatesGroup.TemplatesGroupVO;
 import top.buukle.opensource.generator.plus.service.TemplatesGroupService;
+import top.buukle.opensource.generator.plus.service.TemplatesService;
 import top.buukle.opensource.generator.plus.service.constants.SystemReturnEnum;
 import top.buukle.opensource.generator.plus.service.exception.SystemException;
 import top.buukle.opensource.generator.plus.utils.DateUtil;
@@ -38,6 +42,9 @@ import java.util.List;
 @Service("templatesGroupService")
 public class TemplatesGroupServiceImpl extends ServiceImpl<TemplatesGroupMapper, TemplatesGroup> implements TemplatesGroupService<TemplatesGroup, TemplatesGroupVO, TemplatesGroupQueryDTO, TemplatesGroupUpdateDTO>{
 
+
+    @Autowired
+    TemplatesService templatesService;
 
     /**
      * @description 增
@@ -282,5 +289,36 @@ public class TemplatesGroupServiceImpl extends ServiceImpl<TemplatesGroupMapper,
         }
         CommonResponse<List<TemplatesGroupVO>> listCommonResponse = new Builder().buildSuccess(queryVOList);
         return listCommonResponse;
+    }
+
+    /**
+     * @description 复制分组带模板
+     * @param commonRequest
+     * @return top.buukle.opensource.generator.plus.commons.call.CommonResponse<top.buukle.opensource.generator.plus.dtvo.vo.templatesGroup.TemplatesGroupVO>
+     * @Author zhanglei451
+     * @Date 2021/11/29
+     */
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED , rollbackFor = {Exception.class})
+    public CommonResponse<TemplatesGroupVO> copyWithTemplates(CommonRequest<TemplatesGroupUpdateDTO> commonRequest) {
+        TemplatesGroupUpdateDTO templatesGroupUpdateDTO = commonRequest.getBody();
+        // 转换DTO
+        TemplatesGroup templatesGroup = new TemplatesGroup();
+        BeanUtils.copyProperties(templatesGroupUpdateDTO,templatesGroup);
+        if(!CollectionUtils.isEmpty(templatesGroupUpdateDTO.getParamList())){
+            templatesGroup.setParams(JsonUtil.toJSONString(templatesGroupUpdateDTO.getParamList()));
+        }
+        // 初始字段
+        this.savePre(templatesGroup);
+        templatesGroup.setId(null);
+        templatesGroup.setStatus(TemplatesGroupEnums.status.PUBLISHED.value());
+        // 落库
+        super.save(templatesGroup);
+        // 复制模板
+        templatesService.copyByGroupId(templatesGroupUpdateDTO.getId(),templatesGroup.getId(),templatesGroupUpdateDTO);
+        // 返回
+        TemplatesGroupVO templatesGroupVO = new TemplatesGroupVO();
+        BeanUtils.copyProperties(templatesGroup, templatesGroupVO);
+        return new CommonResponse.Builder().buildSuccess(templatesGroupVO);
     }
 }
