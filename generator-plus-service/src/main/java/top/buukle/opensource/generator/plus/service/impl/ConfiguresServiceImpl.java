@@ -130,6 +130,8 @@ public class ConfiguresServiceImpl extends ServiceImpl<ConfiguresMapper, Configu
         // 增
         if(configuresUpdateDTO.getId() == null){
             response = this.add(commonRequest);
+            ConfiguresVO configuresVO = response.getBody();
+            configuresUpdateDTO.setId(configuresVO.getId());
         }
         // 改
         else{
