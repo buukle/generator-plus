@@ -111,8 +111,8 @@ frontend :  Antd ( ant-design-vue-pro)
 2. 启动 : nohup java -jar generator-plus-web-x.x-RELEASE.jar >> /opt/logs/generator-plus/generator.log 2>&1 &
 3. 访问 : http://127.0.0.1/generator-plus/index.html
 4. 本地化\
-   ① 导出线上ddl,地址-- jdbc:mysql://mysql.buukle.top:13306/generator-plus?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=utf-8&useSSL=false
-   数据库 (username / password ==> guest / Buuk1e,. ) ,并转储到你的目标数据源(mysql)\
+   ① 执行ddl 
+     位置 : ./generator-plus/sql/generator-plus.sql
    ② java -jar generator-plus-web-0.0.1-alpha.jar --spring.config.location=C:/application.yml 挂载外部配置启动\
    示例 application.yml 文件(请将数据源部分修改为你的自有数据源地址),并放到配置挂载目录下
 ````
@@ -185,6 +185,7 @@ mybatis-plus:
 
 #### 源码开发
 ##### (1) 后端
+0. 执行ddl 位置 : ./generator-plus/sql/generator-plus.sql
 1. 克隆前端整合分支 : git clone -b FRONTEND-BACKEND-ALL https://gitee.com/buukle/generator-plus.git  
 2. 更改本地maven settings 为 本项目根路径下的 settings.xml(使用自带的settings.xml也行,请确保中央仓库的连通性,本项目所有依赖均可从中央仓库或 阿里云镜像仓库拉取)
 3. mvn clean
