@@ -3,6 +3,7 @@ package top.buukle.opensource.generator.plus.service;
 import top.buukle.opensource.generator.plus.commons.call.CommonRequest;
 import top.buukle.opensource.generator.plus.commons.call.CommonResponse;
 import top.buukle.opensource.generator.plus.commons.mvc.service.BaseService;
+import top.buukle.opensource.generator.plus.dtvo.dto.templatesGroup.TemplatesGroupUpdateDTO;
 
 import java.util.List;
 
@@ -14,5 +15,5 @@ public interface TemplatesService<MODEL, VO,QUERYDTO,UPDATEDTO> extends BaseServ
 
     CommonResponse<List<VO>> getTemplatesByGroupId(CommonRequest<QUERYDTO> commonRequest);
 
-    void copyByGroupId(Integer templatesGroupIdSource, Integer templatesGroupIdTarget);
+    void copyByGroupId(Integer templatesGroupIdSource, Integer templatesGroupIdTarget, TemplatesGroupUpdateDTO templatesGroupUpdateDTO);
 }

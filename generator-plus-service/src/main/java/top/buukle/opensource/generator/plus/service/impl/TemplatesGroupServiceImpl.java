@@ -315,7 +315,7 @@ public class TemplatesGroupServiceImpl extends ServiceImpl<TemplatesGroupMapper,
         // 落库
         super.save(templatesGroup);
         // 复制模板
-        templatesService.copyByGroupId(templatesGroupUpdateDTO.getId(),templatesGroup.getId());
+        templatesService.copyByGroupId(templatesGroupUpdateDTO.getId(),templatesGroup.getId(),templatesGroupUpdateDTO);
         // 返回
         TemplatesGroupVO templatesGroupVO = new TemplatesGroupVO();
         BeanUtils.copyProperties(templatesGroup, templatesGroupVO);
