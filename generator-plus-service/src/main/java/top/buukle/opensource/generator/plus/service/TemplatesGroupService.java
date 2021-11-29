@@ -14,4 +14,6 @@ import java.util.List;
 public interface  TemplatesGroupService<MODEL, VO,QUERYDTO,UPDATEDTO> extends BaseService<MODEL, VO,QUERYDTO,UPDATEDTO> {
 
     CommonResponse<List<VO>> getTemplatesGroupList(CommonRequest<QUERYDTO> commonRequest);
+
+    CommonResponse<VO> copyWithTemplates(CommonRequest<UPDATEDTO> commonRequest);
 }

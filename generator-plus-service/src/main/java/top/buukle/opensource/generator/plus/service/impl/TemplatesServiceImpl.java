@@ -295,4 +295,26 @@ public class TemplatesServiceImpl extends ServiceImpl<TemplatesMapper, Templates
         }
         return new CommonResponse.Builder().buildSuccess(queryVOList);
     }
+
+    /**
+     * @description 根据分组复制模板
+     * @param templatesGroupIdSource
+     * @param templatesGroupIdTarget
+     * @return void
+     * @Author zhanglei451
+     * @Date 2021/11/29
+     */
+    @Override
+    public void copyByGroupId(Integer templatesGroupIdSource, Integer templatesGroupIdTarget) {
+        QueryWrapper<Templates> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("templates_group_id",templatesGroupIdSource);
+        queryWrapper.gt("status",StatusConstants.DELETED);
+        List<Templates> list = super.list(queryWrapper);
+        for (Templates templates : list) {
+            templates.setId(null);
+            templates.setTemplatesGroupId(templatesGroupIdTarget);
+            savePre(templates);
+        }
+        super.saveBatch(list);
+    }
 }

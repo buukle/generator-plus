@@ -83,4 +83,11 @@ public class TemplatesGroupController {
         return templatesGroupService.getTemplatesGroupList(commonRequest);
     }
 
+    @PostMapping("/copyWithTemplates")
+    @ResponseBody
+    @ApiOperation(value = "增 - 复制分组(带模板)", httpMethod = "POST")
+    public CommonResponse<TemplatesGroupVO> copyWithTemplates(@RequestBody CommonRequest<TemplatesGroupUpdateDTO> commonRequest) throws Exception {
+        return templatesGroupService.copyWithTemplates(commonRequest);
+    }
+
 }

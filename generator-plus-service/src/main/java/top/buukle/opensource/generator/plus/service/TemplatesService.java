@@ -13,4 +13,6 @@ import java.util.List;
 public interface TemplatesService<MODEL, VO,QUERYDTO,UPDATEDTO> extends BaseService<MODEL, VO,QUERYDTO,UPDATEDTO> {
 
     CommonResponse<List<VO>> getTemplatesByGroupId(CommonRequest<QUERYDTO> commonRequest);
+
+    void copyByGroupId(Integer templatesGroupIdSource, Integer templatesGroupIdTarget);
 }
