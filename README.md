@@ -186,7 +186,7 @@ mybatis-plus:
 #### 源码开发
 ##### (1) 后端
 0. 执行ddl 位置 : ./generator-plus/sql/generator-plus.sql
-1. 克隆前端整合分支 : git clone -b FRONTEND-BACKEND-ALL https://gitee.com/buukle/generator-plus.git  
+1. 克隆前端整合分支 : git clone -b all-in-one https://gitee.com/buukle/generator-plus.git  
 2. 更改本地maven settings 为 本项目根路径下的 settings.xml(使用自带的settings.xml也行,请确保中央仓库的连通性,本项目所有依赖均可从中央仓库或 阿里云镜像仓库拉取)
 3. mvn clean
 4. mvn install
