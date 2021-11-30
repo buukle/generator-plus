@@ -16,4 +16,6 @@ public interface TemplatesService<MODEL, VO,QUERYDTO,UPDATEDTO> extends BaseServ
     CommonResponse<List<VO>> getTemplatesByGroupId(CommonRequest<QUERYDTO> commonRequest);
 
     void copyByGroupId(Integer templatesGroupIdSource, Integer templatesGroupIdTarget, TemplatesGroupUpdateDTO templatesGroupUpdateDTO);
+
+    void deleteTemplatesByGroupId(Integer templatesGroupId);
 }

@@ -1,6 +1,7 @@
 package top.buukle.opensource.generator.plus.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -195,10 +196,15 @@ public class TemplatesServiceImpl extends ServiceImpl<TemplatesMapper, Templates
         PageInfo<Templates> pageInfo = new PageInfo<>(list);
         // 分页
         List<TemplatesVO> queryVOList = new ArrayList<>();
-        for (Templates TemplatesDB : list) {
-            TemplatesVO TemplatesVO = new TemplatesVO();
-            BeanUtils.copyProperties(TemplatesDB, TemplatesVO);
-            queryVOList.add(TemplatesVO);
+        for (Templates templatesDB : list) {
+            TemplatesVO templatesVO = new TemplatesVO();
+            BeanUtils.copyProperties(templatesDB, templatesVO);
+            TemplatesGroup byId = (TemplatesGroup) templatesGroupService.getById(templatesDB.getTemplatesGroupId());
+            if(byId == null || byId.getStatus() != status.PUBLISHED.value()){
+                throw new SystemException(SystemReturnEnum.TEMPLATES_INFO_GROUP_STATUS_WRONG);
+            }
+            templatesVO.setTemplatesGroupName(byId.getName());
+            queryVOList.add(templatesVO);
         }
         return new PageResponse.Builder().build(queryVOList, pageInfo.getPageNum(), pageInfo.getPageSize(), pageInfo.getTotal());
     }
@@ -303,7 +309,7 @@ public class TemplatesServiceImpl extends ServiceImpl<TemplatesMapper, Templates
      * @param templatesGroupIdTarget
      * @param templatesGroupUpdateDTO
      * @return void
-     * @Author zhanglei451
+     * @Author zhanglei001
      * @Date 2021/11/29
      */
     @Override
@@ -318,14 +324,42 @@ public class TemplatesServiceImpl extends ServiceImpl<TemplatesMapper, Templates
             Integer status = templates.getStatus();
             savePre(templates);
             templates.setStatus(status);
-            if(StringUtil.isNotEmpty(templates.getPath())){
-                templates.setPath(templates.getPath().replace(templatesGroupUpdateDTO.getPathToReplace1(),templatesGroupUpdateDTO.getPathReplaced1()));
-                templates.setPath(templates.getPath().replace(templatesGroupUpdateDTO.getPathToReplace2(),templatesGroupUpdateDTO.getPathReplaced2()));
+            if(StringUtil.isNotEmpty(templates.getPath()) && StringUtil.isNotEmpty(templatesGroupUpdateDTO.getPathToReplace1())){
+                templates.setPath(templates.getPath().replace(templatesGroupUpdateDTO.getPathToReplace1(),templatesGroupUpdateDTO.getPathReplaced1() == null ? "" : templatesGroupUpdateDTO.getPathReplaced1()));
             }
-            if(StringUtil.isNotEmpty(templates.getPackageInfo())){
-                templates.setPackageInfo(templates.getPackageInfo().replace(templatesGroupUpdateDTO.getPackageInfoToReplace(),templatesGroupUpdateDTO.getPackageInfoReplaced()));
+
+            if(StringUtil.isNotEmpty(templates.getPath()) && StringUtil.isNotEmpty(templatesGroupUpdateDTO.getPathToReplace2())){
+                templates.setPath(templates.getPath().replace(templatesGroupUpdateDTO.getPathToReplace2(),templatesGroupUpdateDTO.getPathReplaced2() == null ? "" : templatesGroupUpdateDTO.getPathReplaced2()));
+            }
+
+            if(StringUtil.isNotEmpty(templates.getPackageInfo()) && StringUtil.isNotEmpty(templatesGroupUpdateDTO.getPackageInfoToReplace())){
+                templates.setPackageInfo(templates.getPackageInfo().replace(templatesGroupUpdateDTO.getPackageInfoToReplace(),templatesGroupUpdateDTO.getPackageInfoReplaced() == null ? "" : templatesGroupUpdateDTO.getPackageInfoReplaced()));
             }
         }
         super.saveBatch(list);
+    }
+
+    /**
+     * @description 根据分组id删除模板
+     * @param templatesGroupId
+     * @return void
+     * @Author zhanglei001
+     * @Date 2021/11/30
+     */
+    @Override
+    public void deleteTemplatesByGroupId(Integer templatesGroupId) {
+        UpdateWrapper<Templates> updateWrapper = new UpdateWrapper<>();
+        updateWrapper.eq("templates_group_id",templatesGroupId);
+
+        Date date = new Date();
+        UserDTO operator = SessionUtils.getOperator();
+
+        updateWrapper.set("gmt_modified",date);
+        updateWrapper.set("modifier",operator.getUsername());
+        updateWrapper.set("modifier_code",operator.getUserId());
+
+        updateWrapper.set("status",TemplatesEnums.status.DELETED.value());
+
+        super.update(updateWrapper);
     }
 }
