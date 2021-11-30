@@ -114,6 +114,7 @@ public class TemplatesGroupServiceImpl extends ServiceImpl<TemplatesGroupMapper,
         templatesGroup.setStatus(StatusConstants.DELETED);
         // 落库
         super.updateById(templatesGroup);
+        templatesService.deleteTemplatesByGroupId(templatesGroup.getId());
         // 返回
         TemplatesGroupVO templatesGroupVO = new TemplatesGroupVO();
         BeanUtils.copyProperties(templatesGroup, templatesGroupVO);
@@ -295,7 +296,7 @@ public class TemplatesGroupServiceImpl extends ServiceImpl<TemplatesGroupMapper,
      * @description 复制分组带模板
      * @param commonRequest
      * @return top.buukle.opensource.generator.plus.commons.call.CommonResponse<top.buukle.opensource.generator.plus.dtvo.vo.templatesGroup.TemplatesGroupVO>
-     * @Author zhanglei451
+     * @Author zhanglei001
      * @Date 2021/11/29
      */
     @Override
