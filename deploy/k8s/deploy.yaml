@@ -26,6 +26,9 @@ spec:
         - containerPort: 80
           protocol: TCP
         imagePullPolicy: Always
+        volumeMounts:
+          - name: volume-raufv3
+            mountPath: /opt/temp
       dnsPolicy: ClusterFirst
       restartPolicy: Always
 ---
