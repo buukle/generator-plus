@@ -1,6 +1,7 @@
 package top.buukle.opensource.generator.plus.commons.session;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.util.StringUtils;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import top.buukle.opensource.generator.plus.commons.log.BaseLogger;
@@ -9,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 
 public class SessionUtils {
 
-    private static BaseLogger LOGGER = BaseLogger.getLogger(SessionUtils.class);
+    private final static BaseLogger LOGGER = BaseLogger.getLogger(SessionUtils.class);
 
     private static ObjectMapper mapper = new ObjectMapper();
     /**
@@ -27,6 +28,9 @@ public class SessionUtils {
         userDTO.setUsername("ANONYMOUS");
         if(request != null){
             String authorization = request.getHeader(Constants.AUTHORIZATION);
+            if(!StringUtils.isEmpty(authorization)){
+                LOGGER.info(authorization);
+            }
             try {
                 if(authorization != null && !"".equals(authorization)){
                     userDTO = mapper.readValue(authorization, UserDTO.class);
