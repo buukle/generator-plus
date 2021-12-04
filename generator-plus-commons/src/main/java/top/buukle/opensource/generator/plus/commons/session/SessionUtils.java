@@ -27,13 +27,13 @@ public class SessionUtils {
         userDTO.setUserId("ANONYMOUS");
         userDTO.setUsername("ANONYMOUS");
         if(request != null){
-            String authorization = request.getHeader(Constants.AUTHORIZATION);
-            if(!StringUtils.isEmpty(authorization)){
-                LOGGER.info(authorization);
+            String user = request.getHeader(Constants.USER_REQUEST_HEADER_KEY);
+            if(user != null && !"".equals(user)){
+                LOGGER.info("原始用户信息:{}",user);
             }
             try {
-                if(authorization != null && !"".equals(authorization)){
-                    userDTO = mapper.readValue(authorization, UserDTO.class);
+                if(user != null && !"".equals(user)){
+                    userDTO = mapper.readValue(user, UserDTO.class);
                 }
             } catch (Exception e) {
                 e.printStackTrace();
