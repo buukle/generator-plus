@@ -22,13 +22,17 @@ import lombok.Data;
 public class Head {
 
     /** 来源系统code*/
-    private String applicationCode;
+    private String appId;
     /** 来源操作时间*/
     private String operationTime;
     /** 来源操作人*/
     private String operator;
     /** 来源操作人Id*/
     private String operatorId;
+    /** 来源操作人主租户Id*/
+    private String operatorTenantId;
+    /** 来源操作人下辖租户Ids*/
+    private String operatorSubTenantIds;
     /** 签名 */
     private String signature;
 

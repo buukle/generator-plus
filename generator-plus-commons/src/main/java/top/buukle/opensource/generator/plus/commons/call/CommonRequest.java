@@ -20,12 +20,12 @@ public class CommonRequest<T>{
 
     public static class Builder {
 
-        public static CommonRequest build(String applicationName) {
+        public static CommonRequest build(String appId) {
             CommonRequest commonRequest =  new CommonRequest<>();
             Head head  = new Head.Builder().build();
-            head.setApplicationCode(applicationName);
-            head.setOperator(applicationName);
-            head.setOperatorId(applicationName);
+            head.setAppId(appId);
+            head.setOperator(appId);
+            head.setOperatorId(appId);
             commonRequest.setHead(head);
             return commonRequest;
         }

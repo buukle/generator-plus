@@ -13,6 +13,14 @@ public enum SystemReturnEnum {
     SUCCESS(BaseReturnEnum.SUCCESS),
     FAILED(BaseReturnEnum.FAILED),
     RUD_ID_NULL("F","000000","ID为空"),
+    FAILED_401_HEAD_NULL("F",SystemReturnEnum.class.getName() + "0000","请求参数错误,通用请求头为空!"),
+    FAILED_401_APP_ID_NULL("F",SystemReturnEnum.class.getName() + "0000","请求参数错误,APP_ID 为空!"),
+    FAILED_401_OPERATOR_NULL("F",SystemReturnEnum.class.getName() + "0000","请求参数错误,OPERATOR 为空!"),
+    FAILED_401_OPERATOR_ID_NULL("F",SystemReturnEnum.class.getName() + "0000","请求参数错误,OPERATOR_ID 为空!"),
+    FAILED_401_OPERATOR_SUB_TENANT_IDS_NULL("F",SystemReturnEnum.class.getName() + "0000","请求参数错误,OPERATOR_SUB_TENANT_IDS 为空!"),
+    FAILED_401_OPERATOR_TENANT_ID_NULL("F",SystemReturnEnum.class.getName() + "0000","请求参数错误,OPERATOR_TENANT_ID 为空!"),
+    FAILED_401_SIGNATURE_NULL("F",SystemReturnEnum.class.getName() + "0000","请求参数错误,SIGNATURE 为空!"),
+
 
     /** 模板 执行*/
     GEN_CONFIGURES_ID_NULL("F",SystemReturnEnum.class.getName() + "0001","失败,配置id为空"),
