@@ -36,7 +36,7 @@ public class WebController {
 
         @RequestMapping("/auth/login")
         @ResponseBody
-        public ANTDPCommonResponseVO<ANTDPUserVO> authLogin(HttpServletRequest request, HttpServletResponse response ) {
+        public ANTDPCommonResponseVO<ANTDPUserVO> authLogin( ) {
                 // 声明返回实体
                 ANTDPCommonResponseVO antdpCommonResponseVO = new ANTDPCommonResponseVO();
                 // 声明初始化用户实体
@@ -59,7 +59,7 @@ public class WebController {
 
         @RequestMapping("/user/info")
         @ResponseBody
-        public ANTDPCommonResponseVO<ANTDPUserVO> userInfo(HttpServletRequest request, HttpServletResponse response ) {
+        public ANTDPCommonResponseVO<ANTDPUserVO> userInfo() {
 
                 // 声明初始化返回实体
                 ANTDPCommonResponseVO antdpCommonResponseVO = new ANTDPCommonResponseVO();
@@ -90,7 +90,7 @@ public class WebController {
 
         @RequestMapping("/user/nav")
         @ResponseBody
-        public ANTDPCommonResponseVO<ANTDPNavigationVO> userNav(HttpServletRequest request, HttpServletResponse response ) {
+        public ANTDPCommonResponseVO<ANTDPNavigationVO> userNav( ) {
 
                 // 声明导航list
                 List<ANTDPNavigationVO> antdpNavigationVOS = new ArrayList<>();
