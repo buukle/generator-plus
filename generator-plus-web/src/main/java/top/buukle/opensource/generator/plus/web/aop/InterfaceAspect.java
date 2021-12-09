@@ -24,7 +24,7 @@ import javax.servlet.http.HttpServletRequest;
 public class InterfaceAspect {
 
 
-    @Pointcut("execution(* top.buukle.opensource.generator.plus.controller.*(..))")
+    @Pointcut("execution(* top.buukle.opensource.generator.plus.controller.*.*(..))")
     public void webAspect() {}
 
     @Before("webAspect()")
