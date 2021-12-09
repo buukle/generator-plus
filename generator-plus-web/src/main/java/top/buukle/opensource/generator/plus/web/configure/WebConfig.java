@@ -1,9 +1,11 @@
 package top.buukle.opensource.generator.plus.web.configure;
 
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 import top.buukle.opensource.generator.plus.utils.SystemUtil;
+import top.buukle.opensource.generator.plus.web.configure.interceptor.TraceInterceptor;
 
 @Configuration
 public class WebConfig extends WebMvcConfigurationSupport {
@@ -28,5 +30,10 @@ public class WebConfig extends WebMvcConfigurationSupport {
                     .addResourceLocations("file:/opt/temp");
         }
         super.addResourceHandlers(registry);
+    }
+
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(new TraceInterceptor());
     }
 }
