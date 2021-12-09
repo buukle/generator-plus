@@ -7,11 +7,12 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
+import top.buukle.login.cube.session.SessionUtils;
+import top.buukle.login.cube.session.UserDTO;
+import top.buukle.login.cube.session.tenant.TenantHelper;
 import top.buukle.opensource.generator.plus.commons.call.CommonRequest;
 import top.buukle.opensource.generator.plus.commons.call.CommonResponse;
 import top.buukle.opensource.generator.plus.commons.call.PageResponse;
-import top.buukle.opensource.generator.plus.commons.session.SessionUtils;
-import top.buukle.opensource.generator.plus.commons.session.UserDTO;
 import top.buukle.opensource.generator.plus.commons.status.StatusConstants;
 import top.buukle.opensource.generator.plus.utils.DateUtil;
 import top.buukle.opensource.generator.plus.utils.StringUtil;
@@ -150,6 +151,7 @@ public class ConfiguresExecuteServiceImpl extends ServiceImpl<ConfiguresExecuteM
             throw new SystemException(SystemReturnEnum.RUD_ID_NULL);
         }
         // 执行查询
+        TenantHelper.startTenant("configures_execute");
         ConfiguresExecute one = super.getById(ConfiguresExecuteQueryDTO.getId());
         // 转换响应
         ConfiguresExecuteVO ConfiguresExecuteVO = new ConfiguresExecuteVO();
@@ -175,6 +177,7 @@ public class ConfiguresExecuteServiceImpl extends ServiceImpl<ConfiguresExecuteM
         QueryWrapper<ConfiguresExecute> queryWrapper = this.assPageParam(ConfiguresExecuteQueryDTO);
         // 查询
         PageHelper.startPage(ConfiguresExecuteQueryDTO.getPageNo(),ConfiguresExecuteQueryDTO.getPageSize());
+        TenantHelper.startTenant("configures_execute");
         List<ConfiguresExecute> list = super.list(queryWrapper);
         PageInfo<ConfiguresExecute> pageInfo = new PageInfo<>(list);
         // 分页
@@ -224,7 +227,7 @@ public class ConfiguresExecuteServiceImpl extends ServiceImpl<ConfiguresExecuteM
         ConfiguresExecute.setGmtCreated(date);
         ConfiguresExecute.setCreator(operator.getUsername());
         ConfiguresExecute.setCreatorCode(operator.getUserId());
-        ConfiguresExecute.setCreatorTenantId(Integer.parseInt(StringUtil.isEmpty(operator.getTenantId())?"-1":operator.getTenantId()));
+        ConfiguresExecute.setTenantId(Integer.parseInt(StringUtil.isEmpty(operator.getTenantId())?"-1":operator.getTenantId()));
         ConfiguresExecute.setGmtModified(date);
 
         ConfiguresExecute.setModifier(operator.getUsername());

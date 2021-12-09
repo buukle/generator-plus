@@ -8,11 +8,12 @@ import org.apache.velocity.app.VelocityEngine;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import top.buukle.login.cube.session.SessionUtils;
+import top.buukle.login.cube.session.UserDTO;
+import top.buukle.login.cube.session.tenant.TenantHelper;
 import top.buukle.opensource.generator.plus.commons.call.CommonRequest;
 import top.buukle.opensource.generator.plus.commons.call.CommonResponse;
 import top.buukle.opensource.generator.plus.commons.call.PageResponse;
-import top.buukle.opensource.generator.plus.commons.session.SessionUtils;
-import top.buukle.opensource.generator.plus.commons.session.UserDTO;
 import top.buukle.opensource.generator.plus.commons.status.StatusConstants;
 import top.buukle.opensource.generator.plus.utils.DateUtil;
 import top.buukle.opensource.generator.plus.utils.StringUtil;
@@ -171,6 +172,7 @@ public class ArchetypesServiceImpl extends ServiceImpl<ArchetypesMapper, Archety
             throw new SystemException(SystemReturnEnum.RUD_ID_NULL);
         }
         // 执行查询
+        TenantHelper.startTenant("archetypes");
         Archetypes one = super.getById(archetypesQueryDTO.getId());
         // 转换响应
         ArchetypesVO archetypesVO = new ArchetypesVO();
@@ -196,6 +198,7 @@ public class ArchetypesServiceImpl extends ServiceImpl<ArchetypesMapper, Archety
         QueryWrapper<Archetypes> queryWrapper = this.assPageParam(archetypesQueryDTO);
         // 查询
         PageHelper.startPage(archetypesQueryDTO.getPageNo(),archetypesQueryDTO.getPageSize());
+        TenantHelper.startTenant("archetypes");
         List<Archetypes> list = super.list(queryWrapper);
         PageInfo<Archetypes> pageInfo = new PageInfo<>(list);
         // 分页
@@ -245,7 +248,7 @@ public class ArchetypesServiceImpl extends ServiceImpl<ArchetypesMapper, Archety
         archetypes.setGmtCreated(date);
         archetypes.setCreator(operator.getUsername());
         archetypes.setCreatorCode(operator.getUserId());
-        archetypes.setCreatorTenantId(Integer.parseInt(StringUtil.isEmpty(operator.getTenantId())?"-1":operator.getTenantId()));
+        archetypes.setTenantId(Integer.parseInt(StringUtil.isEmpty(operator.getTenantId())?"-1":operator.getTenantId()));
         archetypes.setGmtModified(date);
 
         archetypes.setModifier(operator.getUsername());

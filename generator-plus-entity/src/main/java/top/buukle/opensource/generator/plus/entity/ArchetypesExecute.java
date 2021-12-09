@@ -79,7 +79,7 @@ public class ArchetypesExecute implements Serializable {
     /**
      * 创建者部门id
      */
-    private Integer creatorTenantId;
+    private Integer tenantId;
     /**
      * 创建者UID
      */

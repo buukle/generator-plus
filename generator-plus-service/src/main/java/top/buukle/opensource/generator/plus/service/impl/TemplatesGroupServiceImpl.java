@@ -10,12 +10,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
+import top.buukle.login.cube.session.SessionUtils;
+import top.buukle.login.cube.session.UserDTO;
+import top.buukle.login.cube.session.tenant.TenantHelper;
 import top.buukle.opensource.generator.plus.commons.call.CommonRequest;
 import top.buukle.opensource.generator.plus.commons.call.CommonResponse;
 import top.buukle.opensource.generator.plus.commons.call.CommonResponse.Builder;
 import top.buukle.opensource.generator.plus.commons.call.PageResponse;
-import top.buukle.opensource.generator.plus.commons.session.SessionUtils;
-import top.buukle.opensource.generator.plus.commons.session.UserDTO;
 import top.buukle.opensource.generator.plus.commons.status.StatusConstants;
 import top.buukle.opensource.generator.plus.dao.TemplatesGroupMapper;
 import top.buukle.opensource.generator.plus.dtvo.enums.TemplatesGroupEnums;
@@ -168,6 +169,7 @@ public class TemplatesGroupServiceImpl extends ServiceImpl<TemplatesGroupMapper,
             throw new SystemException(SystemReturnEnum.RUD_ID_NULL);
         }
         // 执行查询
+        TenantHelper.startTenant("templates_group");
         TemplatesGroup one = super.getById(templatesGroupQueryDTO.getId());
         // 转换响应
         TemplatesGroupVO templatesGroupVO = new TemplatesGroupVO();
@@ -196,6 +198,7 @@ public class TemplatesGroupServiceImpl extends ServiceImpl<TemplatesGroupMapper,
         QueryWrapper<TemplatesGroup> queryWrapper = this.assPageParam(templatesGroupQueryDTO);
         // 查询
         PageHelper.startPage(templatesGroupQueryDTO.getPageNo(),templatesGroupQueryDTO.getPageSize());
+        TenantHelper.startTenant("templates_group");
         List<TemplatesGroup> list = super.list(queryWrapper);
         PageInfo<TemplatesGroup> pageInfo = new PageInfo<>(list);
         // 分页
@@ -245,7 +248,7 @@ public class TemplatesGroupServiceImpl extends ServiceImpl<TemplatesGroupMapper,
         templatesGroup.setGmtCreated(date);
         templatesGroup.setCreator(operator.getUsername());
         templatesGroup.setCreatorCode(operator.getUserId());
-        templatesGroup.setCreatorTenantId(Integer.parseInt(StringUtil.isEmpty(operator.getTenantId())?"-1":operator.getTenantId()));
+        templatesGroup.setTenantId(Integer.parseInt(StringUtil.isEmpty(operator.getTenantId())?"-1":operator.getTenantId()));
         templatesGroup.setGmtModified(date);
 
         templatesGroup.setModifier(operator.getUsername());

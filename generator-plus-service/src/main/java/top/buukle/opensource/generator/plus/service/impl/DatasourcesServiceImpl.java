@@ -6,11 +6,12 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
+import top.buukle.login.cube.session.SessionUtils;
+import top.buukle.login.cube.session.UserDTO;
+import top.buukle.login.cube.session.tenant.TenantHelper;
 import top.buukle.opensource.generator.plus.commons.call.CommonRequest;
 import top.buukle.opensource.generator.plus.commons.call.CommonResponse;
 import top.buukle.opensource.generator.plus.commons.call.PageResponse;
-import top.buukle.opensource.generator.plus.commons.session.SessionUtils;
-import top.buukle.opensource.generator.plus.commons.session.UserDTO;
 import top.buukle.opensource.generator.plus.commons.status.StatusConstants;
 import top.buukle.opensource.generator.plus.utils.DateUtil;
 import top.buukle.opensource.generator.plus.utils.StringUtil;
@@ -154,6 +155,7 @@ public class DatasourcesServiceImpl extends ServiceImpl<DatasourcesMapper, Datas
             throw new SystemException(SystemReturnEnum.RUD_ID_NULL);
         }
         // 执行查询
+        TenantHelper.startTenant("datasources");
         Datasources one = super.getById(datasourcesQueryDTO.getId());
         // 转换响应
         DatasourcesVO datasourcesVO = new DatasourcesVO();
@@ -179,6 +181,7 @@ public class DatasourcesServiceImpl extends ServiceImpl<DatasourcesMapper, Datas
         QueryWrapper<Datasources> queryWrapper = this.assPageParam(datasourcesQueryDTO);
         // 查询
         PageHelper.startPage(datasourcesQueryDTO.getPageNo(),datasourcesQueryDTO.getPageSize());
+        TenantHelper.startTenant("datasources");
         List<Datasources> list = super.list(queryWrapper);
         PageInfo<Datasources> pageInfo = new PageInfo<>(list);
         // 分页
@@ -228,7 +231,7 @@ public class DatasourcesServiceImpl extends ServiceImpl<DatasourcesMapper, Datas
         datasources.setGmtCreated(date);
         datasources.setCreator(operator.getUsername());
         datasources.setCreatorCode(operator.getUserId());
-        datasources.setCreatorTenantId(Integer.parseInt(StringUtil.isEmpty(operator.getTenantId())?"-1":operator.getTenantId()));
+        datasources.setTenantId(Integer.parseInt(StringUtil.isEmpty(operator.getTenantId())?"-1":operator.getTenantId()));
         datasources.setGmtModified(date);
 
         datasources.setModifier(operator.getUsername());

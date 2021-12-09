@@ -15,12 +15,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
+import top.buukle.login.cube.session.SessionUtils;
+import top.buukle.login.cube.session.UserDTO;
+import top.buukle.login.cube.session.tenant.TenantHelper;
 import top.buukle.opensource.generator.plus.commons.call.CommonRequest;
 import top.buukle.opensource.generator.plus.commons.call.CommonResponse;
 import top.buukle.opensource.generator.plus.commons.call.PageResponse;
 import top.buukle.opensource.generator.plus.commons.log.BaseLogger;
-import top.buukle.opensource.generator.plus.commons.session.SessionUtils;
-import top.buukle.opensource.generator.plus.commons.session.UserDTO;
 import top.buukle.opensource.generator.plus.commons.status.StatusConstants;
 import top.buukle.opensource.generator.plus.dtvo.vo.templatesGroup.TemplatesGroupVO;
 import top.buukle.opensource.generator.plus.entity.*;
@@ -232,6 +233,7 @@ public class ConfiguresServiceImpl extends ServiceImpl<ConfiguresMapper, Configu
             return ConfiguresQueryVOCommonResponse;
         }
         // 执行查询
+        TenantHelper.startTenant("configures");
         Configures configuresDB = super.getById(configuresQueryDTO.getId());
         BeanUtils.copyProperties(configuresDB, configuresVO);
         /*处理表名列表*/
@@ -339,6 +341,7 @@ public class ConfiguresServiceImpl extends ServiceImpl<ConfiguresMapper, Configu
         QueryWrapper<Configures> queryWrapper = this.assPageParam(ConfiguresQueryDTO);
         // 查询
         PageHelper.startPage(ConfiguresQueryDTO.getPageNo(),ConfiguresQueryDTO.getPageSize());
+        TenantHelper.startTenant("configures");
         List<Configures> list = super.list(queryWrapper);
         PageInfo<Configures> pageInfo = new PageInfo<>(list);
         // 分页
@@ -388,7 +391,7 @@ public class ConfiguresServiceImpl extends ServiceImpl<ConfiguresMapper, Configu
         Configures.setGmtCreated(date);
         Configures.setCreator(operator.getUsername());
         Configures.setCreatorCode(operator.getUserId());
-        Configures.setCreatorTenantId(Integer.parseInt(StringUtil.isEmpty(operator.getTenantId())?"-1":operator.getTenantId()));
+        Configures.setTenantId(Integer.parseInt(StringUtil.isEmpty(operator.getTenantId())?"-1":operator.getTenantId()));
         Configures.setGmtModified(date);
 
         Configures.setModifier(operator.getUsername());

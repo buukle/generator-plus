@@ -8,11 +8,12 @@ import com.github.pagehelper.PageInfo;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import top.buukle.login.cube.session.SessionUtils;
+import top.buukle.login.cube.session.UserDTO;
+import top.buukle.login.cube.session.tenant.TenantHelper;
 import top.buukle.opensource.generator.plus.commons.call.CommonRequest;
 import top.buukle.opensource.generator.plus.commons.call.CommonResponse;
 import top.buukle.opensource.generator.plus.commons.call.PageResponse;
-import top.buukle.opensource.generator.plus.commons.session.SessionUtils;
-import top.buukle.opensource.generator.plus.commons.session.UserDTO;
 import top.buukle.opensource.generator.plus.commons.status.StatusConstants;
 import top.buukle.opensource.generator.plus.dtvo.dto.templatesGroup.TemplatesGroupUpdateDTO;
 import top.buukle.opensource.generator.plus.dtvo.enums.TemplatesGroupEnums.status;
@@ -158,6 +159,7 @@ public class TemplatesServiceImpl extends ServiceImpl<TemplatesMapper, Templates
             throw new SystemException(SystemReturnEnum.RUD_ID_NULL);
         }
         // 执行查询
+        TenantHelper.startTenant("templates");
         Templates one = super.getById(TemplatesQueryDTO.getId());
         // 转换响应
         TemplatesVO templatesVO = new TemplatesVO();
@@ -192,6 +194,7 @@ public class TemplatesServiceImpl extends ServiceImpl<TemplatesMapper, Templates
         QueryWrapper<Templates> queryWrapper = this.assPageParam(TemplatesQueryDTO);
         // 查询
         PageHelper.startPage(TemplatesQueryDTO.getPageNo(),TemplatesQueryDTO.getPageSize());
+        TenantHelper.startTenant("templates");
         List<Templates> list = super.list(queryWrapper);
         PageInfo<Templates> pageInfo = new PageInfo<>(list);
         // 分页
@@ -252,7 +255,7 @@ public class TemplatesServiceImpl extends ServiceImpl<TemplatesMapper, Templates
         Templates.setGmtCreated(date);
         Templates.setCreator(operator.getUsername());
         Templates.setCreatorCode(operator.getUserId());
-        Templates.setCreatorTenantId(Integer.parseInt(StringUtil.isEmpty(operator.getTenantId())?"-1":operator.getTenantId()));
+        Templates.setTenantId(Integer.parseInt(StringUtil.isEmpty(operator.getTenantId())?"-1":operator.getTenantId()));
         Templates.setGmtModified(date);
 
         Templates.setModifier(operator.getUsername());
