@@ -284,6 +284,7 @@ public class TemplatesGroupServiceImpl extends ServiceImpl<TemplatesGroupMapper,
         QueryWrapper<TemplatesGroup> queryWrapper = new QueryWrapper<>();
         queryWrapper.gt("status",StatusConstants.DELETED);
         queryWrapper.orderByDesc("gmt_modified");
+        TenantHelper.startTenant("templates_group");
         List<TemplatesGroup> list = super.list(queryWrapper);
         List<TemplatesGroupVO> queryVOList = new ArrayList<>();
         for (TemplatesGroup templatesGroupDB : list) {
