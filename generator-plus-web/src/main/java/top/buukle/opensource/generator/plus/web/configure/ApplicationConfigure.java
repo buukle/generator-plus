@@ -17,6 +17,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import top.buukle.login.cube.session.tenant.TenantInterceptor;
 
 import javax.annotation.PostConstruct;
 import java.util.List;
@@ -50,7 +51,7 @@ public class ApplicationConfigure implements WebMvcConfigurer {
     }
 
     /**
-     * @description DataIsolationInterceptor , PageInterceptor 插拔
+     * @description TenantInterceptor , PageInterceptor 插拔
      * @param
      * @return void
      * @Author 86180
@@ -61,8 +62,11 @@ public class ApplicationConfigure implements WebMvcConfigurer {
         // 分页拦截器
         PageInterceptor pageInterceptor = new PageInterceptor();
         pageInterceptor.setProperties(this.pageHelperProperties());
+        // 租户拦截器
+        TenantInterceptor tenantInterceptor = new TenantInterceptor();
         for (SqlSessionFactory sqlSessionFactory : sqlSessionFactoryList) {
             sqlSessionFactory.getConfiguration().addInterceptor(pageInterceptor);
+            sqlSessionFactory.getConfiguration().addInterceptor(tenantInterceptor);
         }
     }
 }
